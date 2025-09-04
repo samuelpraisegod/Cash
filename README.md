@@ -18,7 +18,7 @@
             --red: #dc3545;
         }
 
- /* Global Styles */
+/* Global Styles */
         body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--light-bg);
@@ -43,7 +43,7 @@
             z-index: 100;
         }
 
-.header-title h1 {
+ .header-title h1 {
             margin: 0;
             font-size: 1.5rem;
         }
@@ -102,7 +102,7 @@
             border-radius: 5px;
         }
 
-  .btn {
+ .btn {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 20px;
@@ -113,7 +113,7 @@
             gap: 0.5rem;
         }
 
-   .btn-primary {
+ .btn-primary {
             background: var(--secondary);
             color: var(--primary);
         }
@@ -132,7 +132,7 @@
             opacity: 0.9;
         }
 
- /* Main Content */
+  /* Main Content */
         .main-content {
             padding: 2rem;
         }
@@ -145,8 +145,17 @@
             margin-bottom: 2rem;
         }
 
-  /* Deposit Section */
-        .deposit-methods {
+    
+/* Withdrawal Section */
+        .balance-overview {
+            margin-bottom: 1.5rem;
+        }
+
+ .balance-overview div {
+            margin-bottom: 0.5rem;
+        }
+
+ .withdrawal-methods {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
@@ -161,16 +170,16 @@
             flex: 1;
         }
 
-  .method-card.active {
+   .method-card.active {
             background: var(--secondary);
             color: var(--white);
         }
 
-  .form-group {
+   .form-group {
             margin-bottom: 1rem;
         }
 
-  .form-group label {
+ .form-group label {
             display: block;
             margin-bottom: 0.25rem;
         }
@@ -182,25 +191,26 @@
             border-radius: 5px;
         }
 
-  .payment-details {
-            margin-bottom: 1.5rem;
+  .save-default {
+            margin-top: 0.5rem;
         }
 
-  .copy-btn {
+ .copy-btn {
             background: var(--primary);
             color: var(--white);
             padding: 0.25rem 0.5rem;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-left: 0.5rem;
         }
 
   .copy-btn:hover {
             opacity: 0.9;
         }
 
-  .confirm-btn {
-            background: var(--green);
+   .submit-btn {
+            background: var(--primary);
             color: var(--white);
             padding: 0.75rem 1.5rem;
             font-size: 1rem;
@@ -210,7 +220,7 @@
             width: 100%;
         }
 
- .confirm-btn:hover {
+  .submit-btn:hover {
             opacity: 0.9;
         }
 
@@ -225,7 +235,7 @@
             color: var(--white);
         }
 
-  .status {
+ .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             color: var(--white);
@@ -237,7 +247,7 @@
 
   /* Responsive Design */
         @media (max-width: 768px) {
-            .deposit-methods {
+            .withdrawal-methods {
                 flex-direction: column;
             }
         }
@@ -274,7 +284,7 @@
         </nav>
     </header>
 
- <div id="home-content">
+  <div id="home-content">
         <div class="hero">
             <h1>MarketFlow: Collaborative Trading</h1>
             <p>Join a community-driven platform to co-fund trading accounts and maximize profits.</p>
@@ -302,7 +312,7 @@
                         <a href="#transfer" class="btn"><span role="img" aria-label="transfer">🔄</span> Transfer</a>
                     </div>
                 </section>
-  <!-- Deposit Section (Refined) -->
+    <!-- Deposit Section (unchanged for now) -->
                 <section id="deposit">
                     <h2>➕ Deposit Funds</h2>
                     <div class="deposit-methods">
@@ -310,8 +320,7 @@
                         <div class="method-card" onclick="selectMethod('card')">💵 Card Payment</div>
                         <div class="method-card" onclick="selectMethod('crypto')">🔗 Crypto Wallet</div>
                     </div>
-
-   <form id="depositForm" class="hidden">
+                    <form id="depositForm" class="hidden">
                         <div class="form-group">
                             <label for="deposit-amount">Enter Amount</label>
                             <input type="number" id="deposit-amount" placeholder="Enter Amount" value="500">
@@ -331,8 +340,51 @@
                             ⚠️ Please make payment to the account/wallet shown above. Your deposit will be confirmed once payment is received.
                         </div>
                     </form>
+                </section>
+  <!-- Withdrawal Section (Complete) -->
+                <section id="withdraw">
+                    <h2>💸 Withdraw Funds</h2>
+                    <div class="balance-overview">
+                        <div>Available Balance: $2,450.00</div>
+                        <div>Pending Withdrawals: $200.00</div>
+                        <div>Minimum Withdrawal Limit: $10.00</div>
+                    </div>
 
-  <h3>Recent Deposit Activity</h3>
+  <form id="withdrawForm">
+                        <div class="form-group">
+                            <label for="withdraw-amount">Enter Withdrawal Amount</label>
+                            <input type="number" id="withdraw-amount" placeholder="Enter Amount" value="200" oninput="calculateNetAmount()">
+                        </div>
+                        <div class="form-group">
+                            <label for="withdraw-currency">Currency</label>
+                            <select id="withdraw-currency" onchange="calculateNetAmount()">
+                                <option value="USD">USD</option>
+                                <option value="NGN">NGN</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>You will receive: <span id="net-amount">$195.00 (after 2.5% fee)</span></label>
+                        </div>
+                        <div class="withdrawal-methods">
+                            <div class="method-card" onclick="selectMethod('bank-withdraw')">🏦 Bank Transfer</div>
+                            <div class="method-card" onclick="selectMethod('crypto-withdraw')">🔗 Crypto Wallet</div>
+                            <div class="method-card" onclick="selectMethod('mobile-withdraw')">📲 Mobile Money</div>
+                        </div>
+                        <div id="destination-details" class="payment-details">
+                            <!-- Dynamic content will be inserted here -->
+                        </div>
+                        <div class="form-group security-field">
+                            <label for="security-code">Security (Enter OTP / 2FA Code)</label>
+                            <input type="text" id="security-code" placeholder="Enter OTP / 2FA Code">
+                        </div>
+                        <button type="button" class="submit-btn" onclick="confirmWithdrawal()">✅ Submit Withdrawal</button>
+                    </form>
+
+  <div class="status-section" style="margin-top: 1rem; color: #666;">
+                        <p>Processing Time: Bank transfers take 1–2 business days.</p>
+                    </div>
+
+ <h3>Recent Withdrawals</h3>
                     <table class="transactions-table">
                         <thead>
                             <tr>
@@ -346,47 +398,19 @@
                             <tr>
                                 <td>Sept 4, 25</td>
                                 <td>Bank Transfer</td>
-                                <td>$300</td>
-                                <td><span class="status status-completed">✅ Completed</span></td>
+                                <td>$200</td>
+                                <td><span class="status status-pending">⏳ Pending</span></td>
                             </tr>
                             <tr>
-                                <td>Sept 3, 25</td>
+                                <td>Sept 2, 25</td>
                                 <td>Crypto (USDT)</td>
                                 <td>$100</td>
-                                <td><span class="status status-pending">⏳ Pending</span></td>
+                                <td><span class="status status-completed">✅ Completed</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </section>
- <!-- Withdrawal Section (unchanged for now) -->
-                <section id="withdraw">
-                    <h2>💸 Withdraw Funds</h2>
-                    <div class="form-group">
-                        <label>Available Balance: $2,450.00</label>
-                    </div>
-                    <form id="withdrawForm">
-                        <div class="form-group">
-                            <label for="withdraw-amount">Amount</label>
-                            <input type="number" id="withdraw-amount" placeholder="Enter Amount" value="200">
-                        </div>
-                        <div class="withdrawal-methods">
-                            <div class="method-card" onclick="selectMethod('bank-withdraw')">🏦 Bank Account</div>
-                            <div class="method-card" onclick="selectMethod('crypto-withdraw')">🔗 Crypto Wallet</div>
-                            <div class="method-card" onclick="selectMethod('mobile-withdraw')">📲 Mobile Money</div>
-                        </div>
-                        <div id="destination-details" class="form-group">
-                            <label for="destination">Destination</label>
-                            <input type="text" id="destination" placeholder="Wallet Address / Bank Account">
-                        </div>
-                        <div class="security-field form-group">
-                            <label for="security-code">Security (Enter OTP / PIN)</label>
-                            <input type="text" id="security-code" placeholder="Enter OTP / PIN">
-                        </div>
-                        <button type="button" class="submit-btn" onclick="confirmWithdrawal()">✅ Submit Withdrawal</button>
-                    </form>
-                </section>
-  <!-- Other sections
- remain unchanged but can be added as needed -->
+  <!-- Other sections remain unchanged but can be added as needed -->
                 <section id="available-funded">
                     <h2>Available Funded</h2>
                     <p>View available funded accounts.</p>
@@ -411,7 +435,7 @@
         </div>
     </div>
 
-  <footer>
+ <footer>
         <p>&copy; 2025 MarketFlow</p>
     </footer>
 
@@ -451,67 +475,77 @@
             updateUI();
         }
 
-        // Deposit Method Selection
+        // Withdrawal Method Selection
         function selectMethod(method) {
-            const depositForm = document.getElementById('depositForm');
-            const paymentDetails = document.getElementById('payment-details');
-            depositForm.classList.remove('hidden');
+            const destinationDetails = document.getElementById('destination-details');
+            document.querySelectorAll('.withdrawal-methods .method-card').forEach(card => card.classList.remove('active'));
+            document.querySelector(`.withdrawal-methods .method-card[onclick="selectMethod('${method}')"]`).classList.add('active');
 
-            // Reset active class
-            document.querySelectorAll('.method-card').forEach(card => card.classList.remove('active'));
-            document.querySelector(`.method-card[onclick="selectMethod('${method}')"]`).classList.add('active');
-
-            // Dynamic payment details
-            paymentDetails.innerHTML = '';
-            const referenceCode = `DEP${Math.floor(Math.random() * 100000)}`;
+            // Dynamic destination details
+            destinationDetails.innerHTML = '';
             switch (method) {
-                case 'bank':
-                    paymentDetails.innerHTML = `
+                case 'bank-withdraw':
+                    destinationDetails.innerHTML = `
                         <div class="form-group">
-                            <label>Bank: GTBank</label>
+                            <label for="bank-name">Bank Name</label>
+                            <select id="bank-name">
+                                <option value="GTBank">GTBank</option>
+                                <option value="Zenith">Zenith</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>Account Name: MarketFlowFX Ltd</label>
+                            <label for="account-number">Account Number</label>
+                            <input type="text" id="account-number" placeholder="Enter Account Number">
                         </div>
                         <div class="form-group">
-                            <label>Account Number: 0123456789</label>
+                            <label for="account-holder">Account Holder Name</label>
+                            <input type="text" id="account-holder" placeholder="Enter Account Holder Name">
                         </div>
-                        <div class="form-group">
-                            <label>Reference Code: ${referenceCode}</label>
-                        </div>
-                        <div class="form-group">
-                            <label>📎 Upload Proof of Payment</label>
-                            <input type="file">
+                        <div class="form-group save-default">
+                            <input type="checkbox" id="save-default"> <label for="save-default">✔ Save as Default</label>
                         </div>
                     `;
                     break;
-                case 'card':
-                    paymentDetails.innerHTML = `
-                        <div class="form-group">
-                            <label>Card Details</label>
-                            <input type="text" placeholder="Card Number">
-                            <input type="text" placeholder="Expiry (MM/YY)">
-                            <input type="text" placeholder="CVV">
-                        </div>
-                        <p>Auto processed - Redirects to payment gateway.</p>
-                    `;
-                    break;
-                case 'crypto':
-                    paymentDetails.innerHTML = `
+                case 'crypto-withdraw':
+                    destinationDetails.innerHTML = `
                         <div class="form-group">
                             <label for="crypto-coin">Select Coin</label>
                             <select id="crypto-coin">
-                                <option value="BTC">BTC</option>
                                 <option value="USDT">USDT</option>
+                                <option value="BTC">BTC</option>
                                 <option value="ETH">ETH</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Wallet Address: 0xAB123456789CDEFFED1234...</label>
-                            <button class="copy-btn" onclick="copyToClipboard('0xAB123456789CDEFFED1234...')">📋 Copy</button>
+                            <label for="network-type">Network Type</label>
+                            <select id="network-type">
+                                <option value="TRC20">TRC20</option>
+                                <option value="ERC20">ERC20</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <img src="https://via.placeholder.com/100" alt="QR Code" style="margin-top: 0.5rem;">
+                            <label for="wallet-address">Wallet Address</label>
+                            <input type="text" id="wallet-address" placeholder="Enter Wallet Address">
+                            <button class="copy-btn" onclick="copyToClipboard(document.getElementById('wallet-address').value)">📋 Copy</button>
+                        </div>
+                    `;
+                    break;
+                case 'mobile-withdraw':
+                    destinationDetails.innerHTML = `
+                        <div class="form-group">
+                            <label for="provider">Mobile Money Provider</label>
+                            <select id="provider">
+                                <option value="MTN">MTN</option>
+                                <option value="Airtel">Airtel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone-number">Phone Number</label>
+                            <input type="text" id="phone-number" placeholder="Enter Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <label for="account-name">Account Name</label>
+                            <input type="text" id="account-name" placeholder="Enter Account Name">
                         </div>
                     `;
                     break;
@@ -520,6 +554,15 @@
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard!'));
+        }
+
+        function calculateNetAmount() {
+            const amount = parseFloat(document.getElementById('withdraw-amount').value) || 0;
+            const currency = document.getElementById('withdraw-currency').value;
+            const feeRate = 0.025; // 2.5% fee
+            const fee = amount * feeRate;
+            const netAmount = amount - fee;
+            document.getElementById('net-amount').textContent = `${currency} ${netAmount.toFixed(2)} (after ${feeRate * 100}% fee)`;
         }
 
         function confirmDeposit() {
@@ -536,6 +579,7 @@
 
         window.onload = () => {
             login();
+            calculateNetAmount(); // Initialize net amount display
         };
     </script>
 </body>
