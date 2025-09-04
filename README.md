@@ -18,7 +18,7 @@
             --red: #dc3545;
         }
 
-/* Global Styles */
+        /* Global Styles */
         body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--light-bg);
@@ -29,7 +29,7 @@
             overflow-x: hidden;
         }
 
- /* Header Styles */
+        /* Header Styles */
         header {
             background: #4a2626;
             color: var(--white);
@@ -43,24 +43,24 @@
             z-index: 100;
         }
 
- .header-title h1 {
+        .header-title h1 {
             margin: 0;
             font-size: 1.5rem;
         }
 
- nav {
+        nav {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
- .hamburger {
+        .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
             position: relative;
         }
 
- .hamburger-menu {
+        .hamburger-menu {
             display: none;
             position: absolute;
             top: 100%;
@@ -73,23 +73,23 @@
             z-index: 60;
         }
 
- .hamburger.active .hamburger-menu {
+        .hamburger.active .hamburger-menu {
             display: block;
         }
 
- .hamburger .brand {
+        .hamburger .brand {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 1rem;
             text-align: center;
         }
 
- .hamburger-menu ul {
+        .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
 
- .hamburger-menu ul li a {
+        .hamburger-menu ul li a {
             display: flex;
             align-items: center;
             padding: 0.5rem;
@@ -97,12 +97,12 @@
             text-decoration: none;
         }
 
- .hamburger-menu ul li a:hover {
+        .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
 
- .btn {
+        .btn {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 20px;
@@ -113,31 +113,31 @@
             gap: 0.5rem;
         }
 
- .btn-primary {
+        .btn-primary {
             background: var(--secondary);
             color: var(--primary);
         }
 
-  .btn-success {
+        .btn-success {
             background: var(--green);
             color: var(--white);
         }
 
-  .btn-danger {
+        .btn-danger {
             background: var(--red);
             color: var(--white);
         }
 
- .btn:hover {
+        .btn:hover {
             opacity: 0.9;
         }
 
-  /* Main Content */
+        /* Main Content */
         .main-content {
             padding: 2rem;
         }
 
- section {
+        section {
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
@@ -145,23 +145,22 @@
             margin-bottom: 2rem;
         }
 
-    
-/* Withdrawal Section */
+        /* Deposit Section */
         .balance-overview {
             margin-bottom: 1.5rem;
         }
 
- .balance-overview div {
+        .balance-overview div {
             margin-bottom: 0.5rem;
         }
 
- .withdrawal-methods {
+        .deposit-methods {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
 
- .method-card {
+        .method-card {
             background: var(--light-bg);
             padding: 1rem;
             border-radius: 10px;
@@ -170,32 +169,28 @@
             flex: 1;
         }
 
-   .method-card.active {
+        .method-card.active {
             background: var(--secondary);
             color: var(--white);
         }
 
-   .form-group {
+        .form-group {
             margin-bottom: 1rem;
         }
 
- .form-group label {
+        .form-group label {
             display: block;
             margin-bottom: 0.25rem;
         }
 
-  .form-group input, .form-group select {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 0.5rem;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
-  .save-default {
-            margin-top: 0.5rem;
-        }
-
- .copy-btn {
+        .copy-btn {
             background: var(--primary);
             color: var(--white);
             padding: 0.25rem 0.5rem;
@@ -205,12 +200,12 @@
             margin-left: 0.5rem;
         }
 
-  .copy-btn:hover {
+        .copy-btn:hover {
             opacity: 0.9;
         }
 
-   .submit-btn {
-            background: var(--primary);
+        .confirm-btn {
+            background: var(--green);
             color: var(--white);
             padding: 0.75rem 1.5rem;
             font-size: 1rem;
@@ -220,34 +215,34 @@
             width: 100%;
         }
 
-  .submit-btn:hover {
+        .confirm-btn:hover {
             opacity: 0.9;
         }
 
-  .transactions-table th, .transactions-table td {
+        .transactions-table th, .transactions-table td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
         }
 
-  .transactions-table th {
+        .transactions-table th {
             background: var(--primary);
             color: var(--white);
         }
 
- .status {
+        .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             color: var(--white);
             font-size: 0.875rem;
         }
 
-  .status-completed { background: var(--green); }
+        .status-completed { background: var(--green); }
         .status-pending { background: #ffc107; }
 
-  /* Responsive Design */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .withdrawal-methods {
+            .deposit-methods {
                 flex-direction: column;
             }
         }
@@ -284,7 +279,7 @@
         </nav>
     </header>
 
-  <div id="home-content">
+ <div id="home-content">
         <div class="hero">
             <h1>MarketFlow: Collaborative Trading</h1>
             <p>Join a community-driven platform to co-fund trading accounts and maximize profits.</p>
@@ -292,7 +287,7 @@
         </div>
     </div>
 
-  <div id="dashboard-content" class="hidden">
+ <div id="dashboard-content" class="hidden">
         <div class="dashboard">
             <main class="main-content">
                 <!-- Balance Section (unchanged for now) -->
@@ -312,25 +307,35 @@
                         <a href="#transfer" class="btn"><span role="img" aria-label="transfer">🔄</span> Transfer</a>
                     </div>
                 </section>
-    <!-- Deposit Section (unchanged for now) -->
+ <!-- Deposit Section (Refined with Balance and Fees) -->
                 <section id="deposit">
                     <h2>➕ Deposit Funds</h2>
-                    <div class="deposit-methods">
+                    <div class="balance-overview">
+                        <div>Available Balance: $2,450.00</div>
+                        <div>Pending Deposits: $100.00</div>
+                        <div>Minimum Deposit Limit: $10.00</div>
+                    </div>
+
+  <div class="deposit-methods">
                         <div class="method-card" onclick="selectMethod('bank')">💳 Bank Transfer</div>
                         <div class="method-card" onclick="selectMethod('card')">💵 Card Payment</div>
                         <div class="method-card" onclick="selectMethod('crypto')">🔗 Crypto Wallet</div>
                     </div>
-                    <form id="depositForm" class="hidden">
+
+  <form id="depositForm" class="hidden">
                         <div class="form-group">
                             <label for="deposit-amount">Enter Amount</label>
-                            <input type="number" id="deposit-amount" placeholder="Enter Amount" value="500">
+                            <input type="number" id="deposit-amount" placeholder="Enter Amount" value="500" oninput="calculateNetDeposit()">
                         </div>
                         <div class="form-group">
                             <label for="deposit-currency">Currency</label>
-                            <select id="deposit-currency">
+                            <select id="deposit-currency" onchange="calculateNetDeposit()">
                                 <option value="USD">USD</option>
                                 <option value="NGN">NGN</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label>You will receive: <span id="net-deposit">$487.50 (after 2.5% fee)</span></label>
                         </div>
                         <div id="payment-details" class="payment-details">
                             <!-- Dynamic content will be inserted here -->
@@ -340,8 +345,34 @@
                             ⚠️ Please make payment to the account/wallet shown above. Your deposit will be confirmed once payment is received.
                         </div>
                     </form>
+
+<h3>Recent Deposit Activity</h3>
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Method</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sept 4, 25</td>
+                                <td>Bank Transfer</td>
+                                <td>$300</td>
+                                <td><span class="status status-completed">✅ Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Sept 3, 25</td>
+                                <td>Crypto (USDT)</td>
+                                <td>$100</td>
+                                <td><span class="status status-pending">⏳ Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </section>
-  <!-- Withdrawal Section (Complete) -->
+ <!-- Withdrawal Section (unchanged for now) -->
                 <section id="withdraw">
                     <h2>💸 Withdraw Funds</h2>
                     <div class="balance-overview">
@@ -349,8 +380,7 @@
                         <div>Pending Withdrawals: $200.00</div>
                         <div>Minimum Withdrawal Limit: $10.00</div>
                     </div>
-
-  <form id="withdrawForm">
+                    <form id="withdrawForm">
                         <div class="form-group">
                             <label for="withdraw-amount">Enter Withdrawal Amount</label>
                             <input type="number" id="withdraw-amount" placeholder="Enter Amount" value="200" oninput="calculateNetAmount()">
@@ -379,38 +409,8 @@
                         </div>
                         <button type="button" class="submit-btn" onclick="confirmWithdrawal()">✅ Submit Withdrawal</button>
                     </form>
-
-  <div class="status-section" style="margin-top: 1rem; color: #666;">
-                        <p>Processing Time: Bank transfers take 1–2 business days.</p>
-                    </div>
-
- <h3>Recent Withdrawals</h3>
-                    <table class="transactions-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Method</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Sept 4, 25</td>
-                                <td>Bank Transfer</td>
-                                <td>$200</td>
-                                <td><span class="status status-pending">⏳ Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>Sept 2, 25</td>
-                                <td>Crypto (USDT)</td>
-                                <td>$100</td>
-                                <td><span class="status status-completed">✅ Completed</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </section>
-  <!-- Other sections remain unchanged but can be added as needed -->
+<!-- Other sections remain unchanged but can be added as needed -->
                 <section id="available-funded">
                     <h2>Available Funded</h2>
                     <p>View available funded accounts.</p>
@@ -435,7 +435,7 @@
         </div>
     </div>
 
- <footer>
+  <footer>
         <p>&copy; 2025 MarketFlow</p>
     </footer>
 
@@ -475,77 +475,67 @@
             updateUI();
         }
 
-        // Withdrawal Method Selection
+        // Deposit Method Selection
         function selectMethod(method) {
-            const destinationDetails = document.getElementById('destination-details');
-            document.querySelectorAll('.withdrawal-methods .method-card').forEach(card => card.classList.remove('active'));
-            document.querySelector(`.withdrawal-methods .method-card[onclick="selectMethod('${method}')"]`).classList.add('active');
+            const depositForm = document.getElementById('depositForm');
+            const paymentDetails = document.getElementById('payment-details');
+            depositForm.classList.remove('hidden');
 
-            // Dynamic destination details
-            destinationDetails.innerHTML = '';
+            // Reset active class
+            document.querySelectorAll('.method-card').forEach(card => card.classList.remove('active'));
+            document.querySelector(`.method-card[onclick="selectMethod('${method}')"]`).classList.add('active');
+
+            // Dynamic payment details
+            paymentDetails.innerHTML = '';
+            const referenceCode = `DEP${Math.floor(Math.random() * 100000)}`;
             switch (method) {
-                case 'bank-withdraw':
-                    destinationDetails.innerHTML = `
+                case 'bank':
+                    paymentDetails.innerHTML = `
                         <div class="form-group">
-                            <label for="bank-name">Bank Name</label>
-                            <select id="bank-name">
-                                <option value="GTBank">GTBank</option>
-                                <option value="Zenith">Zenith</option>
-                            </select>
+                            <label>Bank: GTBank</label>
                         </div>
                         <div class="form-group">
-                            <label for="account-number">Account Number</label>
-                            <input type="text" id="account-number" placeholder="Enter Account Number">
+                            <label>Account Name: MarketFlowFX Ltd</label>
                         </div>
                         <div class="form-group">
-                            <label for="account-holder">Account Holder Name</label>
-                            <input type="text" id="account-holder" placeholder="Enter Account Holder Name">
+                            <label>Account Number: 0123456789</label>
                         </div>
-                        <div class="form-group save-default">
-                            <input type="checkbox" id="save-default"> <label for="save-default">✔ Save as Default</label>
+                        <div class="form-group">
+                            <label>Reference Code: ${referenceCode}</label>
+                        </div>
+                        <div class="form-group">
+                            <label>📎 Upload Proof of Payment</label>
+                            <input type="file">
                         </div>
                     `;
                     break;
-                case 'crypto-withdraw':
-                    destinationDetails.innerHTML = `
+                case 'card':
+                    paymentDetails.innerHTML = `
+                        <div class="form-group">
+                            <label>Card Details</label>
+                            <input type="text" placeholder="Card Number">
+                            <input type="text" placeholder="Expiry (MM/YY)">
+                            <input type="text" placeholder="CVV">
+                        </div>
+                        <p>Auto processed - Redirects to payment gateway.</p>
+                    `;
+                    break;
+                case 'crypto':
+                    paymentDetails.innerHTML = `
                         <div class="form-group">
                             <label for="crypto-coin">Select Coin</label>
                             <select id="crypto-coin">
-                                <option value="USDT">USDT</option>
                                 <option value="BTC">BTC</option>
+                                <option value="USDT">USDT</option>
                                 <option value="ETH">ETH</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="network-type">Network Type</label>
-                            <select id="network-type">
-                                <option value="TRC20">TRC20</option>
-                                <option value="ERC20">ERC20</option>
-                            </select>
+                            <label>Wallet Address: 0xAB123456789CDEFFED1234...</label>
+                            <button class="copy-btn" onclick="copyToClipboard('0xAB123456789CDEFFED1234...')">📋 Copy</button>
                         </div>
                         <div class="form-group">
-                            <label for="wallet-address">Wallet Address</label>
-                            <input type="text" id="wallet-address" placeholder="Enter Wallet Address">
-                            <button class="copy-btn" onclick="copyToClipboard(document.getElementById('wallet-address').value)">📋 Copy</button>
-                        </div>
-                    `;
-                    break;
-                case 'mobile-withdraw':
-                    destinationDetails.innerHTML = `
-                        <div class="form-group">
-                            <label for="provider">Mobile Money Provider</label>
-                            <select id="provider">
-                                <option value="MTN">MTN</option>
-                                <option value="Airtel">Airtel</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone-number">Phone Number</label>
-                            <input type="text" id="phone-number" placeholder="Enter Phone Number">
-                        </div>
-                        <div class="form-group">
-                            <label for="account-name">Account Name</label>
-                            <input type="text" id="account-name" placeholder="Enter Account Name">
+                            <img src="https://via.placeholder.com/100" alt="QR Code" style="margin-top: 0.5rem;">
                         </div>
                     `;
                     break;
@@ -554,6 +544,21 @@
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard!'));
+        }
+
+        function calculateNetDeposit() {
+            const amount = parseFloat(document.getElementById('deposit-amount').value) || 0;
+            const currency = document.getElementById('deposit-currency').value;
+            const feeRate = 0.025; // 2.5% fee
+            const fee = amount * feeRate;
+            const netDeposit = amount - fee;
+            document.getElementById('net-deposit').textContent = `${currency} ${netDeposit.toFixed(2)} (after ${feeRate * 100}% fee)`;
+        }
+
+        function confirmDeposit() {
+            if (confirm('Are you sure you want to confirm this deposit?')) {
+                alert('Deposit submitted successfully! ✅');
+            }
         }
 
         function calculateNetAmount() {
@@ -565,12 +570,6 @@
             document.getElementById('net-amount').textContent = `${currency} ${netAmount.toFixed(2)} (after ${feeRate * 100}% fee)`;
         }
 
-        function confirmDeposit() {
-            if (confirm('Are you sure you want to confirm this deposit?')) {
-                alert('Deposit submitted successfully! ✅');
-            }
-        }
-
         function confirmWithdrawal() {
             if (confirm('Are you sure you want to submit this withdrawal?')) {
                 alert('Withdrawal submitted successfully! ✅');
@@ -579,7 +578,7 @@
 
         window.onload = () => {
             login();
-            calculateNetAmount(); // Initialize net amount display
+            calculateNetDeposit(); // Initialize net deposit display
         };
     </script>
 </body>
