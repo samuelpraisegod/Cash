@@ -14,9 +14,11 @@
             --white: #fff;
             --text: #333;
             --shadow: rgba(0,0,0,0.1);
+            --green: #28a745;
+            --red: #dc3545;
         }
 
-   /* Global Styles */
+ /* Global Styles */
         body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--light-bg);
@@ -27,7 +29,7 @@
             overflow-x: hidden;
         }
 
-  /* Header Styles */
+   /* Header Styles */
         header {
             background: #4a2626;
             color: var(--white);
@@ -46,7 +48,7 @@
             font-size: 1.5rem;
         }
 
-  nav {
+ nav {
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -71,7 +73,7 @@
             z-index: 60;
         }
 
-.hamburger.active .hamburger-menu {
+ .hamburger.active .hamburger-menu {
             display: block;
         }
 
@@ -82,7 +84,7 @@
             text-align: center;
         }
 
-  .hamburger-menu ul {
+ .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
@@ -95,35 +97,47 @@
             text-decoration: none;
         }
 
-  .hamburger-menu ul li a:hover {
+ .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
 
-  .btn {
+   .btn {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 20px;
             cursor: pointer;
             text-decoration: none;
-            background: var(--secondary);
-            color: var(--primary);
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
         }
 
- .btn:hover {
+  .btn-primary {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+   .btn-success {
+            background: var(--green);
+            color: var(--white);
+        }
+
+  .btn-danger {
+            background: var(--red);
+            color: var(--white);
+        }
+
+  .btn:hover {
             opacity: 0.9;
         }
 
- /* Main Content */
+  /* Main Content */
         .main-content {
             padding: 2rem;
         }
 
- /* Balance Section */
-        #balance {
+  section {
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
@@ -131,136 +145,107 @@
             margin-bottom: 2rem;
         }
 
- /* Wallet Overview */
-        .wallet-overview {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
- .main-balance {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-.sub-row {
+  /* Deposit Section */
+        .deposit-methods {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-  .sub-row span {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-  /* Quick Action Buttons */
-        .quick-actions {
-            display: flex;
-            justify-content: center;
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
 
-  /* Fund Allocation */
-        .fund-allocation {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
- .allocation-card {
+  .method-card {
             background: var(--light-bg);
             padding: 1rem;
             border-radius: 10px;
+            cursor: pointer;
             text-align: center;
+            flex: 1;
         }
 
-  /* Recent Transactions */
-        .transactions-table {
+  .method-card.active {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+  .form-group {
+            margin-bottom: 1rem;
+        }
+
+  .form-group label {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+  .form-group input, .form-group select {
             width: 100%;
-            border-collapse: collapse;
-            background: var(--white);
-            box-shadow: 0 2px 5px var(--shadow);
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
- .transactions-table th, .transactions-table td {
+  .payment-details {
+            margin-bottom: 1.5rem;
+        }
+
+   .confirm-btn {
+            background: var(--green);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+   .confirm-btn:hover {
+            opacity: 0.9;
+        }
+
+   .transactions-table th, .transactions-table td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
         }
 
- .transactions-table th {
+   .transactions-table th {
             background: var(--primary);
             color: var(--white);
         }
 
-.status {
+  .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             color: var(--white);
             font-size: 0.875rem;
         }
 
-  .status-completed { background: #28a745; }
+  .status-completed { background: var(--green); }
         .status-pending { background: #ffc107; }
 
- /* Performance Snapshot */
-        .performance-snapshot {
-            height: 150px;
-            background: #eee;
-            text-align: center;
-            padding: 1rem;
+   /* Withdrawal Section */
+        .withdrawal-methods {
+            display: flex;
+            gap: 1rem;
             margin-bottom: 1.5rem;
         }
 
-  /* Notifications */
-        .notifications {
-            background: var(--light-bg);
-            padding: 1rem;
-            border-radius: 10px;
+  .security-field {
             margin-top: 1rem;
         }
 
- .notification-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
- /* Footer */
-        footer {
-            text-align: center;
-            padding: 1rem;
+  .submit-btn {
             background: var(--primary);
             color: var(--white);
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
         }
 
-  /* Utility Classes */
-        .hidden {
-            display: none;
-        }
-
- /* Responsive Design */
+  /* Responsive Design */
         @media (max-width: 768px) {
-            .sub-row {
+            .deposit-methods, .withdrawal-methods {
                 flex-direction: column;
-                gap: 0.5rem;
-            }
-            .quick-actions {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            .fund-allocation {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -277,7 +262,8 @@
                     <div class="brand">MarketFlow</div>
                     <ul>
                         <li><a href="#balance"><span role="img" aria-label="bank">🏦</span> Balance</a></li>
-                        <li><a href="#deposit-withdrawals"><span role="img" aria-label="plus-money">➕💵</span> Deposit & Withdrawals</a></li>
+                        <li><a href="#deposit"><span role="img" aria-label="plus-money">➕💵</span> Deposit</a></li>
+                        <li><a href="#withdraw"><span role="img" aria-label="withdraw">💸</span> Withdraw</a></li>
                         <li><a href="#available-funded"><span role="img" aria-label="briefcase">💼</span> Available Funded</a></li>
                         <li><a href="#available-traders"><span role="img" aria-label="people">👥</span> Available Traders</a></li>
                         <li><a href="#co-funding"><span role="img" aria-label="handshake">🤝</span> Co-Funding</a></li>
@@ -295,7 +281,7 @@
         </nav>
     </header>
 
- <div id="home-content">
+  <div id="home-content">
         <div class="hero">
             <h1>MarketFlow: Collaborative Trading</h1>
             <p>Join a community-driven platform to co-fund trading accounts and maximize profits.</p>
@@ -306,9 +292,9 @@
  <div id="dashboard-content" class="hidden">
         <div class="dashboard">
             <main class="main-content">
+                <!-- Balance Section (unchanged for now) -->
                 <section id="balance">
                     <h2>Balance</h2>
-  <!-- 1. Top Section (Wallet Overview) -->
                     <div class="wallet-overview">
                         <div class="main-balance">$2,450.00</div>
                         <div class="sub-row">
@@ -317,98 +303,133 @@
                             <span><span role="img" aria-label="clock">🕒</span> Last Transaction: Sept 2, 25</span>
                         </div>
                     </div>
- <!-- 2. Quick Action Buttons -->
                     <div class="quick-actions">
                         <a href="#deposit" class="btn"><span role="img" aria-label="plus">➕</span> Deposit</a>
                         <a href="#withdraw" class="btn"><span role="img" aria-label="withdraw">💸</span> Withdraw</a>
                         <a href="#transfer" class="btn"><span role="img" aria-label="transfer">🔄</span> Transfer</a>
                     </div>
-  <!-- 3. Fund Allocation -->
-                    <div class="fund-allocation">
-                        <div class="allocation-card">
-                            <span role="img" aria-label="briefcase">💼</span> Available Funded Accounts: $1,200.00
-                        </div>
-                        <div class="allocation-card">
-                            <span role="img" aria-label="people">👥</span> Available for Trading: $600.00
-                        </div>
-                        <div class="allocation-card">
-                            <span role="img" aria-label="handshake">🤝</span> Reserved for Co-Funding: $650.00
-                        </div>
+                </section>
+<!-- Deposit Section -->
+                <section id="deposit">
+                    <h2>➕ Deposit Funds</h2>
+                    <div class="deposit-methods">
+                        <div class="method-card" onclick="selectMethod('bank')">💳 Bank Transfer</div>
+                        <div class="method-card" onclick="selectMethod('card')">💵 Card Payment</div>
+                        <div class="method-card" onclick="selectMethod('crypto')">🔗 Crypto Deposit</div>
+                        <div class="method-card" onclick="selectMethod('mobile')">📲 Mobile Money</div>
                     </div>
- <!-- 4. Recent Transactions -->
-                    <h3>Recent Transactions</h3>
+       <form id="depositForm" class="hidden">
+                        <div class="form-group">
+                            <label for="deposit-amount">Amount</label>
+                            <input type="number" id="deposit-amount" placeholder="Enter Amount" value="500">
+                        </div>
+                        <div class="form-group">
+                            <label for="deposit-currency">Currency</label>
+                            <select id="deposit-currency">
+                                <option value="USD">USD</option>
+                                <option value="NGN">NGN</option>
+                            </select>
+                        </div>
+                        <div id="payment-details" class="payment-details">
+                            <!-- Dynamic content will be inserted here -->
+                        </div>
+                        <button type="button" class="confirm-btn" onclick="confirmDeposit()">✅ Confirm Deposit</button>
+                    </form>
+       <h3>Recent Deposits</h3>
                     <table class="transactions-table">
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Type</th>
+                                <th>Method</th>
                                 <th>Amount</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Sept 2, 25</td>
-                                <td>Deposit</td>
-                                <td>$500</td>
+                                <td>01 Sept, 25</td>
+                                <td>Card</td>
+                                <td>$200</td>
                                 <td><span class="status status-completed">✅ Completed</span></td>
                             </tr>
                             <tr>
-                                <td>Sept 1, 25</td>
-                                <td>Withdraw</td>
+                                <td>29 Aug, 25</td>
+                                <td>Bank</td>
+                                <td>$150</td>
+                                <td><span class="status status-pending">⏳ Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+ <!-- Withdrawal Section -->
+                <section id="withdraw">
+                    <h2>💸 Withdraw Funds</h2>
+                    <div class="form-group">
+                        <label>Available Balance: $2,450.00</label>
+                    </div>
+                    <form id="withdrawForm">
+                        <div class="form-group">
+                            <label for="withdraw-amount">Amount</label>
+                            <input type="number" id="withdraw-amount" placeholder="Enter Amount" value="200">
+                        </div>
+                        <div class="withdrawal-methods">
+                            <div class="method-card" onclick="selectMethod('bank-withdraw')">🏦 Bank Account</div>
+                            <div class="method-card" onclick="selectMethod('crypto-withdraw')">🔗 Crypto Wallet</div>
+                            <div class="method-card" onclick="selectMethod('mobile-withdraw')">📲 Mobile Money</div>
+                        </div>
+                        <div id="destination-details" class="form-group">
+                            <label for="destination">Destination</label>
+                            <input type="text" id="destination" placeholder="Wallet Address / Bank Account">
+                        </div>
+                        <div class="security-field form-group">
+                            <label for="security-code">Security (Enter OTP / PIN)</label>
+                            <input type="text" id="security-code" placeholder="Enter OTP / PIN">
+                        </div>
+                        <button type="button" class="submit-btn" onclick="confirmWithdrawal()">✅ Submit Withdrawal</button>
+                    </form>
+       <h3>Recent Withdrawals</h3>
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Method</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>02 Sept, 25</td>
+                                <td>Bank</td>
                                 <td>$200</td>
                                 <td><span class="status status-pending">⏳ Pending</span></td>
                             </tr>
                             <tr>
-                                <td>Aug 30, 25</td>
-                                <td>Co-Funding</td>
+                                <td>30 Aug, 25</td>
+                                <td>Crypto</td>
                                 <td>$100</td>
                                 <td><span class="status status-completed">✅ Completed</span></td>
                             </tr>
                         </tbody>
                     </table>
-  <!-- 5. Performance Snapshot -->
-                    <div class="performance-snapshot">
-                        <h4>Performance Snapshot</h4>
-                        <div>Chart Placeholder (Line/Bar Chart)</div>
-                        <div>Toggle: <button>Daily</button> <button>Weekly</button> <button>Monthly</button></div>
-                    </div>
-   <!-- 6. Notifications -->
-                    <div class="notifications">
-                        <h4>Notifications</h4>
-                        <div class="notification-item">
-                            <span role="img" aria-label="check">✅</span> Deposit Successful
-                        </div>
-                        <div class="notification-item">
-                            <span role="img" aria-label="handshake">🤝</span> You have 1 new Co-Funding Request
-                        </div>
-                    </div>
                 </section>
- <!-- Other sections remain unchanged but can be added as needed -->
-                <section id="deposit-withdrawals">
-                    <h2>Deposit & Withdrawals</h2>
-                    <p>Manage your deposits and withdrawals.</p>
+    <!-- Other sections remain unchanged but can be added as needed -->
+                <section id="available-funded">
+                    <h2>Available Funded</h2>
+                    <p>View available funded accounts.</p>
                     <table>
                         <thead>
                             <tr>
-                                <th>Type</th>
+                                <th>Firm</th>
                                 <th>Amount</th>
-                                <th>Date</th>
-                                <th>Status</th>
+                                <th>Availability</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Deposit</td>
-                                <td>$5,000</td>
-                                <td>2025-09-03</td>
-                                <td><span class="status status-active">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td>Withdrawal</td>
-                                <td>$2,000</td>
-                                <td>2025-09-04</td>
-                                <td><span class="status status-pending">Pending</span></td>
+                                <td>FTMO</td>
+                                <td>$10,000</td>
+                                <td>Available</td>
                             </tr>
                         </tbody>
                     </table>
@@ -422,7 +443,7 @@
         <p>&copy; 2025 MarketFlow</p>
     </footer>
 
- <script>
+  <script>
         let isLoggedIn = false;
 
         function updateUI() {
@@ -458,7 +479,71 @@
             updateUI();
         }
 
-        // Simulate initial login to show dashboard
+        // Deposit Method Selection
+        function selectMethod(method) {
+            const depositForm = document.getElementById('depositForm');
+            const paymentDetails = document.getElementById('payment-details');
+            depositForm.classList.remove('hidden');
+
+            // Reset active class
+            document.querySelectorAll('.method-card').forEach(card => card.classList.remove('active'));
+            document.querySelector(`.method-card[onclick="selectMethod('${method}')"]`).classList.add('active');
+
+            // Dynamic payment details
+            paymentDetails.innerHTML = '';
+            switch (method) {
+                case 'bank':
+                    paymentDetails.innerHTML = `
+                        <label>Bank Details</label>
+                        <p>Account No: 1234567890</p>
+                        <p>Bank Name: Example Bank</p>
+                        <input type="file" placeholder="Upload Proof">
+                    `;
+                    break;
+                case 'card':
+                    paymentDetails.innerHTML = `
+                        <label>Card Details</label>
+                        <input type="text" placeholder="Card Number">
+                        <input type="text" placeholder="Expiry (MM/YY)">
+                        <input type="text" placeholder="CVV">
+                    `;
+                    break;
+                case 'crypto':
+                    paymentDetails.innerHTML = `
+                        <label>Crypto Details</label>
+                        <p>Wallet Address: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</p>
+                        <img src="https://via.placeholder.com/100" alt="QR Code" style="margin-top: 0.5rem;">
+                    `;
+                    break;
+                case 'mobile':
+                    paymentDetails.innerHTML = `
+                        <label>Mobile Money Details</label>
+                        <input type="text" placeholder="Phone Number">
+                    `;
+                    break;
+            }
+        }
+
+        // Withdrawal Method Selection (simplified, can be expanded)
+        function selectMethod(method) {
+            const destinationDetails = document.getElementById('destination-details');
+            document.querySelectorAll('.withdrawal-methods .method-card').forEach(card => card.classList.remove('active'));
+            document.querySelector(`.withdrawal-methods .method-card[onclick="selectMethod('${method}')"]`).classList.add('active');
+            destinationDetails.querySelector('input').placeholder = method.includes('bank') ? 'Bank Account Number' : 'Wallet Address / Phone Number';
+        }
+
+        function confirmDeposit() {
+            if (confirm('Are you sure you want to confirm this deposit?')) {
+                alert('Deposit submitted successfully! ✅');
+            }
+        }
+
+        function confirmWithdrawal() {
+            if (confirm('Are you sure you want to submit this withdrawal?')) {
+                alert('Withdrawal submitted successfully! ✅');
+            }
+        }
+
         window.onload = () => {
             login();
         };
