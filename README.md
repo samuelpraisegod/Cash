@@ -1,84 +1,90 @@
-<!-- Co-Funding Section -->
-<section id="co-funding">
-    <h2>🤝 Co-Funding</h2>
-    <div class="wallet-tabs">
-        <button class="tab-button" onclick="showTab('co-fund-request')">Co-Funding Request</button>
-        <button class="tab-button" onclick="showTab('managed-trading')">Managed Trading Account</button>
-        <button class="tab-button" onclick="showTab('managed-account')">Managed Account Request</button>
-        <button class="tab-button" onclick="showTab('requests-dashboard')">Request Dashboard</button>
-    </div>
-    <div id="co-fund-request" class="tab-content">
-        <p>“Create a co-fund request by selecting an amount. Your deposit will be locked in escrow until matched. The system will match co-funders and auto-purchase the prop firm account upon agreement.”</p>
-        <form id="co-fund-form">
-            <div class="form-group">
-                <label for="prop-firm">Select Prop Firm</label>
-                <select id="prop-firm" onchange="updateAccountSizesAndChallenges()">
-                    <option value="">-- Select Prop Firm --</option>
-                    <option value="ftmo">FTMO</option>
-                    <option value="mff">MyForexFunds</option>
-                    <option value="e8">E8 Funding</option>
-                    <option value="tft">The Funded Trader</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="account-size">Select Account Size & Price</label>
-                <select id="account-size" onchange="saveAccountSelection()">
-                    <option value="">-- Select Account Size --</option>
-                </select>
-                <p id="challenge-requirements" style="margin-top: 0.5rem; color: #666;"></p>
-            </div>
-            <div class="form-group">
-                <label for="co-fund-amount">Co-Fund Amount</label>
-                <select id="co-fund-amount" onchange="calculatePercentage()">
-                    <option value="500">$500</option>
-                    <option value="1000">$1,000</option>
-                    <option value="2500">$2,500</option>
-                    <option value="5000">$5,000</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="profit-ratio">Profit Ratio</label>
-                <select id="profit-ratio">
-                    <option value="50:50">50:50</option>
-                    <option value="60:40">60:40</option>
-                    <option value="70:30">70:30</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="your-contribution">Your Contribution ($)</label>
-                <input type="number" id="your-contribution" placeholder="e.g., $250" min="0" onchange="calculatePercentage()">
-            </div>
-            <div class="form-group">
-                <label for="percentage-contribution">Percentage of Contribution (%)</label>
-                <input type="text" id="percentage-contribution" readonly>
-            </div>
-            <div class="form-group">
-                <label>Type of Trader</label>
-                <div>
-                    <input type="radio" id="scalping" name="trader-type" value="Scalping" checked>
-                    <label for="scalping">Scalping</label>
-                    <input type="radio" id="swing" name="trader-type" value="Swing">
-                    <label for="swing">Swing</label>
-                    <input type="radio" id="algo" name="trader-type" value="Algo">
-                    <label for="algo">Algo</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="track-record">Track Record Upload</label>
-                <input type="file" id="track-record" accept="image/*,.pdf">
-            </div>
-            <input type="hidden" id="selected-account" value="">
-            <button type="button" class="confirm-btn" onclick="submitCoFundRequest()">Submit Request</button>
-        </form>
-        <div class="status-tracker" style="margin-top: 1rem; color: #666;">Status: <span class="status status-pending">Pending</span></div>
-    </div>
-    <div id="managed-trading" class="tab-content">
-        <div class="placeholder">Coming Soon</div>
-    </div>
-    <div id="managed-account" class="tab-content">
-        <div class="placeholder">Coming Soon</div>
-    </div>
-    <div id="requests-dashboard" class="tab-content">
-        <div class="placeholder">Coming Soon</div>
-    </div>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prop Firm Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .box { background: #f9f9f9; padding: 20px; border-radius: 8px; max-width: 500px; }
+    label { font-weight: bold; margin-top: 10px; display: block; }
+    select, .accounts, .challenge { margin-top: 10px; }
+    .accounts div { margin: 5px 0; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>🤝 Co-Funding – Prop Firm Selection (Test)</h2>
+ <!-- Step 1: Select Prop Firm -->
+    <label for="propFirm">Select Prop Firm:</label>
+    <select id="propFirm">
+      <option value="">-- Choose Prop Firm --</option>
+      <option value="ftmo">FTMO</option>
+      <option value="mff">MyForexFunds</option>
+      <option value="e8">E8 Funding</option>
+    </select>
+ <!-- Step 2: Account Sizes -->
+    <div id="accountOptions" class="accounts hidden"></div>
+ <!-- Step 3: Challenge Phrase -->
+    <div id="challengePhrase" class="challenge hidden"></div>
+  </div>
+
+  <script>
+    // Dummy data for testing
+    const propFirms = {
+      ftmo: {
+        accounts: [
+          { size: "$1,000", price: "$13" },
+          { size: "$2,000", price: "$17" },
+          { size: "$5,000", price: "$30" }
+        ],
+        challenge: "FTMO Challenge: 10% profit target, 5% daily loss, 30-day phase."
+      },
+      mff: {
+        accounts: [
+          { size: "$1,000", price: "$10" },
+          { size: "$2,000", price: "$15" },
+          { size: "$5,000", price: "$25" }
+        ],
+        challenge: "MFF Challenge: 8% profit target, 5% daily loss, 60-day phase."
+      },
+      e8: {
+        accounts: [
+          { size: "$2,500", price: "$20" },
+          { size: "$5,000", price: "$35" }
+        ],
+        challenge: "E8 Funding Challenge: 8% profit target, 5% drawdown, 30-day phase."
+      }
+    };
+
+    const propFirmSelect = document.getElementById("propFirm");
+    const accountOptions = document.getElementById("accountOptions");
+    const challengePhrase = document.getElementById("challengePhrase");
+
+    propFirmSelect.addEventListener("change", function() {
+      const selected = this.value;
+
+      if (!selected) {
+        accountOptions.classList.add("hidden");
+        challengePhrase.classList.add("hidden");
+        return;
+      }
+
+      const firm = propFirms[selected];
+
+      // Show account sizes
+      accountOptions.innerHTML = "<label>Available Accounts:</label>";
+      firm.accounts.forEach(acc => {
+        accountOptions.innerHTML += `<div>📊 ${acc.size} → ${acc.price}</div>`;
+      });
+      accountOptions.classList.remove("hidden");
+
+      // Show challenge phrase
+      challengePhrase.innerHTML = `<label>Challenge:</label><p>${firm.challenge}</p>`;
+      challengePhrase.classList.remove("hidden");
+    });
+  </script>
+
+</body>
+</html>
