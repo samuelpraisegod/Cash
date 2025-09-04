@@ -17,7 +17,7 @@
             --red: #dc3545;
         }
 
- body {
+        body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--light-bg);
             color: var(--text);
@@ -27,7 +27,7 @@
             overflow-x: hidden;
         }
 
- header {
+        header {
             background: #4a2626;
             color: var(--white);
             padding: 1rem;
@@ -40,24 +40,24 @@
             z-index: 100;
         }
 
-  .header-title h1 {
+        .header-title h1 {
             margin: 0;
             font-size: 1.5rem;
         }
 
- nav {
+        nav {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
- .hamburger {
+        .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
             position: relative;
         }
 
-  .hamburger-menu {
+        .hamburger-menu {
             display: none;
             position: absolute;
             top: 100%;
@@ -70,23 +70,23 @@
             z-index: 60;
         }
 
- .hamburger.active .hamburger-menu {
+        .hamburger.active .hamburger-menu {
             display: block;
         }
 
-  .hamburger .brand {
+        .hamburger .brand {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 1rem;
             text-align: center;
         }
 
- .hamburger-menu ul {
+        .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
 
- .hamburger-menu ul li a {
+        .hamburger-menu ul li a {
             display: flex;
             align-items: center;
             padding: 0.5rem;
@@ -94,12 +94,12 @@
             text-decoration: none;
         }
 
-  .hamburger-menu ul li a:hover {
+        .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
 
-  .btn {
+        .btn {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 20px;
@@ -110,22 +110,22 @@
             gap: 0.5rem;
         }
 
- .btn-primary { background: var(--secondary); color: var(--primary); }
+        .btn-primary { background: var(--secondary); color: var(--primary); }
         .btn-success { background: var(--green); color: var(--white); }
         .btn-danger { background: var(--red); color: var(--white); }
         .btn:hover { opacity: 0.9; }
 
- .dashboard {
+        .dashboard {
             display: flex;
             min-height: calc(100vh - 60px);
         }
 
- .main-content {
+        .main-content {
             padding: 2rem;
             width: 100%;
         }
 
-  section {
+        section {
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
@@ -134,18 +134,18 @@
             display: none;
         }
 
-  section.active {
+        section.active {
             display: block;
         }
 
- .wallet-tabs {
+        .wallet-tabs {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
             overflow-x: auto;
         }
 
-  .tab-button {
+        .tab-button {
             padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 5px;
@@ -155,28 +155,28 @@
             white-space: nowrap;
         }
 
- .tab-button.active {
+        .tab-button.active {
             background: var(--secondary);
             color: var(--white);
         }
 
- .form-group {
+        .form-group {
             margin-bottom: 1rem;
         }
 
-  .form-group label {
+        .form-group label {
             display: block;
             margin-bottom: 0.25rem;
         }
 
- .form-group input, .form-group select {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 0.5rem;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
- .confirm-btn {
+        .confirm-btn {
             background: var(--green);
             color: var(--white);
             padding: 0.75rem 1.5rem;
@@ -187,48 +187,48 @@
             width: 100%;
         }
 
-  .confirm-btn:hover {
+        .confirm-btn:hover {
             opacity: 0.9;
         }
 
-  .transactions-table th, .transactions-table td {
+        .transactions-table th, .transactions-table td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
         }
 
-  .transactions-table th {
+        .transactions-table th {
             background: var(--primary);
             color: var(--white);
         }
 
- .status {
+        .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             color: var(--white);
             font-size: 0.875rem;
         }
 
-  .status-pending { background: #ffc107; }
+        .status-pending { background: #ffc107; }
         .status-completed { background: var(--green); }
 
-  .placeholder {
+        .placeholder {
             text-align: center;
             color: #666;
             font-style: italic;
         }
 
-  .hidden {
+        .hidden {
             display: none;
         }
 
-   .withdrawal-method-tabs {
+        .deposit-method-tabs, .withdrawal-method-tabs {
             display: flex;
             gap: 1rem;
             margin-bottom: 1rem;
         }
 
- .withdrawal-method-tab {
+        .deposit-method-tab, .withdrawal-method-tab {
             padding: 0.5rem 1rem;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -236,13 +236,23 @@
             background: var(--light-bg);
         }
 
-  .withdrawal-method-tab.active {
+        .deposit-method-tab.active, .withdrawal-method-tab.active {
             background: var(--secondary);
             color: var(--white);
             border-color: var(--secondary);
         }
 
- .copy-btn {
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            background: #f0f0f0;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .copy-btn {
             padding: 0.25rem 0.5rem;
             background: var(--primary);
             color: var(--white);
@@ -251,11 +261,11 @@
             cursor: pointer;
         }
 
- .copy-btn:hover {
+        .copy-btn:hover {
             opacity: 0.9;
         }
 
- .save-default {
+        .save-default {
             margin-top: 0.5rem;
         }
     </style>
@@ -290,7 +300,7 @@
         </nav>
     </header>
 
-  <div id="home-content">
+ <div id="home-content">
         <div class="hero">
             <h1>DivoraSplit: Collaborative Trading</h1>
             <p>Join a community-driven platform to co-fund trading accounts and maximize profits.</p>
@@ -318,7 +328,7 @@
                         <a href="#" class="btn" onclick="showTab('transfer')">🔄 Transfer</a>
                     </div>
                 </section>
-   <!-- Wallet Dashboard -->
+ <!-- Wallet Dashboard -->
                 <section id="wallet">
                     <h2>Wallet Dashboard</h2>
                     <div class="wallet-tabs">
@@ -384,7 +394,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="withdraw" class="tab-content">
+                    <div id="withdraw" class="tab-content hidden">
                         <h3>💸 Withdraw Funds</h3>
                         <div class="wallet-overview">
                             <p>Available Balance: $2,450.00</p>
@@ -467,7 +477,7 @@
                         </table>
                     </div>
                 </section>
-  <!-- Co-Funding Section -->
+ <!-- Co-Funding Section -->
                 <section id="co-funding">
                     <h2>🤝 Co-Funding</h2>
                     <div class="wallet-tabs">
@@ -497,7 +507,7 @@
                         <div class="placeholder">Coming Soon</div>
                     </div>
                 </section>
-  <!-- Other Sections -->
+ <!-- Other Sections -->
                 <section id="available-funded">
                     <h2>Available Funded</h2>
                     <p>View available funded accounts.</p>
@@ -546,7 +556,7 @@
         <p>&copy; 2025 DivoraSplit</p>
     </footer>
 
-  <script>
+ <script>
         let isLoggedIn = false;
 
         function updateUI() {
@@ -559,7 +569,7 @@
                 dashboardContent.classList.remove('hidden');
                 authBtn.textContent = 'Logout';
                 authBtn.onclick = logout;
-                showTab('balance');
+                showTab('balance'); // Default to Balance on login
             } else {
                 homeContent.classList.remove('hidden');
                 dashboardContent.classList.add('hidden');
@@ -607,7 +617,15 @@
                     const parentSection = activeElement.closest('section');
                     if (parentSection) {
                         parentSection.classList.add('active');
-                        activeElement.classList.add('active');
+                        // Handle exclusive visibility for deposit and withdraw
+                        if (tab === 'deposit') {
+                            document.getElementById('deposit').classList.add('active');
+                            document.getElementById('withdraw').classList.remove('active');
+                        } else if (tab === 'withdraw') {
+                            document.getElementById('withdraw').classList.add('active');
+                            document.getElementById('deposit').classList.remove('active');
+                        }
+                        // Activate corresponding tab buttons
                         const tabButtons = parentSection.querySelectorAll('.tab-button');
                         tabButtons.forEach(btn => {
                             const btnTab = btn.getAttribute('onclick').match(/showTab\('(\w+)'\)/)[1];
@@ -663,7 +681,7 @@
         function submitWithdrawal() {
             const otp = document.querySelector('input[placeholder="Enter OTP / 2FA Code"]').value;
             const pin = document.querySelector('input[placeholder="Withdrawal PIN (Optional)"]').value;
-            if (otp && (pin || true)) { // Simplified check; add real validation
+            if (otp && (pin || true)) {
                 alert('Withdrawal submitted! Processing will begin shortly.');
             } else {
                 alert('Please enter OTP and optionally a PIN for security.');
