@@ -12,14 +12,16 @@
         <form id="co-fund-form">
             <div class="form-group">
                 <label for="prop-firm">Select Prop Firm</label>
-                <select id="prop-firm" onchange="updateAccountSizes()">
+                <select id="prop-firm" onchange="updateAccountSizesAndChallenges()">
                     <option value="">-- Select Prop Firm --</option>
-                    <option value="firm1">Firm A</option>
-                    <option value="firm2">Firm B</option>
+                    <option value="ftmo">FTMO</option>
+                    <option value="mff">MyForexFunds</option>
+                    <option value="e8">E8 Funding</option>
+                    <option value="tft">The Funded Trader</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="account-size">Account Size & Price</label>
+                <label for="account-size">Select Account Size & Price</label>
                 <select id="account-size" onchange="saveAccountSelection()">
                     <option value="">-- Select Account Size --</option>
                 </select>
