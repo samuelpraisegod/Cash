@@ -17,7 +17,7 @@
             --red: #dc3545;
         }
 
- body {
+body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--light-bg);
             color: var(--text);
@@ -51,13 +51,13 @@
             gap: 1rem;
         }
 
-.hamburger {
+ .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
             position: relative;
         }
 
- .hamburger-menu {
+.hamburger-menu {
             display: none;
             position: absolute;
             top: 100%;
@@ -70,7 +70,7 @@
             z-index: 60;
         }
 
- .hamburger.active .hamburger-menu {
+.hamburger.active .hamburger-menu {
             display: block;
         }
 
@@ -81,12 +81,12 @@
             text-align: center;
         }
 
- .hamburger-menu ul {
+.hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
 
-  .hamburger-menu ul li a {
+ .hamburger-menu ul li a {
             display: flex;
             align-items: center;
             padding: 0.5rem;
@@ -94,7 +94,7 @@
             text-decoration: none;
         }
 
-.hamburger-menu ul li a:hover {
+ .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
@@ -125,7 +125,7 @@
             width: 100%;
         }
 
-section {
+ section {
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
@@ -138,14 +138,14 @@ section {
             display: block;
         }
 
- .wallet-tabs {
+.wallet-tabs {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
             overflow-x: auto;
         }
 
- .tab-button {
+.tab-button {
             padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 5px;
@@ -155,28 +155,28 @@ section {
             white-space: nowrap;
         }
 
-.tab-button.active {
+ .tab-button.active {
             background: var(--secondary);
             color: var(--white);
         }
 
- .form-group {
+.form-group {
             margin-bottom: 1rem;
         }
 
- .form-group label {
+  .form-group label {
             display: block;
             margin-bottom: 0.25rem;
         }
 
-  .form-group input, .form-group select {
+ .form-group input, .form-group select {
             width: 100%;
             padding: 0.5rem;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
- .confirm-btn {
+   .confirm-btn {
             background: var(--green);
             color: var(--white);
             padding: 0.75rem 1.5rem;
@@ -191,13 +191,13 @@ section {
             opacity: 0.9;
         }
 
-.transactions-table th, .transactions-table td {
+   .transactions-table th, .transactions-table td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
         }
 
- .transactions-table th {
+  .transactions-table th {
             background: var(--primary);
             color: var(--white);
         }
@@ -210,9 +210,10 @@ section {
         }
 
   .status-pending { background: #ffc107; }
+        .status-active { background: #17a2b8; }
         .status-completed { background: var(--green); }
 
-.placeholder {
+  .placeholder {
             text-align: center;
             color: #666;
             font-style: italic;
@@ -222,7 +223,7 @@ section {
             display: none;
         }
 
- .deposit-method-tabs, .withdrawal-method-tabs {
+  .deposit-method-tabs, .withdrawal-method-tabs {
             display: flex;
             gap: 1rem;
             margin-bottom: 1rem;
@@ -236,13 +237,13 @@ section {
             background: var(--light-bg);
         }
 
-  .deposit-method-tab.active, .withdrawal-method-tab.active {
+ .deposit-method-tab.active, .withdrawal-method-tab.active {
             background: var(--secondary);
             color: var(--white);
             border-color: var(--secondary);
         }
 
-  .qr-code {
+   .qr-code {
             width: 100px;
             height: 100px;
             background: #f0f0f0;
@@ -252,7 +253,7 @@ section {
             justify-content: center;
         }
 
- .copy-btn {
+  .copy-btn {
             padding: 0.25rem 0.5rem;
             background: var(--primary);
             color: var(--white);
@@ -261,7 +262,7 @@ section {
             cursor: pointer;
         }
 
-  .copy-btn:hover {
+   .copy-btn:hover {
             opacity: 0.9;
         }
 
@@ -301,13 +302,14 @@ section {
         </nav>
     </header>
 
- <div id="home-content">
+   <div id="home-content">
         <div class="hero">
             <h1>DivoraSplit: Collaborative Trading</h1>
             <p>Join a community-driven platform to co-fund trading accounts and maximize profits.</p>
             <a href="#" class="btn btn-primary" onclick="login()">Get Started</a>
         </div>
     </div>
+
   <div id="dashboard-content" class="hidden">
         <div class="dashboard">
             <main class="main-content">
@@ -640,17 +642,33 @@ section {
 
             document.querySelectorAll('section').forEach(section => {
                 section.classList.remove('active');
+                const subTabs = section.querySelectorAll('.tab-content');
+                subTabs.forEach(subTab => subTab.classList.remove('active'));
             });
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
 
             const activeElement = document.getElementById(tab);
             if (activeElement) {
-                activeElement.classList.add('active');
-                const tabButtons = document.querySelectorAll('.hamburger-menu ul li a');
-                tabButtons.forEach(btn => {
-                    const btnTab = btn.getAttribute('onclick').match(/showTab\('(\w+)'\)/)[1];
-                    if (btnTab === tab) btn.parentElement.classList.add('active');
-                });
+                if (activeElement.classList.contains('tab-content')) {
+                    const parentSection = activeElement.closest('section');
+                    if (parentSection) {
+                        parentSection.classList.add('active');
+                        activeElement.classList.add('active');
+                        const tabButtons = parentSection.querySelectorAll('.tab-button');
+                        tabButtons.forEach(btn => {
+                            const btnTab = btn.getAttribute('onclick').match(/showTab\('(\w+)'\)/)[1];
+                            if (btnTab === tab) btn.classList.add('active');
+                        });
+                    }
+                } else {
+                    activeElement.classList.add('active');
+                    const tabButtons = activeElement.querySelectorAll('.wallet-tabs .tab-button');
+                    if (tabButtons.length > 0) {
+                        const defaultSubTab = tabButtons[0].getAttribute('onclick').match(/showTab\('(\w+)'\)/)[1];
+                        showTab(defaultSubTab);
+                        return;
+                    }
+                }
             } else {
                 showTab('balance');
             }
@@ -669,7 +687,7 @@ section {
             document.querySelectorAll('.withdrawal-method-content').forEach(content => content.classList.add('hidden'));
 
             document.querySelector(`#${method}-withdrawal-details`).classList.remove('hidden');
-            document.querySelector(`#${method}-withdrawal-tab`).classList.add('active');
+            document.query selector(`#${method}-withdrawal-tab`).classList.add('active');
         }
 
         function copyToClipboard(text) {
@@ -682,13 +700,6 @@ section {
             const fee = amount * feeRate;
             const netAmount = amount - fee;
             document.getElementById('net-amount').textContent = `${netAmount.toFixed(2)}`;
-        }
-
-        function calculatePercentage() {
-            const yourContribution = parseFloat(document.getElementById('your-contribution').value) || 0;
-            const accountSize = parseFloat(document.getElementById('account-size').value) || 0;
-            const percentage = accountSize > 0 ? ((yourContribution / accountSize) * 100).toFixed(2) : 0;
-            document.getElementById('percentage-contribution').value = isFinite(percentage) ? `${percentage}%` : '0%';
         }
 
         function confirmDeposit() {
