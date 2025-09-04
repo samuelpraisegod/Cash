@@ -17,7 +17,7 @@
             --red: #dc3545;
         }
 
-        body {
+body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--light-bg);
             color: var(--text);
@@ -27,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        header {
+ header {
             background: #4a2626;
             color: var(--white);
             padding: 1rem;
@@ -40,24 +40,24 @@
             z-index: 100;
         }
 
-        .header-title h1 {
+.header-title h1 {
             margin: 0;
             font-size: 1.5rem;
         }
 
-        nav {
+  nav {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
-        .hamburger {
+  .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
             position: relative;
         }
 
-        .hamburger-menu {
+ .hamburger-menu {
             display: none;
             position: absolute;
             top: 100%;
@@ -70,23 +70,23 @@
             z-index: 60;
         }
 
-        .hamburger.active .hamburger-menu {
+.hamburger.active .hamburger-menu {
             display: block;
         }
 
-        .hamburger .brand {
+  .hamburger .brand {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 1rem;
             text-align: center;
         }
 
-        .hamburger-menu ul {
+  .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
 
-        .hamburger-menu ul li a {
+ .hamburger-menu ul li a {
             display: flex;
             align-items: center;
             padding: 0.5rem;
@@ -94,12 +94,12 @@
             text-decoration: none;
         }
 
-        .hamburger-menu ul li a:hover {
+ .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
 
-        .btn {
+  .btn {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 20px;
@@ -110,22 +110,22 @@
             gap: 0.5rem;
         }
 
-        .btn-primary { background: var(--secondary); color: var(--primary); }
+  .btn-primary { background: var(--secondary); color: var(--primary); }
         .btn-success { background: var(--green); color: var(--white); }
         .btn-danger { background: var(--red); color: var(--white); }
         .btn:hover { opacity: 0.9; }
 
-        .dashboard {
+ .dashboard {
             display: flex;
             min-height: calc(100vh - 60px);
         }
 
-        .main-content {
+   .main-content {
             padding: 2rem;
             width: 100%;
         }
 
-        section {
+   section {
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
@@ -134,18 +134,18 @@
             display: none;
         }
 
-        section.active {
+   section.active {
             display: block;
         }
 
-        .wallet-tabs {
+   .wallet-tabs {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
             overflow-x: auto;
         }
 
-        .tab-button {
+  .tab-button {
             padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 5px;
@@ -155,28 +155,28 @@
             white-space: nowrap;
         }
 
-        .tab-button.active {
+  .tab-button.active {
             background: var(--secondary);
             color: var(--white);
         }
 
-        .form-group {
+ .form-group {
             margin-bottom: 1rem;
         }
 
-        .form-group label {
+  .form-group label {
             display: block;
             margin-bottom: 0.25rem;
         }
 
-        .form-group input, .form-group select {
+ .form-group input, .form-group select {
             width: 100%;
             padding: 0.5rem;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
-        .confirm-btn, .submit-btn {
+ .confirm-btn, .submit-btn {
             background: var(--green);
             color: var(--white);
             padding: 0.75rem 1.5rem;
@@ -187,44 +187,44 @@
             width: 100%;
         }
 
-        .confirm-btn:hover, .submit-btn:hover {
+ .confirm-btn:hover, .submit-btn:hover {
             opacity: 0.9;
         }
 
-        .transactions-table th, .transactions-table td {
+  .transactions-table th, .transactions-table td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
         }
 
-        .transactions-table th {
+  .transactions-table th {
             background: var(--primary);
             color: var(--white);
         }
 
-        .status {
+ .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             color: var(--white);
             font-size: 0.875rem;
         }
 
-        .status-pending { background: #ffc107; }
+  .status-pending { background: #ffc107; }
         .status-active { background: #17a2b8; }
         .status-completed { background: var(--green); }
 
-        .placeholder {
+  .placeholder {
             text-align: center;
             color: #666;
             font-style: italic;
         }
 
-        @media (max-width: 768px) {
+  @media (max-width: 768px) {
             .wallet-tabs { flex-direction: column; }
             .main-content { padding: 1rem; }
         }
 
-        .hidden {
+.hidden {
             display: none;
         }
     </style>
@@ -267,7 +267,7 @@
         </div>
     </div>
 
-   <div id="dashboard-content" class="hidden">
+ <div id="dashboard-content" class="hidden">
         <div class="dashboard">
             <main class="main-content">
                 <!-- Balance Section -->
@@ -287,7 +287,7 @@
                         <a href="#" class="btn" onclick="showTab('transfer')">🔄 Transfer</a>
                     </div>
                 </section>
-  <!-- Wallet Dashboard -->
+   <!-- Wallet Dashboard -->
                 <section id="wallet">
                     <h2>Wallet Dashboard</h2>
                     <div class="wallet-tabs">
@@ -301,7 +301,7 @@
                         <p>Withdraw form content here.</p>
                     </div>
                 </section>
- <!-- Co-Funding Section -->
+   <!-- Co-Funding Section -->
                 <section id="co-funding">
                     <h2>🤝 Co-Funding</h2>
                     <div class="wallet-tabs">
@@ -331,7 +331,7 @@
                         <div class="placeholder">Coming Soon</div>
                     </div>
                 </section>
- <!-- Other Sections -->
+    <!-- Other Sections -->
                 <section id="available-funded">
                     <h2>Available Funded</h2>
                     <p>View available funded accounts.</p>
@@ -380,7 +380,7 @@
         <p>&copy; 2025 DivoraSplit</p>
     </footer>
 
-   <script>
+ <script>
         let isLoggedIn = false;
 
         function updateUI() {
@@ -417,6 +417,7 @@
             updateUI();
             document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
         }
 
         function showTab(tab) {
@@ -436,12 +437,45 @@
             if (activeSection) {
                 activeSection.classList.add('active');
 
-                // Handle sub-tabs if present
-                const tabButtons = activeSection.querySelectorAll('.wallet-tabs .tab-button');
-                if (tabButtons.length > 0) {
-                    tabButtons[0].classList.add('active');
-                    const firstSubTab = activeSection.querySelector('.tab-content');
-                    if (firstSubTab) firstSubTab.classList.add('active');
+                // Handle sub-tabs for Wallet Dashboard and Co-Funding
+                if (tab === 'wallet' || tab === 'co-funding') {
+                    const tabButtons = activeSection.querySelectorAll('.wallet-tabs .tab-button');
+                    if (tabButtons.length > 0) {
+                        // Activate the first sub-tab by default if no specific sub-tab is requested
+                        const defaultSubTab = tabButtons[0].getAttribute('onclick').match(/showTab\('(\w+)'\)/)[1];
+                        showSubTab(defaultSubTab);
+                    }
+                } else if (['deposit', 'withdraw', 'co-fund-request', 'managed-trading', 'managed-account', 'requests-dashboard'].includes(tab)) {
+                    // Handle direct sub-tab selection
+                    showSubTab(tab);
+                }
+            }
+        }
+
+        function showSubTab(subTabId) {
+            // Hide all sub-tabs
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            // Show the selected sub-tab
+            const subTab = document.getElementById(subTabId);
+            if (subTab) {
+                subTab.classList.add('active');
+
+                // Activate the corresponding tab-button
+                const parentSection = subTab.closest('section');
+                if (parentSection) {
+                    const tabButtons = parentSection.querySelectorAll('.tab-button');
+                    tabButtons.forEach(btn => {
+                        const btnSubTab = btn.getAttribute('onclick').match(/showTab\('(\w+)'\)/)[1];
+                        if (btnSubTab === subTabId) {
+                            btn.classList.add('active');
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    });
+
+                    // Activate the parent section if not already active
+                    parentSection.classList.add('active');
                 }
             }
         }
