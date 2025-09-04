@@ -16,7 +16,7 @@
             --shadow: rgba(0,0,0,0.1);
         }
 
-/* Global Styles */
+ /* Global Styles */
         body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--light-bg);
@@ -27,7 +27,7 @@
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
- /* Header Styles */
+  /* Header Styles */
         header {
             background: #4a2626;
             color: var(--white);
@@ -52,7 +52,7 @@
             gap: 1rem;
         }
 
- .hamburger {
+  .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
             position: relative;
@@ -71,23 +71,23 @@
             z-index: 60;
         }
 
- .hamburger.active .hamburger-menu {
+.hamburger.active .hamburger-menu {
             display: block;
         }
 
-.hamburger .brand {
+  .hamburger .brand {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 1rem;
             text-align: center;
         }
 
-  .hamburger-menu ul {
+ .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
 
-   .hamburger-menu ul li a {
+ .hamburger-menu ul li a {
             display: flex;
             align-items: center;
             padding: 0.5rem;
@@ -95,12 +95,12 @@
             text-decoration: none;
         }
 
-   .hamburger-menu ul li a:hover {
+ .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
 
-   .btn {
+ .btn {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 5px;
@@ -110,17 +110,17 @@
             color: var(--primary);
         }
 
-  .btn:hover {
+   .btn:hover {
             opacity: 0.9;
         }
 
-   /* Home Content */
+  /* Home Content */
         #home-content {
             text-align: center;
             padding: 2rem;
         }
 
-  .hero {
+ .hero {
             max-width: 600px;
             margin: 0 auto;
         }
@@ -141,7 +141,7 @@
             padding: 2rem;
         }
 
-   /* Tabs and Forms */
+  /* Tabs and Forms */
         .tabs {
             display: flex;
             gap: 0.5rem;
@@ -155,7 +155,8 @@
             cursor: pointer;
             border-bottom: 2px solid transparent;
         }
-    .tab-btn.active {
+
+ .tab-btn.active {
             border-bottom-color: var(--secondary);
             font-weight: bold;
         }
@@ -164,15 +165,14 @@
             display: none;
         }
 
-   .tab-content.active {
+  .tab-content.active {
             display: block;
         }
 
-  .form-group {
+   .form-group {
             margin-bottom: 1rem;
         }
-
-   .form-group label {
+    .form-group label {
             display: block;
             margin-bottom: 0.25rem;
         }
@@ -183,40 +183,42 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-    /* Tables */
+
+   /* Tables */
         table {
             width: 100%;
             border-collapse: collapse;
             background: var(--white);
             box-shadow: 0 2px 5px var(--shadow);
         }
-    th, td {
+
+  th, td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
         }
-    th {
+
+   th {
             background: var(--primary);
             color: var(--white);
         }
-
-   /* Status Indicators */
+    /* Status Indicators */
         .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             color: var(--white);
             font-size: 0.875rem;
         }
-
-   .status-pending { background: #ffc107; }
+    .status-pending { background: #ffc107; }
         .status-active { background: #28a745; }
-      /* Buttons */
+
+  /* Buttons */
         .btn-success {
             background: #28a745;
             color: var(--white);
         }
 
-  /* Footer */
+   /* Footer */
         footer {
             text-align: center;
             padding: 1rem;
@@ -227,11 +229,12 @@
             width: 100%;
         }
 
-   /* Utility Classes */
+  /* Utility Classes */
         .hidden {
             display: none;
         }
-     /* Responsive Design */
+
+   /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 1.5rem;
@@ -254,7 +257,7 @@
                     <div class="brand">MarketFlow</div>
                     <ul>
                         <li><a href="#balance"><span role="img" aria-label="bank">🏦</span> Balance</a></li>
-                        <li><a href="#deposit"><span role="img" aria-label="plus">➕</span> Deposit</a></li>
+                        <li><a href="#deposit-withdrawals"><span role="img" aria-label="plus-money">➕💵</span> Deposit & Withdrawals</a></li>
                         <li><a href="#available-funded"><span role="img" aria-label="briefcase">💼</span> Available Funded</a></li>
                         <li><a href="#available-traders"><span role="img" aria-label="people">👥</span> Available Traders</a></li>
                         <li><a href="#co-funding"><span role="img" aria-label="handshake">🤝</span> Co-Funding</a></li>
@@ -262,7 +265,7 @@
                         <li><a href="#active"><span role="img" aria-label="chart">📊</span> Active</a></li>
                         <li><a href="#orders"><span role="img" aria-label="document">📑</span> Orders</a></li>
                         <li><a href="#completed"><span role="img" aria-label="check">✅</span> Completed</a></li>
-                        <li><a href="#profits-withdrawals"><span role="img" aria-label="money">💵</span> Profits & Withdrawals</a></li>
+                        <li><a href="#profile-verification"><span role="img" aria-label="user-id">👤🔍</span> Profile & Verification</a></li>
                         <li><a href="#performance-chart"><span role="img" aria-label="graph">📈</span> Performance Chart</a></li>
                         <li><a href="#messages"><span role="img" aria-label="speech">💬</span> Messages</a></li>
                     </ul>
@@ -271,7 +274,6 @@
             <a href="#" id="auth-btn" class="btn btn-primary">Login</a>
         </nav>
     </header>
-
   <div id="home-content">
         <div class="hero">
             <h1>MarketFlow: Collaborative Trading</h1>
@@ -303,22 +305,30 @@
                         </tbody>
                     </table>
                 </section>
-                <section id="deposit">
-                    <h2>Deposit</h2>
-                    <p>Manage your deposits.</p>
+                <section id="deposit-withdrawals">
+                    <h2>Deposit & Withdrawals</h2>
+                    <p>Manage your deposits and withdrawals.</p>
                     <table>
                         <thead>
                             <tr>
-                                <th>Date</th>
+                                <th>Type</th>
                                 <th>Amount</th>
+                                <th>Date</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>2025-09-03</td>
+                                <td>Deposit</td>
                                 <td>$5,000</td>
+                                <td>2025-09-03</td>
                                 <td><span class="status status-active">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Withdrawal</td>
+                                <td>$2,000</td>
+                                <td>2025-09-04</td>
+                                <td><span class="status status-pending">Pending</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -460,25 +470,20 @@
                         </tbody>
                     </table>
                 </section>
-                <section id="profits-withdrawals">
-                    <h2>Profits & Withdrawals</h2>
-                    <p>Track your profits and withdrawals.</p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Amount</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Profit</td>
-                                <td>$2,000</td>
-                                <td>2025-09-03</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <section id="profile-verification">
+                    <h2>Profile & Verification</h2>
+                    <p>Manage your profile and complete verification.</p>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" placeholder="Enter your full name" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 5px;">
+                        </div>
+                        <div class="form-group">
+                            <label for="id-number">ID Number</label>
+                            <input type="text" id="id-number" placeholder="Enter your ID number" style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 5px;">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Verify</button>
+                    </form>
                 </section>
                 <section id="performance-chart">
                     <h2>Performance Chart</h2>
@@ -495,7 +500,7 @@
         </div>
     </div>
 
-  <footer>
+   <footer>
         <p>&copy; 2025 MarketFlow</p>
     </footer>
 
