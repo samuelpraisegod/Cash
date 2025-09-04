@@ -6,7 +6,6 @@
     <title>MarketFlow - Wallet Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* Existing CSS remains unchanged */
         :root {
             --primary: #0a1f44;
             --secondary: #d4af37;
@@ -17,10 +16,201 @@
             --green: #28a745;
             --red: #dc3545;
         }
-        /* ... (other styles remain unchanged) */
-        .status-pending { background: #ffc107; }
+
+ body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--light-bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+ header {
+            background: #4a2626;
+            color: var(--white);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+ .header-title h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+ nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+ .hamburger {
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+ .hamburger-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 250px;
+            background: var(--white);
+            padding: 1rem;
+            border-right: 1px solid #eee;
+            box-shadow: 2px 2px 5px var(--shadow);
+            z-index: 60;
+        }
+
+.hamburger.active .hamburger-menu {
+            display: block;
+        }
+
+  .hamburger .brand {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+ .hamburger-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+  .hamburger-menu ul li a {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+  .hamburger-menu ul li a:hover {
+            background: var(--light-bg);
+            border-radius: 5px;
+        }
+
+ .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+.btn-primary { background: var(--secondary); color: var(--primary); }
+        .btn-success { background: var(--green); color: var(--white); }
+        .btn-danger { background: var(--red); color: var(--white); }
+        .btn:hover { opacity: 0.9; }
+
+.main-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+ section {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px var(--shadow);
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+ section.active {
+            display: block;
+        }
+
+ .wallet-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+
+  .tab-button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: var(--light-bg);
+            font-weight: bold;
+            white-space: nowrap;
+        }  .tab-button.active {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+ .form-group {
+            margin-bottom: 1rem;
+        }
+
+ .form-group label {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+ .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+ .confirm-btn, .submit-btn {
+            background: var(--green);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+ .confirm-btn:hover, .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+ .transactions-table th, .transactions-table td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+ .transactions-table th {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+ .status {
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            color: var(--white);
+            font-size: 0.875rem;
+        }
+
+ .status-pending { background: #ffc107; }
         .status-active { background: #17a2b8; }
         .status-completed { background: var(--green); }
+
+  @media (max-width: 768px) {
+            .wallet-tabs { flex-direction: column; }
+            .main-content { padding: 1rem; }
+        }
     </style>
 </head>
 <body>
@@ -34,18 +224,18 @@
                 <div class="hamburger-menu">
                     <div class="brand">MarketFlow</div>
                     <ul>
-                        <li><a href="#balance" onclick="showTab('balance')">🏦 Balance</a></li>
-                        <li><a href="#wallet" onclick="showTab('wallet')">💼 Wallet Dashboard</a></li>
-                        <li><a href="#available-funded" onclick="showTab('available-funded')">💼 Available Funded</a></li>
-                        <li><a href="#available-traders" onclick="showTab('available-traders')">👥 Available Traders</a></li>
-                        <li><a href="#co-funding" onclick="showTab('co-fund-request')">🤝 Co-Funding</a></li>
-                        <li><a href="#requests" onclick="showTab('requests')">📩 Requests</a></li>
-                        <li><a href="#active" onclick="showTab('active')">📊 Active</a></li>
-                        <li><a href="#orders" onclick="showTab('orders')">📑 Orders</a></li>
-                        <li><a href="#completed" onclick="showTab('completed')">✅ Completed</a></li>
-                        <li><a href="#profile-verification" onclick="showTab('profile-verification')">👤🔍 Profile & Verification</a></li>
-                        <li><a href="#performance-chart" onclick="showTab('performance-chart')">📈 Performance Chart</a></li>
-                        <li><a href="#messages" onclick="showTab('messages')">💬 Messages</a></li>
+                        <li><a href="#" onclick="showTab('balance')">🏦 Balance</a></li>
+                        <li><a href="#" onclick="showTab('wallet')">💼 Wallet Dashboard</a></li>
+                        <li><a href="#" onclick="showTab('available-funded')">💼 Available Funded</a></li>
+                        <li><a href="#" onclick="showTab('available-traders')">👥 Available Traders</a></li>
+                        <li><a href="#" onclick="showTab('co-funding')">🤝 Co-Funding</a></li>
+                        <li><a href="#" onclick="showTab('requests')">📩 Requests</a></li>
+                        <li><a href="#" onclick="showTab('active')">📊 Active</a></li>
+                        <li><a href="#" onclick="showTab('orders')">📑 Orders</a></li>
+                        <li><a href="#" onclick="showTab('completed')">✅ Completed</a></li>
+                        <li><a href="#" onclick="showTab('profile-verification')">👤🔍 Profile & Verification</a></li>
+                        <li><a href="#" onclick="showTab('performance-chart')">📈 Performance Chart</a></li>
+                        <li><a href="#" onclick="showTab('messages')">💬 Messages</a></li>
                     </ul>
                 </div>
             </div>
@@ -61,11 +251,11 @@
         </div>
     </div>
 
-<div id="dashboard-content" class="hidden">
+ <div id="dashboard-content" class="hidden">
         <div class="dashboard">
             <main class="main-content">
                 <!-- Balance Section -->
-                <section id="balance-tab" class="tab-content">
+                <section id="balance" class="active">
                     <h2>Balance</h2>
                     <div class="wallet-overview">
                         <div class="main-balance">$2,450.00</div>
@@ -76,27 +266,29 @@
                         </div>
                     </div>
                     <div class="quick-actions">
-                        <a href="#deposit" class="btn" onclick="showTab('deposit')">➕ Deposit</a>
-                        <a href="#withdraw" class="btn" onclick="showTab('withdraw')">💸 Withdraw</a>
-                        <a href="#transfer" class="btn" onclick="showTab('transfer')">🔄 Transfer</a>
+                        <a href="#" class="btn" onclick="showTab('deposit')">➕ Deposit</a>
+                        <a href="#" class="btn" onclick="showTab('withdraw')">💸 Withdraw</a>
+                        <a href="#" class="btn" onclick="showTab('transfer')">🔄 Transfer</a>
                     </div>
                 </section>
-   <!-- Wallet Dashboard -->
-                <section id="wallet-tab" class="tab-content">
+    <!-- Wallet Dashboard -->
+                <section id="wallet">
                     <h2>Wallet Dashboard</h2>
                     <div class="wallet-tabs">
                         <button class="tab-button" onclick="showTab('deposit')">Deposit (➕)</button>
                         <button class="tab-button" onclick="showTab('withdraw')">Withdraw (💸)</button>
                     </div>
-                    <div id="deposit-tab" class="tab-content">
-                        <!-- Existing deposit content -->
+                    <div id="deposit" class="tab-content">
+                        <!-- Placeholder for deposit form -->
+                        <p>Deposit content here.</p>
                     </div>
-                    <div id="withdraw-tab" class="tab-content">
-                        <!-- Existing withdrawal content -->
+                    <div id="withdraw" class="tab-content">
+                        <!-- Placeholder for withdraw form -->
+                        <p>Withdraw content here.</p>
                     </div>
                 </section>
-  <!-- Co-Funding Section -->
-                <section id="co-funding-tab" class="tab-content">
+ <!-- Co-Funding Section -->
+                <section id="co-funding">
                     <h2>🤝 Co-Funding</h2>
                     <div class="wallet-tabs">
                         <button class="tab-button" onclick="showTab('co-fund-request')">Co-Funding Request</button>
@@ -104,9 +296,9 @@
                         <button class="tab-button" onclick="showTab('managed-account')">Managed Account Request</button>
                         <button class="tab-button" onclick="showTab('requests-dashboard')">Request Dashboard</button>
                     </div>
-                    <div id="co-fund-request-tab" class="tab-content">
+                    <div id="co-fund-request" class="tab-content">
                         <p>Create a co-fund request by selecting an amount. Your deposit will be locked in escrow until matched. The system will match co-funders and auto-purchase the prop firm account upon agreement.</p>
-                        <form id="coFundForm">
+                        <form>
                             <div class="form-group">
                                 <label for="co-fund-amount">Co-Fund Amount</label>
                                 <input type="number" id="co-fund-amount" placeholder="e.g., $5k" value="5000">
@@ -119,62 +311,70 @@
                                     <option value="70/30">70/30</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="your-contribution">Your Contribution ($)</label>
-                                <input type="number" id="your-contribution" placeholder="e.g., $2500" value="2500">
-                            </div>
-                            <div class="form-group">
-                                <label for="account-size">Account Size</label>
-                                <input type="number" id="account-size" placeholder="e.g., $10k" value="10000">
-                            </div>
-                            <div class="form-group">
-                                <label for="percentage-contribution">Percentage of Contribution (%)</label>
-                                <input type="number" id="percentage-contribution" placeholder="e.g., 50" value="50">
-                            </div>
-                            <div class="form-group">
-                                <label for="trader-type">Type of Trader</label>
-                                <select id="trader-type">
-                                    <option value="scalping">Scalping</option>
-                                    <option value="swing">Swing</option>
-                                    <option value="algo">Algo</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="track-record">Track Record (Upload Link/Screenshot)</label>
-                                <input type="file" id="track-record">
-                            </div>
                             <button type="button" class="confirm-btn" onclick="submitCoFundRequest()">Submit Request</button>
                             <div class="status-tracker" style="margin-top: 1rem; color: #666;">Status: <span class="status status-pending">Pending</span></div>
                         </form>
                     </div>
-                    <div id="managed-trading-tab" class="tab-content">
-                        <!-- Managed Trading content -->
+                    <div id="managed-trading" class="tab-content">
+                        <p>Managed Trading content here.</p>
                     </div>
-                    <div id="managed-account-tab" class="tab-content">
-                        <!-- Managed Account content -->
+                    <div id="managed-account" class="tab-content">
+                        <p>Managed Account content here.</p>
                     </div>
-                    <div id="requests-dashboard-tab" class="tab-content">
-                        <!-- Request Dashboard content -->
+                    <div id="requests-dashboard" class="tab-content">
+                        <p>Request Dashboard content here.</p>
                     </div>
                 </section>
-    <!-- Other sections (unchanged structure) -->
-                <section id="available-funded-tab" class="tab-content">
+ <!-- Other Sections (placeholders) -->
+                <section id="available-funded">
                     <h2>Available Funded</h2>
                     <p>View available funded accounts.</p>
-                    <table>
+                    <table class="transactions-table">
                         <thead><tr><th>Firm</th><th>Amount</th><th>Availability</th></tr></thead>
                         <tbody><tr><td>FTMO</td><td>$10,000</td><td>Available</td></tr></tbody>
                     </table>
                 </section>
+                <section id="available-traders">
+                    <h2>Available Traders</h2>
+                    <p>Trader list here.</p>
+                </section>
+                <section id="requests">
+                    <h2>Requests</h2>
+                    <p>Request list here.</p>
+                </section>
+                <section id="active">
+                    <h2>Active</h2>
+                    <p>Active content here.</p>
+                </section>
+                <section id="orders">
+                    <h2>Orders</h2>
+                    <p>Orders content here.</p>
+                </section>
+                <section id="completed">
+                    <h2>Completed</h2>
+                    <p>Completed content here.</p>
+                </section>
+                <section id="profile-verification">
+                    <h2>Profile & Verification</h2>
+                    <p>Verification content here.</p>
+                </section>
+                <section id="performance-chart">
+                    <h2>Performance Chart</h2>
+                    <p>Chart content here.</p>
+                </section>
+                <section id="messages">
+                    <h2>Messages</h2>
+                    <p>Messages content here.</p>
+                </section>
             </main>
         </div>
-    </div
-        
-<footer>
+    </div>
+
+ <footer>
         <p>&copy; 2025 MarketFlow</p>
     </footer>
 
-  <script>
+ <script>
         let isLoggedIn = false;
 
         function updateUI() {
@@ -203,7 +403,7 @@
         function login() {
             isLoggedIn = true;
             updateUI();
-            showTab('balance'); // Default to Balance tab on login
+            showTab('balance'); // Default to Balance on login
         }
 
         function logout() {
@@ -211,37 +411,30 @@
             updateUI();
         }
 
-        // Enhanced Tab Switching
         function showTab(tab) {
-            // Remove active class from all tab buttons and content
+            document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-
-            // Activate the selected tab and its content
-            const tabButton = document.querySelector(`.tab-button[onclick="showTab('${tab}')"]`) ||
-                             document.querySelector(`a[onclick="showTab('${tab}')"]`);
-            if (tabButton) tabButton.classList.add('active');
-
-            const tabContent = document.getElementById(`${tab}-tab`);
-            if (tabContent) tabContent.classList.add('active');
-        }
-
-        // Form Submission Functions
-        function submitCoFundRequest() {
-            if (confirm('Submit Co-Funding Request?')) {
-                alert('Request submitted successfully! Status: Pending');
-                document.querySelector('#co-fund-request-tab .status-tracker .status').textContent = 'Pending';
-                document.querySelector('#co-fund-request-tab .status-tracker .status').className = 'status status-pending';
+            const activeSection = document.getElementById(tab);
+            if (activeSection) {
+                activeSection.classList.add('active');
+                // Activate corresponding tab buttons within the section
+                const tabButtons = activeSection.querySelectorAll('.wallet-tabs .tab-button');
+                if (tabButtons.length > 0) {
+                    tabButtons[0].classList.add('active'); // Default to first sub-tab
+                }
+            }
+            // Handle sub-tabs (e.g., Wallet Dashboard, Co-Funding)
+            const subTab = document.getElementById(tab);
+            if (subTab && subTab.classList.contains('tab-content')) {
+                subTab.classList.add('active');
             }
         }
 
-        // Placeholder for other submission functions
-        function submitManagedTradingRequest() { alert('Managed Trading Request submitted!'); }
-        function submitManagedAccountRequest() { alert('Managed Account Request submitted!'); }
-        function acceptRequest(id) { alert(`Accepted request ${id}!`); }
-        function declineRequest(id) { alert(`Declined request ${id}!`); }
-        function viewNotification() { alert('Viewing notification...'); }
-        function downloadHistory() { alert('Downloading agreement history as PDF...'); }
+        function submitCoFundRequest() {
+            if (confirm('Submit Co-Funding Request?')) {
+                alert('Request submitted successfully! Status: Pending');
+            }
+        }
 
         window.onload = () => {
             login();
