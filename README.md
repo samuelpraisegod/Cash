@@ -18,7 +18,7 @@
             --red: #dc3545;
         }
 
-/* Global Styles */
+        /* Global Styles */
         body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--light-bg);
@@ -29,7 +29,7 @@
             overflow-x: hidden;
         }
 
- /* Header Styles */
+        /* Header Styles */
         header {
             background: #4a2626;
             color: var(--white);
@@ -43,24 +43,24 @@
             z-index: 100;
         }
 
- .header-title h1 {
+        .header-title h1 {
             margin: 0;
             font-size: 1.5rem;
         }
 
-  nav {
+        nav {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
- .hamburger {
+        .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
             position: relative;
         }
 
- .hamburger-menu {
+        .hamburger-menu {
             display: none;
             position: absolute;
             top: 100%;
@@ -73,23 +73,23 @@
             z-index: 60;
         }
 
-.hamburger.active .hamburger-menu {
+        .hamburger.active .hamburger-menu {
             display: block;
         }
 
- .hamburger .brand {
+        .hamburger .brand {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 1rem;
             text-align: center;
         }
 
-  .hamburger-menu ul {
+        .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
 
-  .hamburger-menu ul li a {
+        .hamburger-menu ul li a {
             display: flex;
             align-items: center;
             padding: 0.5rem;
@@ -97,12 +97,12 @@
             text-decoration: none;
         }
 
-.hamburger-menu ul li a:hover {
+        .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
 
- .btn {
+        .btn {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 20px;
@@ -113,31 +113,31 @@
             gap: 0.5rem;
         }
 
-  .btn-primary {
+        .btn-primary {
             background: var(--secondary);
             color: var(--primary);
         }
 
-  .btn-success {
+        .btn-success {
             background: var(--green);
             color: var(--white);
         }
 
- .btn-danger {
+        .btn-danger {
             background: var(--red);
             color: var(--white);
         }
 
-  .btn:hover {
+        .btn:hover {
             opacity: 0.9;
         }
 
- /* Main Content */
+        /* Main Content */
         .main-content {
             padding: 2rem;
         }
 
-  section {
+        section {
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
@@ -145,14 +145,14 @@
             margin-bottom: 2rem;
         }
 
- /* Wallet Dashboard */
+        /* Wallet Dashboard */
         .wallet-tabs {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
 
- .tab-button {
+        .tab-button {
             padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 5px;
@@ -161,28 +161,28 @@
             font-weight: bold;
         }
 
- .tab-button.active {
+        .tab-button.active {
             background: var(--secondary);
             color: var(--white);
         }
 
-.tab-content {
+        .tab-content {
             display: none;
         }
 
-  .tab-content.active {
+        .tab-content.active {
             display: block;
         }
 
- .balance-overview {
+        .balance-overview {
             margin-bottom: 1.5rem;
         }
 
- .balance-overview div {
+        .balance-overview div {
             margin-bottom: 0.5rem;
         }
 
- .method-card {
+        .method-card {
             background: var(--light-bg);
             padding: 1rem;
             border-radius: 10px;
@@ -191,28 +191,28 @@
             flex: 1;
         }
 
- .method-card.active {
+        .method-card.active {
             background: var(--secondary);
             color: var(--white);
         }
 
-  .form-group {
+        .form-group {
             margin-bottom: 1rem;
         }
 
- .form-group label {
+        .form-group label {
             display: block;
             margin-bottom: 0.25rem;
         }
 
- .form-group input, .form-group select {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 0.5rem;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
- .copy-btn {
+        .copy-btn {
             background: var(--primary);
             color: var(--white);
             padding: 0.25rem 0.5rem;
@@ -222,11 +222,11 @@
             margin-left: 0.5rem;
         }
 
-  .copy-btn:hover {
+        .copy-btn:hover {
             opacity: 0.9;
         }
 
-  .confirm-btn, .submit-btn {
+        .confirm-btn, .submit-btn {
             background: var(--green);
             color: var(--white);
             padding: 0.75rem 1.5rem;
@@ -237,32 +237,32 @@
             width: 100%;
         }
 
-  .confirm-btn:hover, .submit-btn:hover {
+        .confirm-btn:hover, .submit-btn:hover {
             opacity: 0.9;
         }
 
-.transactions-table th, .transactions-table td {
+        .transactions-table th, .transactions-table td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
         }
 
-  .transactions-table th {
+        .transactions-table th {
             background: var(--primary);
             color: var(--white);
         }
 
- .status {
+        .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             color: var(--white);
             font-size: 0.875rem;
         }
 
-  .status-completed { background: var(--green); }
+        .status-completed { background: var(--green); }
         .status-pending { background: #ffc107; }
 
-  /* Responsive Design */
+        /* Responsive Design */
         @media (max-width: 768px) {
             .wallet-tabs, .deposit-methods, .withdrawal-methods {
                 flex-direction: column;
@@ -300,7 +300,7 @@
         </nav>
     </header>
 
- <div id="home-content">
+<div id="home-content">
         <div class="hero">
             <h1>MarketFlow: Collaborative Trading</h1>
             <p>Join a community-driven platform to co-fund trading accounts and maximize profits.</p>
@@ -308,7 +308,7 @@
         </div>
     </div>
 
-  <div id="dashboard-content" class="hidden">
+<div id="dashboard-content" class="hidden">
         <div class="dashboard">
             <main class="main-content">
                 <!-- Balance Section (unchanged for now) -->
@@ -335,8 +335,9 @@
                         <button class="tab-button active" onclick="showTab('deposit')">Deposit (➕)</button>
                         <button class="tab-button" onclick="showTab('withdraw')">Withdraw (💸)</button>
                     </div>
-  <!-- Deposit Tab -->
+ <!-- Deposit Tab -->
                     <div id="deposit-tab" class="tab-content active">
+                        <h2>➕ Deposit Funds</h2>
                         <div class="balance-overview">
                             <div>Available Balance: $2,450.00</div>
                             <div>Pending Deposits: $100.00</div>
@@ -349,7 +350,7 @@
                             <div class="method-card" onclick="selectMethod('crypto')">🔗 Crypto Wallet</div>
                         </div>
 
- <form id="depositForm" class="hidden">
+  <form id="depositForm" class="hidden">
                             <div class="form-group">
                                 <label for="deposit-amount">Enter Amount</label>
                                 <input type="number" id="deposit-amount" placeholder="Enter Amount" value="500" oninput="calculateNetDeposit()">
@@ -373,7 +374,7 @@
                             </div>
                         </form>
 
- <h3>Recent Transactions (Deposits)</h3>
+  <h3>Recent Transactions (Deposits)</h3>
                         <table class="transactions-table">
                             <thead>
                                 <tr>
@@ -408,7 +409,7 @@
                             <div>Minimum Withdrawal Limit: $10.00</div>
                         </div>
 
- <form id="withdrawForm">
+  <form id="withdrawForm">
                             <div class="form-group">
                                 <label for="withdraw-amount">Enter Withdrawal Amount</label>
                                 <input type="number" id="withdraw-amount" placeholder="Enter Amount" value="200" oninput="calculateNetAmount()">
@@ -442,7 +443,7 @@
                             <button type="button" class="submit-btn" onclick="confirmWithdrawal()">✅ Submit Withdrawal</button>
                         </form>
 
- <div class="status-section" style="margin-top: 1rem; color: #666;">
+  <div class="status-section" style="margin-top: 1rem; color: #666;">
                             <p>Processing Time: Bank transfers take 1–2 business days.</p>
                         </div>
 
@@ -498,11 +499,11 @@
         </div>
     </div>
 
- <footer>
+  <footer>
         <p>&copy; 2025 MarketFlow</p>
     </footer>
 
- <script>
+  <script>
         let isLoggedIn = false;
 
         function updateUI() {
@@ -648,7 +649,7 @@
                     case 'bank':
                         paymentDetails.innerHTML = `
                             <div class="form-group">
-                                <label>Bank: GTBank</label>
+                                <label>Bank Name: GTBank</label>
                             </div>
                             <div class="form-group">
                                 <label>Account Name: MarketFlowFX Ltd</label>
