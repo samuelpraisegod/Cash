@@ -27,7 +27,7 @@
             overflow-x: hidden;
         }
 
-   header {
+ header {
             background: #4a2626;
             color: var(--white);
             padding: 1rem;
@@ -40,18 +40,18 @@
             z-index: 100;
         }
 
- .header-title h1 {
+  .header-title h1 {
             margin: 0;
             font-size: 1.5rem;
         }
 
-  nav {
+ nav {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
-.hamburger {
+ .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
             position: relative;
@@ -70,23 +70,23 @@
             z-index: 60;
         }
 
-  .hamburger.active .hamburger-menu {
+ .hamburger.active .hamburger-menu {
             display: block;
         }
 
- .hamburger .brand {
+  .hamburger .brand {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 1rem;
             text-align: center;
         }
 
-  .hamburger-menu ul {
+ .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
 
-  .hamburger-menu ul li a {
+ .hamburger-menu ul li a {
             display: flex;
             align-items: center;
             padding: 0.5rem;
@@ -94,7 +94,7 @@
             text-decoration: none;
         }
 
- .hamburger-menu ul li a:hover {
+  .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
@@ -110,7 +110,7 @@
             gap: 0.5rem;
         }
 
-  .btn-primary { background: var(--secondary); color: var(--primary); }
+ .btn-primary { background: var(--secondary); color: var(--primary); }
         .btn-success { background: var(--green); color: var(--white); }
         .btn-danger { background: var(--red); color: var(--white); }
         .btn:hover { opacity: 0.9; }
@@ -125,7 +125,7 @@
             width: 100%;
         }
 
- section {
+  section {
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
@@ -134,7 +134,7 @@
             display: none;
         }
 
- section.active {
+  section.active {
             display: block;
         }
 
@@ -145,7 +145,7 @@
             overflow-x: auto;
         }
 
- .tab-button {
+  .tab-button {
             padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 5px;
@@ -164,7 +164,7 @@
             margin-bottom: 1rem;
         }
 
- .form-group label {
+  .form-group label {
             display: block;
             margin-bottom: 0.25rem;
         }
@@ -187,11 +187,11 @@
             width: 100%;
         }
 
- .confirm-btn:hover {
+  .confirm-btn:hover {
             opacity: 0.9;
         }
 
- .transactions-table th, .transactions-table td {
+  .transactions-table th, .transactions-table td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
@@ -209,10 +209,10 @@
             font-size: 0.875rem;
         }
 
- .status-pending { background: #ffc107; }
+  .status-pending { background: #ffc107; }
         .status-completed { background: var(--green); }
 
- .placeholder {
+  .placeholder {
             text-align: center;
             color: #666;
             font-style: italic;
@@ -222,13 +222,13 @@
             display: none;
         }
 
- .deposit-method-tabs {
+   .withdrawal-method-tabs {
             display: flex;
             gap: 1rem;
             margin-bottom: 1rem;
         }
 
-  .deposit-method-tab {
+ .withdrawal-method-tab {
             padding: 0.5rem 1rem;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -236,23 +236,13 @@
             background: var(--light-bg);
         }
 
- .deposit-method-tab.active {
+  .withdrawal-method-tab.active {
             background: var(--secondary);
             color: var(--white);
             border-color: var(--secondary);
         }
 
- .qr-code {
-            width: 100px;
-            height: 100px;
-            background: #f0f0f0;
-            margin: 1rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-  .copy-btn {
+ .copy-btn {
             padding: 0.25rem 0.5rem;
             background: var(--primary);
             color: var(--white);
@@ -263,6 +253,10 @@
 
  .copy-btn:hover {
             opacity: 0.9;
+        }
+
+ .save-default {
+            margin-top: 0.5rem;
         }
     </style>
 </head>
@@ -296,7 +290,7 @@
         </nav>
     </header>
 
- <div id="home-content">
+  <div id="home-content">
         <div class="hero">
             <h1>DivoraSplit: Collaborative Trading</h1>
             <p>Join a community-driven platform to co-fund trading accounts and maximize profits.</p>
@@ -304,7 +298,7 @@
         </div>
     </div>
 
-  <div id="dashboard-content" class="hidden">
+ <div id="dashboard-content" class="hidden">
         <div class="dashboard">
             <main class="main-content">
                 <!-- Balance Section -->
@@ -324,7 +318,7 @@
                         <a href="#" class="btn" onclick="showTab('transfer')">🔄 Transfer</a>
                     </div>
                 </section>
- <!-- Wallet Dashboard -->
+   <!-- Wallet Dashboard -->
                 <section id="wallet">
                     <h2>Wallet Dashboard</h2>
                     <div class="wallet-tabs">
@@ -334,12 +328,11 @@
                     <div id="deposit" class="tab-content">
                         <h3>➕ Deposit Funds</h3>
                         <div class="deposit-method-tabs">
-                            <div class="deposit-method-tab active" onclick="showDepositMethod('bank')">💳 Bank Transfer</div>
-                            <div class="deposit-method-tab" onclick="showDepositMethod('card')">💵 Card Payment</div>
-                            <div class="deposit-method-tab" onclick="showDepositMethod('crypto')">🔗 Crypto Wallet</div>
+                            <div class="deposit-method-tab active" id="bank-tab" onclick="showDepositMethod('bank')">💳 Bank Transfer</div>
+                            <div class="deposit-method-tab" id="card-tab" onclick="showDepositMethod('card')">💵 Card Payment</div>
+                            <div class="deposit-method-tab" id="crypto-tab" onclick="showDepositMethod('crypto')">🔗 Crypto Wallet</div>
                         </div>
                         <div id="deposit-details" class="form-group">
-                            <!-- Bank Transfer -->
                             <div id="bank-details" class="deposit-method-content active">
                                 <label>Enter Amount</label>
                                 <input type="number" placeholder="e.g., $500" min="0">
@@ -354,7 +347,6 @@
                                 <label>Upload Proof of Payment</label>
                                 <input type="file" accept="image/*">
                             </div>
-                            <!-- Card Payment -->
                             <div id="card-details" class="deposit-method-content hidden">
                                 <label>Enter Amount</label>
                                 <input type="number" placeholder="e.g., $500" min="0">
@@ -365,7 +357,6 @@
                                 <label>CVV</label>
                                 <input type="text" placeholder="123">
                             </div>
-                            <!-- Crypto Deposit -->
                             <div id="crypto-details" class="deposit-method-content hidden">
                                 <label>Enter Amount</label>
                                 <input type="number" placeholder="e.g., $500" min="0">
@@ -394,7 +385,86 @@
                         </table>
                     </div>
                     <div id="withdraw" class="tab-content">
-                        <p>Withdraw form content here.</p>
+                        <h3>💸 Withdraw Funds</h3>
+                        <div class="wallet-overview">
+                            <p>Available Balance: $2,450.00</p>
+                            <p>Pending Withdrawals: $200.00</p>
+                            <p>Minimum Withdrawal Limit: $10.00</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Withdrawal Amount</label>
+                            <input type="number" id="withdrawal-amount" placeholder="e.g., $200" min="10" oninput="updateNetAmount()">
+                            <label>Currency</label>
+                            <select id="withdrawal-currency" onchange="updateNetAmount()">
+                                <option value="USD">USD</option>
+                                <option value="NGN">NGN</option>
+                            </select>
+                            <p>You will receive: <span id="net-amount">$195.00</span> (after 2.5% fee)</p>
+                        </div>
+                        <div class="withdrawal-method-tabs">
+                            <div class="withdrawal-method-tab active" id="bank-withdrawal-tab" onclick="showWithdrawalMethod('bank')">🏦 Bank Transfer</div>
+                            <div class="withdrawal-method-tab" id="crypto-withdrawal-tab" onclick="showWithdrawalMethod('crypto')">🔗 Crypto Wallet</div>
+                            <div class="withdrawal-method-tab" id="mobile-withdrawal-tab" onclick="showWithdrawalMethod('mobile')">📲 Mobile Money</div>
+                        </div>
+                        <div id="withdrawal-details" class="form-group">
+                            <div id="bank-withdrawal-details" class="withdrawal-method-content active">
+                                <label>Bank Name</label>
+                                <select>
+                                    <option value="GTBank">GTBank</option>
+                                    <option value="Zenith">Zenith</option>
+                                </select>
+                                <label>Account Number</label>
+                                <input type="text" placeholder="e.g., 0123456789">
+                                <label>Account Holder Name</label>
+                                <input type="text" placeholder="e.g., John Doe">
+                                <label>Branch (Optional)</label>
+                                <input type="text" placeholder="e.g., Lagos">
+                                <div class="save-default">
+                                    <input type="checkbox" id="save-default-bank">
+                                    <label for="save-default-bank">✔ Save as default payout account</label>
+                                </div>
+                            </div>
+                            <div id="crypto-withdrawal-details" class="withdrawal-method-content hidden">
+                                <label>Select Coin</label>
+                                <select>
+                                    <option value="BTC">BTC</option>
+                                    <option value="USDT">USDT</option>
+                                    <option value="ETH">ETH</option>
+                                </select>
+                                <label>Network Type</label>
+                                <select>
+                                    <option value="ERC20">ERC20</option>
+                                    <option value="TRC20">TRC20</option>
+                                </select>
+                                <label>Wallet Address</label>
+                                <input type="text" placeholder="e.g., 0xAB123456789CDEFFED1234...">
+                            </div>
+                            <div id="mobile-withdrawal-details" class="withdrawal-method-content hidden">
+                                <label>Mobile Money Provider</label>
+                                <select>
+                                    <option value="MTN">MTN</option>
+                                    <option value="Airtel">Airtel</option>
+                                </select>
+                                <label>Phone Number</label>
+                                <input type="tel" placeholder="e.g., +2348012345678">
+                                <label>Account Name</label>
+                                <input type="text" placeholder="e.g., John Doe">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Security Verification</label>
+                            <input type="text" placeholder="Enter OTP / 2FA Code">
+                            <input type="password" placeholder="Withdrawal PIN (Optional)" style="margin-top: 0.5rem;">
+                        </div>
+                        <button class="confirm-btn" onclick="submitWithdrawal()">✅ Submit Withdrawal</button>
+                        <p class="placeholder" style="margin-top: 1rem;">Bank transfers take 1–2 business days. Crypto withdrawals are processed within 24 hours.</p>
+                        <table class="transactions-table" style="margin-top: 1rem; width: 100%;">
+                            <thead><tr><th>Date</th><th>Method</th><th>Amount</th><th>Status</th></tr></thead>
+                            <tbody>
+                                <tr><td>Sept 4, 25</td><td>Bank Transfer</td><td>$200</td><td><span class="status status-pending">⏳ Pending</span></td></tr>
+                                <tr><td>Sept 2, 25</td><td>Crypto (USDT)</td><td>$100</td><td><span class="status status-completed">✅ Completed</span></td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
   <!-- Co-Funding Section -->
@@ -427,7 +497,7 @@
                         <div class="placeholder">Coming Soon</div>
                     </div>
                 </section>
- <!-- Other Sections -->
+  <!-- Other Sections -->
                 <section id="available-funded">
                     <h2>Available Funded</h2>
                     <p>View available funded accounts.</p>
@@ -476,7 +546,7 @@
         <p>&copy; 2025 DivoraSplit</p>
     </footer>
 
-<script>
+  <script>
         let isLoggedIn = false;
 
         function updateUI() {
@@ -516,6 +586,8 @@
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             document.querySelectorAll('.deposit-method-tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.deposit-method-content').forEach(content => content.classList.add('hidden'));
+            document.querySelectorAll('.withdrawal-method-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.withdrawal-method-content').forEach(content => content.classList.add('hidden'));
         }
 
         function showTab(tab) {
@@ -564,12 +636,38 @@
             document.querySelector(`#${method}-tab`).classList.add('active');
         }
 
+        function showWithdrawalMethod(method) {
+            document.querySelectorAll('.withdrawal-method-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.withdrawal-method-content').forEach(content => content.classList.add('hidden'));
+
+            document.querySelector(`#${method}-withdrawal-details`).classList.remove('hidden');
+            document.querySelector(`#${method}-withdrawal-tab`).classList.add('active');
+        }
+
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard!'));
         }
 
+        function updateNetAmount() {
+            const amount = parseFloat(document.getElementById('withdrawal-amount').value) || 0;
+            const feeRate = 0.025; // 2.5% fee
+            const fee = amount * feeRate;
+            const netAmount = amount - fee;
+            document.getElementById('net-amount').textContent = `${netAmount.toFixed(2)}`;
+        }
+
         function confirmDeposit() {
             alert('Deposit confirmed! Processing will begin once payment is verified.');
+        }
+
+        function submitWithdrawal() {
+            const otp = document.querySelector('input[placeholder="Enter OTP / 2FA Code"]').value;
+            const pin = document.querySelector('input[placeholder="Withdrawal PIN (Optional)"]').value;
+            if (otp && (pin || true)) { // Simplified check; add real validation
+                alert('Withdrawal submitted! Processing will begin shortly.');
+            } else {
+                alert('Please enter OTP and optionally a PIN for security.');
+            }
         }
 
         function submitCoFundRequest() {
