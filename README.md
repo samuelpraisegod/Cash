@@ -16,7 +16,7 @@
             --shadow: rgba(0,0,0,0.1);
         }
 
-  /* Global Styles */
+/* Global Styles */
         body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--light-bg);
@@ -27,7 +27,7 @@
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
-   /* Header Styles */
+ /* Header Styles */
         header {
             background: #4a2626;
             color: var(--white);
@@ -41,12 +41,24 @@
             z-index: 100;
         }
 
-   .hamburger {
+.header-title h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+ nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+ .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
             position: relative;
         }
-    .hamburger-menu {
+
+  .hamburger-menu {
             display: none;
             position: absolute;
             top: 100%;
@@ -59,23 +71,23 @@
             z-index: 60;
         }
 
-   .hamburger.active .hamburger-menu {
+ .hamburger.active .hamburger-menu {
             display: block;
         }
 
-  .hamburger .brand {
+.hamburger .brand {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 1rem;
             text-align: center;
         }
 
- .hamburger-menu ul {
+  .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
 
- .hamburger-menu ul li a {
+   .hamburger-menu ul li a {
             display: flex;
             align-items: center;
             padding: 0.5rem;
@@ -83,27 +95,23 @@
             text-decoration: none;
         }
 
-  .hamburger-menu ul li a:hover {
+   .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
 
-   .header-title h1 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-  nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 1rem;
-        }
-
-   nav ul li a {
-            color: var(--white);
+   .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             text-decoration: none;
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+  .btn:hover {
+            opacity: 0.9;
         }
 
    /* Home Content */
@@ -147,8 +155,7 @@
             cursor: pointer;
             border-bottom: 2px solid transparent;
         }
-
-  .tab-btn.active {
+    .tab-btn.active {
             border-bottom-color: var(--secondary);
             font-weight: bold;
         }
@@ -161,42 +168,39 @@
             display: block;
         }
 
-   .form-group {
+  .form-group {
             margin-bottom: 1rem;
         }
 
-  .form-group label {
+   .form-group label {
             display: block;
             margin-bottom: 0.25rem;
         }
 
-  .form-group select {
+   .form-group select {
             width: 100%;
             padding: 0.5rem;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-
-  /* Tables */
+    /* Tables */
         table {
             width: 100%;
             border-collapse: collapse;
             background: var(--white);
             box-shadow: 0 2px 5px var(--shadow);
         }
-
-  th, td {
+    th, td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
         }
-
-   th {
+    th {
             background: var(--primary);
             color: var(--white);
         }
 
-  /* Status Indicators */
+   /* Status Indicators */
         .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
@@ -206,29 +210,13 @@
 
    .status-pending { background: #ffc107; }
         .status-active { background: #28a745; }
-    /* Buttons */
-        .btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-  .btn-primary {
-            background: var(--secondary);
-            color: var(--primary);
-        }
-
-  .btn-success {
+      /* Buttons */
+        .btn-success {
             background: #28a745;
             color: var(--white);
         }
 
-   .btn:hover {
-            opacity: 0.9;
-        }
-    /* Footer */
+  /* Footer */
         footer {
             text-align: center;
             padding: 1rem;
@@ -238,11 +226,12 @@
             bottom: 0;
             width: 100%;
         }
-    /* Utility Classes */
+
+   /* Utility Classes */
         .hidden {
             display: none;
         }
-    /* Responsive Design */
+     /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 1.5rem;
@@ -258,30 +247,28 @@
         <div class="header-title">
             <h1>MarketFlow</h1>
         </div>
-        <div class="hamburger" onclick="toggleMenu()">
-            ☰
-            <div class="hamburger-menu">
-                <div class="brand">MarketFlow</div>
-                <ul>
-                    <li><a href="#balance"><span role="img" aria-label="bank">🏦</span> Balance</a></li>
-                    <li><a href="#deposit"><span role="img" aria-label="plus">➕</span> Deposit</a></li>
-                    <li><a href="#available-funded"><span role="img" aria-label="briefcase">💼</span> Available Funded</a></li>
-                    <li><a href="#available-traders"><span role="img" aria-label="people">👥</span> Available Traders</a></li>
-                    <li><a href="#co-funding"><span role="img" aria-label="handshake">🤝</span> Co-Funding</a></li>
-                    <li><a href="#requests"><span role="img" aria-label="envelope">📩</span> Requests</a></li>
-                    <li><a href="#active"><span role="img" aria-label="chart">📊</span> Active</a></li>
-                    <li><a href="#orders"><span role="img" aria-label="document">📑</span> Orders</a></li>
-                    <li><a href="#completed"><span role="img" aria-label="check">✅</span> Completed</a></li>
-                    <li><a href="#profits-withdrawals"><span role="img" aria-label="money">💵</span> Profits & Withdrawals</a></li>
-                    <li><a href="#performance-chart"><span role="img" aria-label="graph">📈</span> Performance Chart</a></li>
-                    <li><a href="#messages"><span role="img" aria-label="speech">💬</span> Messages</a></li>
-                </ul>
-            </div>
-        </div>
         <nav>
-            <ul>
-                <li><a href="#" id="auth-btn" class="btn btn-primary">Login</a></li>
-            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                ☰
+                <div class="hamburger-menu">
+                    <div class="brand">MarketFlow</div>
+                    <ul>
+                        <li><a href="#balance"><span role="img" aria-label="bank">🏦</span> Balance</a></li>
+                        <li><a href="#deposit"><span role="img" aria-label="plus">➕</span> Deposit</a></li>
+                        <li><a href="#available-funded"><span role="img" aria-label="briefcase">💼</span> Available Funded</a></li>
+                        <li><a href="#available-traders"><span role="img" aria-label="people">👥</span> Available Traders</a></li>
+                        <li><a href="#co-funding"><span role="img" aria-label="handshake">🤝</span> Co-Funding</a></li>
+                        <li><a href="#requests"><span role="img" aria-label="envelope">📩</span> Requests</a></li>
+                        <li><a href="#active"><span role="img" aria-label="chart">📊</span> Active</a></li>
+                        <li><a href="#orders"><span role="img" aria-label="document">📑</span> Orders</a></li>
+                        <li><a href="#completed"><span role="img" aria-label="check">✅</span> Completed</a></li>
+                        <li><a href="#profits-withdrawals"><span role="img" aria-label="money">💵</span> Profits & Withdrawals</a></li>
+                        <li><a href="#performance-chart"><span role="img" aria-label="graph">📈</span> Performance Chart</a></li>
+                        <li><a href="#messages"><span role="img" aria-label="speech">💬</span> Messages</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" id="auth-btn" class="btn btn-primary">Login</a>
         </nav>
     </header>
 
@@ -508,7 +495,7 @@
         </div>
     </div>
 
- <footer>
+  <footer>
         <p>&copy; 2025 MarketFlow</p>
     </footer>
 
