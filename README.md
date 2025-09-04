@@ -27,7 +27,7 @@
             overflow-x: hidden;
         }
 
- header {
+  header {
             background: #4a2626;
             color: var(--white);
             padding: 1rem;
@@ -57,7 +57,7 @@
             position: relative;
         }
 
- .hamburger-menu {
+  .hamburger-menu {
             display: none;
             position: absolute;
             top: 100%;
@@ -70,18 +70,18 @@
             z-index: 60;
         }
 
-.hamburger.active .hamburger-menu {
+ .hamburger.active .hamburger-menu {
             display: block;
         }
 
-  .hamburger .brand {
+   .hamburger .brand {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 1rem;
             text-align: center;
         }
 
- .hamburger-menu ul {
+  .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
@@ -94,12 +94,12 @@
             text-decoration: none;
         }
 
-  .hamburger-menu ul li a:hover {
+   .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
 
- .btn {
+   .btn {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 20px;
@@ -110,18 +110,18 @@
             gap: 0.5rem;
         }
 
-.btn-primary { background: var(--secondary); color: var(--primary); }
+  .btn-primary { background: var(--secondary); color: var(--primary); }
         .btn-success { background: var(--green); color: var(--white); }
         .btn-danger { background: var(--red); color: var(--white); }
         .btn:hover { opacity: 0.9; }
 
-.main-content {
+   .main-content {
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
- section {
+   section {
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
@@ -129,19 +129,17 @@
             margin-bottom: 2rem;
             display: none;
         }
-
- section.active {
+    section.active {
             display: block;
         }
-
- .wallet-tabs {
+    .wallet-tabs {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
             overflow-x: auto;
         }
 
-  .tab-button {
+   .tab-button {
             padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 5px;
@@ -149,28 +147,27 @@
             background: var(--light-bg);
             font-weight: bold;
             white-space: nowrap;
-        }  .tab-button.active {
+        }
+    .tab-button.active {
             background: var(--secondary);
             color: var(--white);
         }
 
- .form-group {
+   .form-group {
             margin-bottom: 1rem;
         }
 
- .form-group label {
+   .form-group label {
             display: block;
             margin-bottom: 0.25rem;
         }
-
- .form-group input, .form-group select {
+    .form-group input, .form-group select {
             width: 100%;
             padding: 0.5rem;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-
- .confirm-btn, .submit-btn {
+    .confirm-btn, .submit-btn {
             background: var(--green);
             color: var(--white);
             padding: 0.75rem 1.5rem;
@@ -180,36 +177,39 @@
             cursor: pointer;
             width: 100%;
         }
-
- .confirm-btn:hover, .submit-btn:hover {
+    .confirm-btn:hover, .submit-btn:hover {
             opacity: 0.9;
         }
 
- .transactions-table th, .transactions-table td {
+   .transactions-table th, .transactions-table td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
         }
 
- .transactions-table th {
+   .transactions-table th {
             background: var(--primary);
             color: var(--white);
         }
 
- .status {
+   .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             color: var(--white);
             font-size: 0.875rem;
         }
 
- .status-pending { background: #ffc107; }
+   .status-pending { background: #ffc107; }
         .status-active { background: #17a2b8; }
         .status-completed { background: var(--green); }
 
-  @media (max-width: 768px) {
+   @media (max-width: 768px) {
             .wallet-tabs { flex-direction: column; }
             .main-content { padding: 1rem; }
+        }
+
+   .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -243,7 +243,7 @@
         </nav>
     </header>
 
- <div id="home-content">
+  <div id="home-content">
         <div class="hero">
             <h1>MarketFlow: Collaborative Trading</h1>
             <p>Join a community-driven platform to co-fund trading accounts and maximize profits.</p>
@@ -251,11 +251,11 @@
         </div>
     </div>
 
- <div id="dashboard-content" class="hidden">
+  <div id="dashboard-content" class="hidden">
         <div class="dashboard">
             <main class="main-content">
                 <!-- Balance Section -->
-                <section id="balance" class="active">
+                <section id="balance" class="">
                     <h2>Balance</h2>
                     <div class="wallet-overview">
                         <div class="main-balance">$2,450.00</div>
@@ -271,7 +271,7 @@
                         <a href="#" class="btn" onclick="showTab('transfer')">🔄 Transfer</a>
                     </div>
                 </section>
-    <!-- Wallet Dashboard -->
+  <!-- Wallet Dashboard -->
                 <section id="wallet">
                     <h2>Wallet Dashboard</h2>
                     <div class="wallet-tabs">
@@ -279,15 +279,13 @@
                         <button class="tab-button" onclick="showTab('withdraw')">Withdraw (💸)</button>
                     </div>
                     <div id="deposit" class="tab-content">
-                        <!-- Placeholder for deposit form -->
                         <p>Deposit content here.</p>
                     </div>
                     <div id="withdraw" class="tab-content">
-                        <!-- Placeholder for withdraw form -->
                         <p>Withdraw content here.</p>
                     </div>
                 </section>
- <!-- Co-Funding Section -->
+    <!-- Co-Funding Section -->
                 <section id="co-funding">
                     <h2>🤝 Co-Funding</h2>
                     <div class="wallet-tabs">
@@ -325,7 +323,7 @@
                         <p>Request Dashboard content here.</p>
                     </div>
                 </section>
- <!-- Other Sections (placeholders) -->
+    <!-- Other Sections (placeholders) -->
                 <section id="available-funded">
                     <h2>Available Funded</h2>
                     <p>View available funded accounts.</p>
@@ -370,11 +368,11 @@
         </div>
     </div>
 
- <footer>
+  <footer>
         <p>&copy; 2025 MarketFlow</p>
     </footer>
 
- <script>
+   <script>
         let isLoggedIn = false;
 
         function updateUI() {
@@ -387,6 +385,7 @@
                 dashboardContent.classList.remove('hidden');
                 authBtn.textContent = 'Logout';
                 authBtn.onclick = logout;
+                showTab('balance'); // Ensure a section is active on login
             } else {
                 homeContent.classList.remove('hidden');
                 dashboardContent.classList.add('hidden');
@@ -403,31 +402,35 @@
         function login() {
             isLoggedIn = true;
             updateUI();
-            showTab('balance'); // Default to Balance on login
         }
 
         function logout() {
             isLoggedIn = false;
             updateUI();
+            document.getElementById('balance').classList.remove('active'); // Clear active section on logout
         }
 
         function showTab(tab) {
+            // Hide all sections
             document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+
+            // Activate the selected section
             const activeSection = document.getElementById(tab);
             if (activeSection) {
                 activeSection.classList.add('active');
-                // Activate corresponding tab buttons within the section
+
+                // Handle sub-tabs within the section
                 const tabButtons = activeSection.querySelectorAll('.wallet-tabs .tab-button');
                 if (tabButtons.length > 0) {
                     tabButtons[0].classList.add('active'); // Default to first sub-tab
+                    const firstSubTab = activeSection.querySelector('.tab-content');
+                    if (firstSubTab) firstSubTab.classList.add('active');
                 }
             }
-            // Handle sub-tabs (e.g., Wallet Dashboard, Co-Funding)
-            const subTab = document.getElementById(tab);
-            if (subTab && subTab.classList.contains('tab-content')) {
-                subTab.classList.add('active');
-            }
+
+            // Ensure dashboard remains visible
+            document.getElementById('dashboard-content').classList.remove('hidden');
         }
 
         function submitCoFundRequest() {
@@ -437,7 +440,7 @@
         }
 
         window.onload = () => {
-            login();
+            updateUI(); // Initialize UI state
         };
     </script>
 </body>
