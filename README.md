@@ -29,7 +29,7 @@
             overflow-x: hidden;
         }
 
-/* Header Styles */
+ /* Header Styles */
         header {
             background: #4a2626;
             color: var(--white);
@@ -43,7 +43,7 @@
             z-index: 100;
         }
 
-.header-title h1 {
+ .header-title h1 {
             margin: 0;
             font-size: 1.5rem;
         }
@@ -54,13 +54,13 @@
             gap: 1rem;
         }
 
-  .hamburger {
+ .hamburger {
             font-size: 1.5rem;
             cursor: pointer;
             position: relative;
         }
 
-  .hamburger-menu {
+ .hamburger-menu {
             display: none;
             position: absolute;
             top: 100%;
@@ -73,7 +73,7 @@
             z-index: 60;
         }
 
- .hamburger.active .hamburger-menu {
+.hamburger.active .hamburger-menu {
             display: block;
         }
 
@@ -84,12 +84,12 @@
             text-align: center;
         }
 
-.hamburger-menu ul {
+  .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
 
- .hamburger-menu ul li a {
+  .hamburger-menu ul li a {
             display: flex;
             align-items: center;
             padding: 0.5rem;
@@ -97,7 +97,7 @@
             text-decoration: none;
         }
 
- .hamburger-menu ul li a:hover {
+.hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
@@ -118,7 +118,7 @@
             color: var(--primary);
         }
 
- .btn-success {
+  .btn-success {
             background: var(--green);
             color: var(--white);
         }
@@ -128,16 +128,16 @@
             color: var(--white);
         }
 
- .btn:hover {
+  .btn:hover {
             opacity: 0.9;
         }
 
-  /* Main Content */
+ /* Main Content */
         .main-content {
             padding: 2rem;
         }
 
- section {
+  section {
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
@@ -145,7 +145,7 @@
             margin-bottom: 2rem;
         }
 
-  /* Wallet Dashboard */
+ /* Wallet Dashboard */
         .wallet-tabs {
             display: flex;
             gap: 1rem;
@@ -161,24 +161,24 @@
             font-weight: bold;
         }
 
-  .tab-button.active {
+ .tab-button.active {
             background: var(--secondary);
             color: var(--white);
         }
 
-  .tab-content {
+.tab-content {
             display: none;
         }
 
-.tab-content.active {
+  .tab-content.active {
             display: block;
         }
 
-  .balance-overview {
+ .balance-overview {
             margin-bottom: 1.5rem;
         }
 
-.balance-overview div {
+ .balance-overview div {
             margin-bottom: 0.5rem;
         }
 
@@ -191,7 +191,7 @@
             flex: 1;
         }
 
-  .method-card.active {
+ .method-card.active {
             background: var(--secondary);
             color: var(--white);
         }
@@ -222,11 +222,11 @@
             margin-left: 0.5rem;
         }
 
- .copy-btn:hover {
+  .copy-btn:hover {
             opacity: 0.9;
         }
 
- .confirm-btn, .submit-btn {
+  .confirm-btn, .submit-btn {
             background: var(--green);
             color: var(--white);
             padding: 0.75rem 1.5rem;
@@ -237,11 +237,11 @@
             width: 100%;
         }
 
- .confirm-btn:hover, .submit-btn:hover {
+  .confirm-btn:hover, .submit-btn:hover {
             opacity: 0.9;
         }
 
-  .transactions-table th, .transactions-table td {
+.transactions-table th, .transactions-table td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
@@ -252,14 +252,14 @@
             color: var(--white);
         }
 
-  .status {
+ .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             color: var(--white);
             font-size: 0.875rem;
         }
 
- .status-completed { background: var(--green); }
+  .status-completed { background: var(--green); }
         .status-pending { background: #ffc107; }
 
   /* Responsive Design */
@@ -300,7 +300,7 @@
         </nav>
     </header>
 
-  <div id="home-content">
+ <div id="home-content">
         <div class="hero">
             <h1>MarketFlow: Collaborative Trading</h1>
             <p>Join a community-driven platform to co-fund trading accounts and maximize profits.</p>
@@ -308,7 +308,7 @@
         </div>
     </div>
 
- <div id="dashboard-content" class="hidden">
+  <div id="dashboard-content" class="hidden">
         <div class="dashboard">
             <main class="main-content">
                 <!-- Balance Section (unchanged for now) -->
@@ -328,14 +328,14 @@
                         <a href="#transfer" class="btn"><span role="img" aria-label="transfer">🔄</span> Transfer</a>
                     </div>
                 </section>
-  <!-- Wallet Dashboard -->
+ <!-- Wallet Dashboard -->
                 <section id="wallet">
                     <h2>Wallet Dashboard</h2>
                     <div class="wallet-tabs">
                         <button class="tab-button active" onclick="showTab('deposit')">Deposit (➕)</button>
                         <button class="tab-button" onclick="showTab('withdraw')">Withdraw (💸)</button>
                     </div>
- <!-- Deposit Tab -->
+  <!-- Deposit Tab -->
                     <div id="deposit-tab" class="tab-content active">
                         <div class="balance-overview">
                             <div>Available Balance: $2,450.00</div>
@@ -401,6 +401,7 @@
                     </div>
   <!-- Withdrawal Tab -->
                     <div id="withdraw-tab" class="tab-content">
+                        <h2>💸 Withdraw Funds</h2>
                         <div class="balance-overview">
                             <div>Available Balance: $2,450.00</div>
                             <div>Pending Withdrawals: $200.00</div>
@@ -434,6 +435,10 @@
                                 <label for="security-code">Security (Enter OTP / 2FA Code)</label>
                                 <input type="text" id="security-code" placeholder="Enter OTP / 2FA Code">
                             </div>
+                            <div class="form-group security-field">
+                                <label for="withdrawal-pin">Withdrawal PIN (Optional 🔒)</label>
+                                <input type="password" id="withdrawal-pin" placeholder="Enter PIN">
+                            </div>
                             <button type="button" class="submit-btn" onclick="confirmWithdrawal()">✅ Submit Withdrawal</button>
                         </form>
 
@@ -441,7 +446,7 @@
                             <p>Processing Time: Bank transfers take 1–2 business days.</p>
                         </div>
 
- <h3>Recent Transactions (Withdrawals)</h3>
+  <h3>Recent Transactions (Withdrawals)</h3>
                         <table class="transactions-table">
                             <thead>
                                 <tr>
@@ -468,7 +473,7 @@
                         </table>
                     </div>
                 </section>
-  <!-- Other sections remain unchanged but can be added as needed -->
+ <!-- Other sections remain unchanged but can be added as needed -->
                 <section id="available-funded">
                     <h2>Available Funded</h2>
                     <p>View available funded accounts.</p>
@@ -493,7 +498,7 @@
         </div>
     </div>
 
-  <footer>
+ <footer>
         <p>&copy; 2025 MarketFlow</p>
     </footer>
 
@@ -548,7 +553,7 @@
             }
         }
 
-        // Deposit Method Selection
+        // Method Selection
         function selectMethod(method) {
             const depositForm = document.getElementById('depositForm');
             const paymentDetails = document.getElementById('payment-details');
@@ -578,6 +583,10 @@
                             <div class="form-group">
                                 <label for="account-holder">Account Holder Name</label>
                                 <input type="text" id="account-holder" placeholder="Enter Account Holder Name" value="MarketFlowFX Ltd">
+                            </div>
+                            <div class="form-group">
+                                <label for="branch">Branch (Optional)</label>
+                                <input type="text" id="branch" placeholder="Enter Branch">
                             </div>
                             <div class="form-group save-default">
                                 <input type="checkbox" id="save-default"> <label for="save-default">✔ Save as Default</label>
