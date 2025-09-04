@@ -308,7 +308,7 @@
         </div>
     </div>
 
- <div id="dashboard-content" class="hidden">
+  <div id="dashboard-content" class="hidden">
         <div class="dashboard">
             <main class="main-content">
                 <!-- Balance Section -->
@@ -332,10 +332,10 @@
                 <section id="wallet">
                     <h2>Wallet Dashboard</h2>
                     <div class="wallet-tabs">
-                        <button class="tab-button" onclick="showTab('deposit')">Deposit (➕)</button>
+                        <button class="tab-button active" onclick="showTab('deposit')">Deposit (➕)</button>
                         <button class="tab-button" onclick="showTab('withdraw')">Withdraw (💸)</button>
                     </div>
-                    <div id="deposit" class="tab-content">
+                    <div id="deposit" class="tab-content active">
                         <h3>➕ Deposit Funds</h3>
                         <div class="deposit-method-tabs">
                             <div class="deposit-method-tab active" id="bank-tab" onclick="showDepositMethod('bank')">💳 Bank Transfer</div>
@@ -394,7 +394,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="withdraw" class="tab-content hidden">
+                    <div id="withdraw" class="tab-content">
                         <h3>💸 Withdraw Funds</h3>
                         <div class="wallet-overview">
                             <p>Available Balance: $2,450.00</p>
@@ -556,7 +556,7 @@
         <p>&copy; 2025 DivoraSplit</p>
     </footer>
 
- <script>
+  <script>
         let isLoggedIn = false;
 
         function updateUI() {
