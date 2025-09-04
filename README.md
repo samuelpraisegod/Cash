@@ -27,7 +27,7 @@
             overflow-x: hidden;
         }
 
-  header {
+   header {
             background: #4a2626;
             color: var(--white);
             padding: 1rem;
@@ -57,7 +57,7 @@
             position: relative;
         }
 
- .hamburger-menu {
+  .hamburger-menu {
             display: none;
             position: absolute;
             top: 100%;
@@ -81,12 +81,12 @@
             text-align: center;
         }
 
-.hamburger-menu ul {
+  .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
 
-.hamburger-menu ul li a {
+  .hamburger-menu ul li a {
             display: flex;
             align-items: center;
             padding: 0.5rem;
@@ -94,12 +94,12 @@
             text-decoration: none;
         }
 
-  .hamburger-menu ul li a:hover {
+ .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
 
- .btn {
+  .btn {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 20px;
@@ -110,12 +110,12 @@
             gap: 0.5rem;
         }
 
- .btn-primary { background: var(--secondary); color: var(--primary); }
+  .btn-primary { background: var(--secondary); color: var(--primary); }
         .btn-success { background: var(--green); color: var(--white); }
         .btn-danger { background: var(--red); color: var(--white); }
         .btn:hover { opacity: 0.9; }
 
-  .dashboard {
+ .dashboard {
             display: flex;
             min-height: calc(100vh - 60px);
         }
@@ -125,7 +125,7 @@
             width: 100%;
         }
 
-  section {
+ section {
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
@@ -134,7 +134,7 @@
             display: none;
         }
 
-  section.active {
+ section.active {
             display: block;
         }
 
@@ -145,7 +145,7 @@
             overflow-x: auto;
         }
 
-.tab-button {
+ .tab-button {
             padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 5px;
@@ -155,12 +155,12 @@
             white-space: nowrap;
         }
 
-.tab-button.active {
+ .tab-button.active {
             background: var(--secondary);
             color: var(--white);
         }
 
-  .form-group {
+ .form-group {
             margin-bottom: 1rem;
         }
 
@@ -169,14 +169,14 @@
             margin-bottom: 0.25rem;
         }
 
-  .form-group input, .form-group select {
+ .form-group input, .form-group select {
             width: 100%;
             padding: 0.5rem;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
-  .confirm-btn, .submit-btn {
+ .confirm-btn {
             background: var(--green);
             color: var(--white);
             padding: 0.75rem 1.5rem;
@@ -187,7 +187,7 @@
             width: 100%;
         }
 
- .confirm-btn:hover, .submit-btn:hover {
+ .confirm-btn:hover {
             opacity: 0.9;
         }
 
@@ -197,20 +197,19 @@
             border-bottom: 1px solid #ccc;
         }
 
- .transactions-table th {
+  .transactions-table th {
             background: var(--primary);
             color: var(--white);
         }
 
-.status {
+ .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             color: var(--white);
             font-size: 0.875rem;
         }
 
-.status-pending { background: #ffc107; }
-        .status-active { background: #17a2b8; }
+ .status-pending { background: #ffc107; }
         .status-completed { background: var(--green); }
 
  .placeholder {
@@ -219,13 +218,51 @@
             font-style: italic;
         }
 
- @media (max-width: 768px) {
-            .wallet-tabs { flex-direction: column; }
-            .main-content { padding: 1rem; }
+  .hidden {
+            display: none;
         }
 
- .hidden {
-            display: none;
+ .deposit-method-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+  .deposit-method-tab {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            background: var(--light-bg);
+        }
+
+ .deposit-method-tab.active {
+            background: var(--secondary);
+            color: var(--white);
+            border-color: var(--secondary);
+        }
+
+ .qr-code {
+            width: 100px;
+            height: 100px;
+            background: #f0f0f0;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+  .copy-btn {
+            padding: 0.25rem 0.5rem;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+ .copy-btn:hover {
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -295,13 +332,72 @@
                         <button class="tab-button" onclick="showTab('withdraw')">Withdraw (💸)</button>
                     </div>
                     <div id="deposit" class="tab-content">
-                        <p>Deposit form content here.</p>
+                        <h3>➕ Deposit Funds</h3>
+                        <div class="deposit-method-tabs">
+                            <div class="deposit-method-tab active" onclick="showDepositMethod('bank')">💳 Bank Transfer</div>
+                            <div class="deposit-method-tab" onclick="showDepositMethod('card')">💵 Card Payment</div>
+                            <div class="deposit-method-tab" onclick="showDepositMethod('crypto')">🔗 Crypto Wallet</div>
+                        </div>
+                        <div id="deposit-details" class="form-group">
+                            <!-- Bank Transfer -->
+                            <div id="bank-details" class="deposit-method-content active">
+                                <label>Enter Amount</label>
+                                <input type="number" placeholder="e.g., $500" min="0">
+                                <label>Bank Name</label>
+                                <input type="text" value="GTBank" readonly>
+                                <label>Account Name</label>
+                                <input type="text" value="MarketFlowFX Ltd" readonly>
+                                <label>Account Number</label>
+                                <input type="text" value="0123456789" readonly>
+                                <label>Reference Code</label>
+                                <input type="text" value="DEP49382" readonly>
+                                <label>Upload Proof of Payment</label>
+                                <input type="file" accept="image/*">
+                            </div>
+                            <!-- Card Payment -->
+                            <div id="card-details" class="deposit-method-content hidden">
+                                <label>Enter Amount</label>
+                                <input type="number" placeholder="e.g., $500" min="0">
+                                <label>Card Number</label>
+                                <input type="text" placeholder="1234 5678 9012 3456">
+                                <label>Expiry</label>
+                                <input type="text" placeholder="MM/YY">
+                                <label>CVV</label>
+                                <input type="text" placeholder="123">
+                            </div>
+                            <!-- Crypto Deposit -->
+                            <div id="crypto-details" class="deposit-method-content hidden">
+                                <label>Enter Amount</label>
+                                <input type="number" placeholder="e.g., $500" min="0">
+                                <label>Select Coin</label>
+                                <select>
+                                    <option value="BTC">BTC</option>
+                                    <option value="USDT">USDT</option>
+                                    <option value="ETH">ETH</option>
+                                </select>
+                                <label>Wallet Address</label>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <input type="text" value="0xAB123456789CDEFFED1234..." readonly>
+                                    <button class="copy-btn" onclick="copyToClipboard('0xAB123456789CDEFFED1234...')">📋 Copy</button>
+                                </div>
+                                <div class="qr-code">QR Code Here</div>
+                            </div>
+                        </div>
+                        <button class="confirm-btn" onclick="confirmDeposit()">✅ Confirm Deposit</button>
+                        <p class="placeholder" style="margin-top: 1rem;">⚠️ Please make payment to the account/wallet shown above. Your deposit will be confirmed once payment is received.</p>
+                        <table class="transactions-table" style="margin-top: 1rem; width: 100%;">
+                            <thead><tr><th>Date</th><th>Method</th><th>Amount</th><th>Status</th></tr></thead>
+                            <tbody>
+                                <tr><td>Sept 4, 25</td><td>Bank Transfer</td><td>$300</td><td><span class="status status-completed">✅ Completed</span></td></tr>
+                                <tr><td>Sept 3, 25</td><td>Crypto (USDT)</td><td>$100</td><td><span class="status status-pending">⏳ Pending</span></td></tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div id="withdraw" class="tab-content">
                         <p>Withdraw form content here.</p>
                     </div>
                 </section>
- <!-- Co-Funding Section -->
+  <!-- Co-Funding Section -->
                 <section id="co-funding">
                     <h2>🤝 Co-Funding</h2>
                     <div class="wallet-tabs">
@@ -376,11 +472,11 @@
         </div>
     </div>
 
- <footer>
+  <footer>
         <p>&copy; 2025 DivoraSplit</p>
     </footer>
 
- <script>
+<script>
         let isLoggedIn = false;
 
         function updateUI() {
@@ -393,7 +489,7 @@
                 dashboardContent.classList.remove('hidden');
                 authBtn.textContent = 'Logout';
                 authBtn.onclick = logout;
-                showTab('balance'); // Default to Balance on login
+                showTab('balance');
             } else {
                 homeContent.classList.remove('hidden');
                 dashboardContent.classList.add('hidden');
@@ -418,14 +514,14 @@
             document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.deposit-method-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.deposit-method-content').forEach(content => content.classList.add('hidden'));
         }
 
         function showTab(tab) {
-            // Ensure dashboard remains visible
             const dashboardContent = document.getElementById('dashboard-content');
             if (dashboardContent) dashboardContent.classList.remove('hidden');
 
-            // Hide all sections and sub-tabs
             document.querySelectorAll('section').forEach(section => {
                 section.classList.remove('active');
                 const subTabs = section.querySelectorAll('.tab-content');
@@ -433,16 +529,13 @@
             });
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
 
-            // Show the selected section or sub-tab
             const activeElement = document.getElementById(tab);
             if (activeElement) {
                 if (activeElement.classList.contains('tab-content')) {
-                    // Handle sub-tab selection
                     const parentSection = activeElement.closest('section');
                     if (parentSection) {
                         parentSection.classList.add('active');
                         activeElement.classList.add('active');
-                        // Activate the corresponding tab-button
                         const tabButtons = parentSection.querySelectorAll('.tab-button');
                         tabButtons.forEach(btn => {
                             const btnTab = btn.getAttribute('onclick').match(/showTab\('(\w+)'\)/)[1];
@@ -450,20 +543,33 @@
                         });
                     }
                 } else {
-                    // Handle main section
                     activeElement.classList.add('active');
-                    // Activate first sub-tab if present
                     const tabButtons = activeElement.querySelectorAll('.wallet-tabs .tab-button');
                     if (tabButtons.length > 0) {
                         const defaultSubTab = tabButtons[0].getAttribute('onclick').match(/showTab\('(\w+)'\)/)[1];
                         showTab(defaultSubTab);
-                        return; // Exit to avoid redundant activation
+                        return;
                     }
                 }
             } else {
-         // Fallback to prevent blank dashboard
                 showTab('balance');
             }
+        }
+
+        function showDepositMethod(method) {
+            document.querySelectorAll('.deposit-method-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.deposit-method-content').forEach(content => content.classList.add('hidden'));
+
+            document.querySelector(`#${method}-details`).classList.remove('hidden');
+            document.querySelector(`#${method}-tab`).classList.add('active');
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard!'));
+        }
+
+        function confirmDeposit() {
+            alert('Deposit confirmed! Processing will begin once payment is verified.');
         }
 
         function submitCoFundRequest() {
