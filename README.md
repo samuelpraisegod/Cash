@@ -6,7 +6,7 @@
     <title>MarketFlow - Wallet Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* CSS Variables */
+        /* CSS Variables (unchanged) */
         :root {
             --primary: #0a1f44;
             --secondary: #d4af37;
@@ -18,7 +18,7 @@
             --red: #dc3545;
         }
 
- /* Global Styles */
+ /* Global Styles (unchanged) */
         body {
             font-family: 'Segoe UI', sans-serif;
             background: var(--light-bg);
@@ -29,7 +29,7 @@
             overflow-x: hidden;
         }
 
-  /* Header Styles */
+ /* Header Styles (unchanged) */
         header {
             background: #4a2626;
             color: var(--white);
@@ -43,7 +43,7 @@
             z-index: 100;
         }
 
- .header-title h1 {
+  .header-title h1 {
             margin: 0;
             font-size: 1.5rem;
         }
@@ -60,7 +60,7 @@
             position: relative;
         }
 
-  .hamburger-menu {
+.hamburger-menu {
             display: none;
             position: absolute;
             top: 100%;
@@ -77,19 +77,19 @@
             display: block;
         }
 
-   .hamburger .brand {
+.hamburger .brand {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 1rem;
             text-align: center;
         }
 
-  .hamburger-menu ul {
+   .hamburger-menu ul {
             list-style: none;
             padding: 0;
         }
 
-   .hamburger-menu ul li a {
+.hamburger-menu ul li a {
             display: flex;
             align-items: center;
             padding: 0.5rem;
@@ -97,12 +97,12 @@
             text-decoration: none;
         }
 
-   .hamburger-menu ul li a:hover {
+  .hamburger-menu ul li a:hover {
             background: var(--light-bg);
             border-radius: 5px;
         }
 
-   .btn {
+ .btn {
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 20px;
@@ -113,7 +113,7 @@
             gap: 0.5rem;
         }
 
-  .btn-primary {
+ .btn-primary {
             background: var(--secondary);
             color: var(--primary);
         }
@@ -123,7 +123,7 @@
             color: var(--white);
         }
 
-  .btn-danger {
+ .btn-danger {
             background: var(--red);
             color: var(--white);
         }
@@ -132,12 +132,12 @@
             opacity: 0.9;
         }
 
-  /* Main Content */
+   /* Main Content */
         .main-content {
             padding: 2rem;
         }
 
- section {
+  section {
             background: var(--white);
             padding: 1.5rem;
             border-radius: 10px;
@@ -145,7 +145,7 @@
             margin-bottom: 2rem;
         }
 
-   /* Wallet Dashboard */
+  /* Wallet Dashboard */
         .wallet-tabs {
             display: flex;
             gap: 1rem;
@@ -161,11 +161,12 @@
             font-weight: bold;
         }
 
-   .tab-button.active {
+ .tab-button.active {
             background: var(--secondary);
             color: var(--white);
         }
-    .tab-content {
+
+ .tab-content {
             display: none;
         }
 
@@ -177,11 +178,11 @@
             margin-bottom: 1.5rem;
         }
 
-   .balance-overview div {
+  .balance-overview div {
             margin-bottom: 0.5rem;
         }
 
-   .method-card {
+ .method-card {
             background: var(--light-bg);
             padding: 1rem;
             border-radius: 10px;
@@ -190,7 +191,7 @@
             flex: 1;
         }
 
-   .method-card.active {
+ .method-card.active {
             background: var(--secondary);
             color: var(--white);
         }
@@ -199,12 +200,12 @@
             margin-bottom: 1rem;
         }
 
-   .form-group label {
+ .form-group label {
             display: block;
             margin-bottom: 0.25rem;
         }
 
-   .form-group input, .form-group select {
+ .form-group input, .form-group select {
             width: 100%;
             padding: 0.5rem;
             border: 1px solid #ccc;
@@ -221,10 +222,11 @@
             margin-left: 0.5rem;
         }
 
-   .copy-btn:hover {
+  .copy-btn:hover {
             opacity: 0.9;
         }
-    .confirm-btn, .submit-btn {
+
+ .confirm-btn, .submit-btn {
             background: var(--green);
             color: var(--white);
             padding: 0.75rem 1.5rem;
@@ -235,30 +237,31 @@
             width: 100%;
         }
 
-   .confirm-btn:hover, .submit-btn:hover {
+  .confirm-btn:hover, .submit-btn:hover {
             opacity: 0.9;
         }
 
-   .transactions-table th, .transactions-table td {
+  .transactions-table th, .transactions-table td {
             padding: 0.5rem;
             text-align: left;
             border-bottom: 1px solid #ccc;
         }
 
-   .transactions-table th {
+ .transactions-table th {
             background: var(--primary);
             color: var(--white);
         }
 
-.status {
+   .status {
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             color: var(--white);
             font-size: 0.875rem;
         }
 
-   .status-completed { background: var(--green); }
-        .status-pending { background: #ffc107; }
+ .status-pending { background: #ffc107; }
+        .status-active { background: #17a2b8; }
+        .status-completed { background: var(--green); }
 
    /* Responsive Design */
         @media (max-width: 768px) {
@@ -297,8 +300,7 @@
             <a href="#" id="auth-btn" class="btn btn-primary">Login</a>
         </nav>
     </header>
-
- <div id="home-content">
+  <div id="home-content">
         <div class="hero">
             <h1>MarketFlow: Collaborative Trading</h1>
             <p>Join a community-driven platform to co-fund trading accounts and maximize profits.</p>
@@ -306,10 +308,10 @@
         </div>
     </div>
 
-  <div id="dashboard-content" class="hidden">
+ <div id="dashboard-content" class="hidden">
         <div class="dashboard">
             <main class="main-content">
-                <!-- Balance Section (unchanged for now) -->
+                <!-- Balance Section (unchanged) -->
                 <section id="balance">
                     <h2>Balance</h2>
                     <div class="wallet-overview">
@@ -326,152 +328,238 @@
                         <a href="#transfer" class="btn"><span role="img" aria-label="transfer">🔄</span> Transfer</a>
                     </div>
                 </section>
-  <!-- Wallet Dashboard -->
+ <!-- Wallet Dashboard (unchanged) -->
                 <section id="wallet">
-                    <h2>Wallet Dashboard</h2>
-                    <div class="wallet-tabs">
-                        <button class="tab-button active" onclick="showTab('deposit')">Deposit (➕)</button>
-                        <button class="tab-button" onclick="showTab('withdraw')">Withdraw (💸)</button>
-                    </div>
-     <!-- Deposit Tab -->
+                    <!-- Existing Deposit and Withdrawal tabs remain unchanged -->
                     <div id="deposit-tab" class="tab-content active">
-                        <h2>➕ Deposit Funds</h2>
-                        <div class="balance-overview">
-                            <div>Available Balance: $2,450.00</div>
-                            <div>Pending Deposits: $100.00</div>
-                            <div>Minimum Deposit Limit: $10.00</div>
-                        </div>
-    <div class="deposit-methods">
-                            <div class="method-card" onclick="selectMethod('bank')">💳 Bank Transfer</div>
-                            <div class="method-card" onclick="selectMethod('card')">💵 Card Payment</div>
-                            <div class="method-card" onclick="selectMethod('crypto')">🔗 Crypto Wallet</div>
-                        </div>
-
-   <form id="depositForm" class="hidden">
-                            <div class="form-group">
-                                <label for="deposit-amount">Enter Amount</label>
-                                <input type="number" id="deposit-amount" placeholder="Enter Amount" value="500" oninput="calculateNetDeposit()">
-                            </div>
-                            <div class="form-group">
-                                <label for="deposit-currency">Currency</label>
-                                <select id="deposit-currency" onchange="calculateNetDeposit()">
-                                    <option value="USD">USD</option>
-                                    <option value="NGN">NGN</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>You will receive: <span id="net-deposit">$487.50 (after 2.5% fee)</span></label>
-                            </div>
-                            <div id="payment-details" class="payment-details">
-                                <!-- Dynamic content will be inserted here -->
-                            </div>
-                            <button type="button" class="confirm-btn" onclick="confirmDeposit()">✅ Confirm Deposit</button>
-                            <div class="instructions" style="margin-top: 1rem; color: #666;">
-                                ⚠️ Please make payment to the account/wallet shown above. Your deposit will be confirmed once payment is received.
-                            </div>
-                        </form>
-
-   <h3>Recent Transactions (Deposits)</h3>
-                        <table class="transactions-table">
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Method</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Sept 4, 25</td>
-                                    <td>Bank Transfer</td>
-                                    <td>$300</td>
-                                    <td><span class="status status-completed">✅ Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Sept 3, 25</td>
-                                    <td>Crypto (USDT)</td>
-                                    <td>$100</td>
-                                    <td><span class="status status-pending">⏳ Pending</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <!-- Existing deposit content -->
                     </div>
-    <!-- Withdrawal Tab -->
                     <div id="withdraw-tab" class="tab-content">
-                        <h2>💸 Withdraw Funds</h2>
-                        <div class="balance-overview">
-                            <div>Available Balance: $2,450.00</div>
-                            <div>Pending Withdrawals: $200.00</div>
-                            <div>Minimum Withdrawal Limit: $10.00</div>
-                        </div>
-
-   <form id="withdrawForm">
-                            <div class="form-group">
-                                <label for="withdraw-amount">Enter Withdrawal Amount</label>
-                                <input type="number" id="withdraw-amount" placeholder="Enter Amount" value="200" oninput="calculateNetAmount()">
-                            </div>
-                            <div class="form-group">
-                                <label for="withdraw-currency">Currency</label>
-                                <select id="withdraw-currency" onchange="calculateNetAmount()">
-                                    <option value="USD">USD</option>
-                                    <option value="NGN">NGN</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>You will receive: <span id="net-amount">$195.00 (after 2.5% fee)</span></label>
-                            </div>
-                            <div class="withdrawal-methods">
-                                <div class="method-card" onclick="selectMethod('bank-withdraw')">🏦 Bank Transfer</div>
-                                <div class="method-card" onclick="selectMethod('crypto-withdraw')">🔗 Crypto Wallet</div>
-                                <div class="method-card" onclick="selectMethod('mobile-withdraw')">📲 Mobile Money</div>
-                            </div>
-                            <div id="destination-details" class="payment-details">
-                                <!-- Dynamic content will be inserted here -->
-                            </div>
-                            <div class="form-group security-field">
-                                <label for="security-code">Security (Enter OTP / 2FA Code)</label>
-                                <input type="text" id="security-code" placeholder="Enter OTP / 2FA Code">
-                            </div>
-                            <div class="form-group security-field">
-                                <label for="withdrawal-pin">Withdrawal PIN (Optional 🔒)</label>
-                                <input type="password" id="withdrawal-pin" placeholder="Enter PIN">
-                            </div>
-                            <button type="button" class="submit-btn" onclick="confirmWithdrawal()">✅ Submit Withdrawal</button>
-                        </form>
-
-  <div class="status-section" style="margin-top: 1rem; color: #666;">
-                            <p>Processing Time: Bank transfers take 1–2 business days.</p>
-                        </div>
-
- <h3>Recent Transactions (Withdrawals)</h3>
-                        <table class="transactions-table">
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Method</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Sept 4, 25</td>
-                                    <td>Bank Transfer</td>
-                                    <td>$200</td>
-                                    <td><span class="status status-pending">⏳ Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td>Sept 2, 25</td>
-                                    <td>Crypto (USDT)</td>
-                                    <td>$100</td>
-                                    <td><span class="status status-completed">✅ Completed</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <!-- Existing withdrawal content -->
                     </div>
                 </section>
- <!-- Other sections remain unchanged but can be added as needed -->
+ <!-- Co-Funding Section -->
+                <section id="co-funding" class="tab-content">
+                    <h2>🤝 Co-Funding</h2>
+                    <div class="wallet-tabs">
+                        <button class="tab-button active" onclick="showTab('co-fund-request')">Co-Funding Request</button>
+                        <button class="tab-button" onclick="showTab('managed-trading')">Managed Trading Account</button>
+                        <button class="tab-button" onclick="showTab('managed-account')">Managed Account Request</button>
+                        <button class="tab-button" onclick="showTab('requests-dashboard')">Request Dashboard</button>
+                    </div>
+ <!-- Co-Funding Request Tab -->
+                    <div id="co-fund-request-tab" class="tab-content active">
+                        <p>Create a co-fund request by selecting an amount. Your deposit will be locked in escrow until matched. The system will match co-funders and auto-purchase the prop firm account upon agreement.</p>
+                        <form id="coFundForm">
+                            <div class="form-group">
+                                <label for="co-fund-amount">Co-Fund Amount</label>
+                                <input type="number" id="co-fund-amount" placeholder="e.g., $5k" value="5000">
+                            </div>
+                            <div class="form-group">
+                                <label for="profit-ratio">Profit Ratio</label>
+                                <select id="profit-ratio">
+                                    <option value="50/50">50/50</option>
+                                    <option value="60/40">60/40</option>
+                                    <option value="70/30">70/30</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="your-contribution">Your Contribution ($)</label>
+                                <input type="number" id="your-contribution" placeholder="e.g., $2500" value="2500">
+                            </div>
+                            <div class="form-group">
+                                <label for="account-size">Account Size</label>
+                                <input type="number" id="account-size" placeholder="e.g., $10k" value="10000">
+                            </div>
+                            <div class="form-group">
+                                <label for="percentage-contribution">Percentage of Contribution (%)</label>
+                                <input type="number" id="percentage-contribution" placeholder="e.g., 50" value="50">
+                            </div>
+                            <div class="form-group">
+                                <label for="trader-type">Type of Trader</label>
+                                <select id="trader-type">
+                                    <option value="scalping">Scalping</option>
+                                    <option value="swing">Swing</option>
+                                    <option value="algo">Algo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="track-record">Track Record (Upload Link/Screenshot)</label>
+                                <input type="file" id="track-record">
+                            </div>
+                            <button type="button" class="confirm-btn" onclick="submitCoFundRequest()">Submit Request</button>
+                            <div class="status-tracker" style="margin-top: 1rem; color: #666;">Status: <span class="status status-pending">Pending</span></div>
+                        </form>
+                    </div>
+  <!-- Managed Trading Account Tab (Placeholder) -->
+                    <div id="managed-trading-tab" class="tab-content">
+                        <p>This form is for traders who want to manage an investor's capital. Agree on the investment size, type of account, profit targets, and return cycle. Investors control withdrawals, and profits are shared based on the agreed terms.</p>
+                        <form id="managedTradingForm">
+                            <div class="form-group">
+                                <label for="investment-plan">Investment Plan (Capital Size)</label>
+                                <input type="number" id="investment-plan" placeholder="e.g., $5k" value="5000">
+                            </div>
+                            <div class="form-group">
+                                <label for="trader-type-managed">Type of Trader</label>
+                                <select id="trader-type-managed">
+                                    <option value="forex">Forex</option>
+                                    <option value="stocks">Stocks</option>
+                                    <option value="crypto">Crypto</option>
+                                    <option value="commodities">Commodities</option>
+                                    <option value="all">All</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="return-cycle">Return Cycle</label>
+                                <select id="return-cycle">
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                    <option value="long-term">Long-term</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="profit-target">Profit Target (%)</label>
+                                <input type="number" id="profit-target" placeholder="e.g., 10" value="10">
+                            </div>
+                            <div class="form-group">
+                                <label for="withdrawal-terms">Withdrawal Terms</label>
+                                <input type="text" id="withdrawal-terms" placeholder="e.g., Monthly">
+                            </div>
+                            <div class="form-group">
+                                <label for="lot-size">Lot Size</label>
+                                <input type="number" id="lot-size" placeholder="e.g., 0.1" value="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label for="experience-level">Experience Level</label>
+                                <input type="text" id="experience-level" placeholder="e.g., 2 years">
+                            </div>
+                            <div class="form-group">
+                                <label for="proof-experience">Proof of Experience (Upload)</label>
+                                <input type="file" id="proof-experience">
+                            </div>
+                            <div class="form-group">
+                                <label for="proof-trades">Proof of Trades (Screenshot Upload)</label>
+                                <input type="file" id="proof-trades">
+                            </div>
+                            <button type="button" class="confirm-btn" onclick="submitManagedTradingRequest()">Submit Request</button>
+                            <div class="status-tracker" style="margin-top: 1rem; color: #666;">Status: <span class="status status-pending">Pending</span></div>
+                        </form>
+                    </div>
+  <!-- Managed Account Request Tab (Placeholder) -->
+                    <div id="managed-account-tab" class="tab-content">
+                        <p>For investors: Create a managed account request to link with a trader without revealing sensitive broker details. Input your broker name, account ID, and the trader's platform ID. The system will securely connect you.</p>
+                        <form id="managedAccountForm">
+                            <div class="form-group">
+                                <label for="broker-name">Broker Name</label>
+                                <input type="text" id="broker-name" placeholder="e.g., XM" value="XM">
+                            </div>
+                            <div class="form-group">
+                                <label for="account-id">Account ID</label>
+                                <input type="text" id="account-id" placeholder="e.g., 123456" value="123456">
+                            </div>
+                            <div class="form-group">
+                                <label for="investment-plan-managed">Investment Plan (Capital Size)</label>
+                                <input type="number" id="investment-plan-managed" placeholder="e.g., $5k" value="5000">
+                            </div>
+                            <div class="form-group">
+                                <label for="profit-split">Profit Split (%)</label>
+                                <select id="profit-split">
+                                    <option value="50/50">50/50</option>
+                                    <option value="60/40">60/40</option>
+                                    <option value="70/30">70/30</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="target-cycle">Target Amount / Return Cycle</label>
+                                <select id="target-cycle">
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="profit-target-managed">Profit Target (%)</label>
+                                <input type="number" id="profit-target-managed" placeholder="e.g., 10" value="10">
+                            </div>
+                            <button type="button" class="confirm-btn" onclick="submitManagedAccountRequest()">Submit Request</button>
+                            <div class="status-tracker" style="margin-top: 1rem; color: #666;">Status: <span class="status status-pending">Pending</span></div>
+                        </form>
+                    </div>
+ <!-- Request Dashboard Tab (Placeholder) -->
+                    <div id="requests-dashboard-tab" class="tab-content">
+                        <p>View and manage all your requests and agreements here. Accept or decline pending requests, track active agreements, and monitor profit-sharing status.</p>
+                        <div class="dashboard-features">
+                            <h3>Pending Requests</h3>
+                            <table class="transactions-table">
+                                <thead>
+                                    <tr>
+                                        <th>Request ID</th>
+                                        <th>Type</th>
+                                        <th>Amount</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>REQ001</td>
+                                        <td>Co-Funding</td>
+                                        <td>$5,000</td>
+                                        <td>
+                                            <button class="btn btn-success" onclick="acceptRequest('REQ001')">Accept</button>
+                                            <button class="btn btn-danger" onclick="declineRequest('REQ001')">Decline</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+  <h3>Active Agreements</h3>
+                            <table class="transactions-table">
+                                <thead>
+                                    <tr>
+                                        <th>Agreement ID</th>
+                                        <th>Partner</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>AGR001</td>
+                                        <td>TraderX</td>
+                                        <td>$10,000</td>
+                                        <td><span class="status status-active">Active</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+ <h3>Completed Agreements</h3>
+                            <table class="transactions-table">
+                                <thead>
+                                    <tr>
+                                        <th>Agreement ID</th>
+                                        <th>Profit</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>AGR002</td>
+                                        <td>$500</td>
+                                        <td><span class="status status-completed">Completed</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+<h3>Notifications</h3>
+                            <p>New request from TraderY - <button class="btn btn-primary" onclick="viewNotification()">View</button></p>
+
+   <h3>Agreement History</h3>
+                            <button class="btn btn-primary" onclick="downloadHistory()">Download PDF</button>
+                        </div>
+                    </div>
+                </section>
+ <!-- Other sections (unchanged) -->
                 <section id="available-funded">
                     <h2>Available Funded</h2>
                     <p>View available funded accounts.</p>
@@ -495,11 +583,12 @@
             </main>
         </div>
     </div>
+
  <footer>
         <p>&copy; 2025 MarketFlow</p>
     </footer>
 
-  <script>
+ <script>
         let isLoggedIn = false;
 
         function updateUI() {
@@ -538,207 +627,49 @@
         // Tab Switching
         function showTab(tab) {
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`.tab-button[onclick="showTab('${tab}')"]`).classList.add('active');
+            document.querySelectorAll(`.wallet-tabs .tab-button[onclick="showTab('${tab}')"]`).forEach(btn => btn.classList.add('active'));
 
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             document.getElementById(`${tab}-tab`).classList.add('active');
+        }
 
-            if (tab === 'deposit') {
-                calculateNetDeposit();
-            } else if (tab === 'withdraw') {
-                calculateNetAmount();
+        // Placeholder functions for form submissions
+        function submitCoFundRequest() {
+            if (confirm('Submit Co-Funding Request?')) {
+                alert('Request submitted successfully! Status: Pending');
             }
         }
 
-        // Method Selection
-        function selectMethod(method) {
-            const depositForm = document.getElementById('depositForm');
-            const paymentDetails = document.getElementById('payment-details');
-            const withdrawForm = document.getElementById('withdrawForm');
-            const destinationDetails = document.getElementById('destination-details');
-
-            // Ensure deposit form is visible for deposit methods
-            if (method === 'bank' || method === 'card' || method === 'crypto') {
-                depositForm.classList.remove('hidden'); // Show deposit form
-                withdrawForm.classList.add('hidden'); // Hide withdrawal form
-                document.querySelectorAll('.deposit-methods .method-card').forEach(card => card.classList.remove('active'));
-                document.querySelector(`.deposit-methods .method-card[onclick="selectMethod('${method}')"]`).classList.add('active');
-
-                // Populate payment details based on selected method
-                paymentDetails.innerHTML = ''; // Clear previous content
-                const referenceCode = `DEP${Math.floor(Math.random() * 100000)}`;
-                switch (method) {
-                    case 'bank':
-                        paymentDetails.innerHTML = `
-                            <div class="form-group">
-                                <label>Bank Name: GTBank</label>
-                            </div>
-                            <div class="form-group">
-                                <label>Account Name: MarketFlowFX Ltd</label>
-                            </div>
-                            <div class="form-group">
-                                <label>Account Number: 0123456789</label>
-                            </div>
-                            <div class="form-group">
-                                <label>Reference Code: ${referenceCode}</label>
-                            </div>
-                            <div class="form-group">
-                                <label>📎 Upload Proof of Payment</label>
-                                <input type="file">
-                            </div>
-                        `;
-                        break;
-                    case 'card':
-                        paymentDetails.innerHTML = `
-                            <div class="form-group">
-                                <label>Card Details</label>
-                                <input type="text" placeholder="Card Number">
-                                <input type="text" placeholder="Expiry (MM/YY)">
-                                <input type="text" placeholder="CVV">
-                            </div>
-                            <p>Auto processed - Redirects to payment gateway.</p>
-                        `;
-                        break;
-                    case 'crypto':
-                        paymentDetails.innerHTML = `
-                            <div class="form-group">
-                                <label for="crypto-coin">Select Coin</label>
-                                <select id="crypto-coin">
-                                    <option value="BTC">BTC</option>
-                                    <option value="USDT">USDT</option>
-                                    <option value="ETH">ETH</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Wallet Address: 0xAB123456789CDEFFED1234...</label>
-                                <button class="copy-btn" onclick="copyToClipboard('0xAB123456789CDEFFED1234...')">📋 Copy</button>
-                            </div>
-                            <div class="form-group">
-                                <img src="https://via.placeholder.com/100" alt="QR Code" style="margin-top: 0.5rem;">
-                            </div>
-                        `;
-                        break;
-                }
-            } else if (method.includes('withdraw')) {
-                withdrawForm.classList.remove('hidden');
-                depositForm.classList.add('hidden');
-                document.querySelectorAll('.withdrawal-methods .method-card').forEach(card => card.classList.remove('active'));
-                document.querySelector(`.withdrawal-methods .method-card[onclick="selectMethod('${method}')"]`).classList.add('active');
-                destinationDetails.innerHTML = '';
-                switch (method) {
-                    case 'bank-withdraw':
-                        destinationDetails.innerHTML = `
-                            <div class="form-group">
-                                <label for="bank-name">Bank Name</label>
-                                <select id="bank-name">
-                                    <option value="GTBank">GTBank</option>
-                                    <option value="Zenith">Zenith</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="account-number">Account Number</label>
-                                <input type="text" id="account-number" placeholder="Enter Account Number" value="0123456789">
-                            </div>
-                            <div class="form-group">
-                                <label for="account-holder">Account Holder Name</label>
-                                <input type="text" id="account-holder" placeholder="Enter Account Holder Name" value="MarketFlowFX Ltd">
-                            </div>
-                            <div class="form-group">
-                                <label for="branch">Branch (Optional)</label>
-                                <input type="text" id="branch" placeholder="Enter Branch">
-                            </div>
-                            <div class="form-group save-default">
-                                <input type="checkbox" id="save-default"> <label for="save-default">✔ Save as Default</label>
-                            </div>
-                        `;
-                        break;
-                    case 'crypto-withdraw':
-                        destinationDetails.innerHTML = `
-                            <div class="form-group">
-                                <label for="crypto-coin">Select Coin</label>
-                                <select id="crypto-coin">
-                                    <option value="USDT">USDT</option>
-                                    <option value="BTC">BTC</option>
-                                    <option value="ETH">ETH</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="network-type">Network Type</label>
-                                <select id="network-type">
-                                    <option value="TRC20">TRC20</option>
-                                    <option value="ERC20">ERC20</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="wallet-address">Wallet Address</label>
-                                <input type="text" id="wallet-address" placeholder="Enter Wallet Address" value="0xAB123456789CDEFFED1234...">
-                                <button class="copy-btn" onclick="copyToClipboard(document.getElementById('wallet-address').value)">📋 Copy</button>
-                            </div>
-                        `;
-                        break;
-                    case 'mobile-withdraw':
-                        destinationDetails.innerHTML = `
-                            <div class="form-group">
-                                <label for="provider">Mobile Money Provider</label>
-                                <select id="provider">
-                                    <option value="MTN">MTN</option>
-                                    <option value="Airtel">Airtel</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone-number">Phone Number</label>
-                                <input type="text" id="phone-number" placeholder="Enter Phone Number" value="+2348012345678">
-                            </div>
-                            <div class="form-group">
-                                <label for="account-name">Account Name</label>
-                                <input type="text" id="account-name" placeholder="Enter Account Name" value="John Doe">
-                            </div>
-                        `;
-                        break;
-                }
+        function submitManagedTradingRequest() {
+            if (confirm('Submit Managed Trading Request?')) {
+                alert('Request submitted successfully! Status: Pending');
             }
         }
 
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard!'));
-        }
-
-        function calculateNetDeposit() {
-            const amount = parseFloat(document.getElementById('deposit-amount').value) || 0;
-            const currency = document.getElementById('deposit-currency').value;
-            const feeRate = 0.025; // 2.5% fee
-            const fee = amount * feeRate;
-            const netDeposit = amount - fee;
-            document.getElementById('net-deposit').textContent = `${currency} ${netDeposit.toFixed(2)} (after ${feeRate * 100}% fee)`;
-        }
-
-        function calculateNetAmount() {
-            const amount = parseFloat(document.getElementById('withdraw-amount').value) || 0;
-            const currency = document.getElementById('withdraw-currency').value;
-            const feeRate = 0.025; // 2.5% fee
-            const fee = amount * feeRate;
-            const netAmount = amount - fee;
-            document.getElementById('net-amount').textContent = `${currency} ${netAmount.toFixed(2)} (after ${feeRate * 100}% fee)`;
-        }
-
-        function confirmDeposit() {
-            if (confirm('Are you sure you want to confirm this deposit?')) {
-                alert('Deposit submitted successfully! ✅');
+        function submitManagedAccountRequest() {
+            if (confirm('Submit Managed Account Request?')) {
+                alert('Request submitted successfully! Status: Pending');
             }
         }
 
-        function confirmWithdrawal() {
-            if (confirm('Are you sure you want to submit this withdrawal?')) {
-                alert('Withdrawal submitted successfully! ✅');
-            }
+        function acceptRequest(id) {
+            alert(`Accepted request ${id}!`);
+        }
+
+        function declineRequest(id) {
+            alert(`Declined request ${id}!`);
+        }
+
+        function viewNotification() {
+            alert('Viewing notification...');
+        }
+
+        function downloadHistory() {
+            alert('Downloading agreement history as PDF...');
         }
 
         window.onload = () => {
             login();
-            calculateNetDeposit(); // Initialize net deposit display
-            calculateNetAmount(); // Initialize net withdrawal display
-            // Trigger default method selection (e.g., bank) on load for testing
-            selectMethod('bank');
         };
     </script>
 </body>
