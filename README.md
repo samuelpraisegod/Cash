@@ -35,7 +35,7 @@
         <h1>Prop Firm Dashboard</h1>
     </header>
 
- <nav id="menu">
+  <nav id="menu">
         <ul>
             <li data-section="dashboard-section">Dashboard</li>
             <li data-section="co-funding-section">Co-Funding Request</li>
@@ -43,7 +43,7 @@
         </ul>
     </nav>
 
-  <div id="main-content">
+ <div id="main-content">
         <!-- Dashboard Section -->
         <section id="dashboard-section">
             <h2>Welcome to the Dashboard</h2>
@@ -58,7 +58,7 @@
             <h1>Co-Funding Request</h1>
 
       <!-- Step 1: Prop Firm Selection -->
-   <h2>Step 1: Select Prop Firm</h2>
+<h2>Step 1: Select Prop Firm</h2>
             <select id="prop-firm">
                 <option value="System/Partner Will Choose">System/Partner Will Choose</option>
                 <option value="FTMO">FTMO</option>
@@ -67,27 +67,27 @@
                 <option value="The Funded Trader">The Funded Trader</option>
             </select>
 
-    <!-- Step 2: Account Sizes -->
-   <h2>Step 2: Select Account Size</h2>
+            <!-- Step 2: Account Sizes -->
+<h2>Step 2: Select Account Size</h2>
             <div id="account-options" class="account-options"></div>
+
    <!-- Step 3: Challenge Rules -->
-            <h2>Step 3: Challenge Rules</h2>
+ <h2>Step 3: Challenge Rules</h2>
             <p id="challenge-rules">No specific challenge rules; system or partner will select the Prop Firm and account size.</p>
-   <!-- Step 4: Co-Funding Details -->
-            <h2>Step 4: Co-Funding Details</h2>
+
+  <!-- Step 4: Co-Funding Details -->
+  <h2>Step 4: Co-Funding Details</h2>
             <label for="profit-split">Profit Split Ratio (e.g., 50:50 for requester:co-funder):</label>
             <input type="text" id="profit-split" value="50:50">
 
-  <label>Your Contribution (Requester's Share):</label>
+   <label>Your Contribution (Requester's Share):</label>
             <span id="requester-share" class="share-display">N/A</span>
 
-   <label>Co-Funder's Contribution:</label>
+ <label>Co-Funder's Contribution:</label>
             <span id="co-funder-share" class="share-display">N/A</span>
-
- <!-- Submit Button -->
+  <!-- Submit Button -->
  <button id="submit-request">Submit Request</button>
         </section>
-
   <!-- View All Requests Section -->
  <section id="requests-section">
             <h2>All Requests</h2>
@@ -97,7 +97,7 @@
     </div>
 
     <!-- Pending Requests Modal -->
-<div id="pending-modal">
+ <div id="pending-modal">
         <div id="pending-content">
             <h2>Pending Requests</h2>
             <ul id="pending-list"></ul>
@@ -337,7 +337,7 @@
             saveRequests(requests);
             alert(`Request ID ${id} accepted! Total funded: $${req.account_price.toFixed(2)}. Status: Active. Account ready for purchase.`);
             pendingModal.style.display = 'none';
-            loadAllRequests(); // Refresh if in requests section
+            loadAllRequests();
         }
 
         // Load all requests in the View All Requests section
