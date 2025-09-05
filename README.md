@@ -1,269 +1,287 @@
-import tkinter as tk
-from tkinter import messagebox, Toplevel, Listbox, Scrollbar
-import json
-import os
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prop Firm Co-Funding Platform</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        h2 { font-size: 18px; margin-top: 20px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box; }
+        .account-options { margin-bottom: 10px; }
+        .share-display { font-weight: bold; }
+        button { padding: 10px 20px; margin-right: 10px; cursor: pointer; }
+        #pending-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+        #pending-content { background: white; padding: 20px; max-width: 500px; width: 90%; max-height: 80%; overflow-y: auto; }
+        #pending-list { list-style: none; padding: 0; }
+        #pending-list li { margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Prop Firm Co-Funding Platform</h1>
+ <!-- Step 1: Prop Firm Selection -->
+    <h2>Step 1: Select Prop Firm</h2>
+    <select id="prop-firm">
+        <option value="System/Partner Will Choose">System/Partner Will Choose</option>
+        <option value="FTMO">FTMO</option>
+        <option value="MyForexFunds">MyForexFunds</option>
+        <option value="E8 Funding">E8 Funding</option>
+        <option value="The Funded Trader">The Funded Trader</option>
+    </select>
+ <!-- Step 2: Account Sizes -->
+    <h2>Step 2: Select Account Size</h2>
+    <div id="account-options" class="account-options"></div>
+  <!-- Step 3: Challenge Rules -->
+    <h2>Step 3: Challenge Rules</h2>
+    <p id="challenge-rules">No specific challenge rules; system or partner will select the Prop Firm and account size.</p>
+ <!-- Step 4: Co-Funding Details -->
+    <h2>Step 4: Co-Funding Details</h2>
+    <label for="profit-split">Profit Split Ratio (e.g., 50:50 for requester:co-funder):</label>
+    <input type="text" id="profit-split" value="50:50">
 
-# Data for Prop Firms (account sizes, prices, and challenge rules)
-prop_firms = {
-    "FTMO": {
-        "accounts": [
-            {"size": "$1,000", "price": 13.0},
-            {"size": "$2,000", "price": 17.0},
-            {"size": "$5,000", "price": 30.0},
-            {"size": "$10,000", "price": 155.0},
-            {"size": "$100,000", "price": 500.0},  # Example from requirements
-            {"size": "$200,000", "price": 1080.0}
-        ],
-        "challenge_rules": "Must hit 10% profit target in 30 days (Step 1), 5% in 60 days (Step 2), max 5% daily loss, 10% max drawdown."
-    },
-    "MyForexFunds": {
-        "accounts": [
-            {"size": "$10,000", "price": 49.0},
-            {"size": "$50,000", "price": 299.0},
-            {"size": "$200,000", "price": 999.0}
-        ],
-        "challenge_rules": "Must hit 8% profit target in 30 days (Step 1), 5% in 60 days (Step 2), max 5% daily drawdown, 12% max drawdown."
-    },
-    "E8 Funding": {
-        "accounts": [
-            {"size": "$25,000", "price": 228.0},
-            {"size": "$100,000", "price": 398.0},
-            {"size": "$400,000", "price": 998.0}
-        ],
-        "challenge_rules": "Must hit 8% profit target in 30 days (Step 1), 5% in 60 days (Step 2), max 5% daily drawdown, 8% max loss."
-    },
-    "The Funded Trader": {
-        "accounts": [
-            {"size": "$50,000", "price": 299.0},
-            {"size": "$100,000", "price": 499.0},
-            {"size": "$200,000", "price": 899.0}
-        ],
-        "challenge_rules": "Must hit 10% profit target in 35 days (Step 1), 5% in 60 days (Step 2), max 6% daily loss, 12% max drawdown."
-    },
-    "System/Partner Will Choose": {
-        "accounts": [{"size": "N/A", "price": 0.0}],
-        "challenge_rules": "No specific challenge rules; system or partner will select the Prop Firm and account size."
-    }
-}
+ <label>Your Contribution (Requester's Share):</label>
+    <span id="requester-share" class="share-display">N/A</span>
 
-class PropFirmApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Prop Firm Co-Funding Platform")
-        self.root.geometry("600x800")
+  <label>Co-Funder's Contribution:</label>
+    <span id="co-funder-share" class="share-display">N/A</span>
 
- # Variables
- self.selected_firm = tk.StringVar(value="System/Partner Will Choose")
-        self.selected_account = tk.StringVar(value="N/A")
-        self.profit_split = tk.StringVar(value="50:50")  # Default to 50:50
-        self.requester_share = tk.StringVar(value="N/A")
-        self.co_funder_share = tk.StringVar(value="N/A")
-        self.account_price = 0.0
+<!-- Buttons -->
+ <button id="submit-request">Submit Request</button>
+    <button id="view-pending">View Pending Requests</button>
 
-  # Step 1: Prop Firm Selection
- tk.Label(root, text="Step 1: Select Prop Firm", font=("Arial", 12, "bold")).pack(pady=10)
-        firm_dropdown = tk.OptionMenu(root, self.selected_firm, *prop_firms.keys(), command=self.update_account_sizes)
-        firm_dropdown.pack(pady=5)
+  <!-- Recent Results Placeholder -->
+ <h2>Recent Results</h2>
+    <p>Placeholder for recent results (e.g., success rates, payouts).</p>
 
-  # Step 2: Account Sizes
-  tk.Label(root, text="Step 2: Select Account Size", font=("Arial", 12, "bold")).pack(pady=10)
-        self.account_frame = tk.Frame(root)
-        self.account_frame.pack(pady=5)
-        self.update_account_sizes(self.selected_firm.get())
+    <!-- Pending Requests Modal -->
+ <div id="pending-modal">
+        <div id="pending-content">
+            <h2>Pending Requests</h2>
+            <ul id="pending-list"></ul>
+            <button id="close-modal">Close</button>
+        </div>
+    </div>
 
-  # Step 3: Challenge Rules
-  tk.Label(root, text="Step 3: Challenge Rules", font=("Arial", 12, "bold")).pack(pady=10)
-        self.challenge_label = tk.Label(root, text=prop_firms[self.selected_firm.get()]["challenge_rules"], wraplength=500, justify="left")
-        self.challenge_label.pack(pady=5)
-        # Step 4: Co-Funding Details
-  tk.Label(root, text="Step 4: Co-Funding Details", font=("Arial", 12, "bold")).pack(pady=10)
-        tk.Label(root, text="Profit Split Ratio (e.g., 50:50 for requester:co-funder):").pack()
-        tk.Entry(root, textvariable=self.profit_split).pack(pady=5)
+ <script>
+        // Data for Prop Firms
+        const propFirms = {
+            "FTMO": {
+                "accounts": [
+                    { "size": "$1,000", "price": 13.0 },
+                    { "size": "$2,000", "price": 17.0 },
+                    { "size": "$5,000", "price": 30.0 },
+                    { "size": "$10,000", "price": 155.0 },
+                    { "size": "$100,000", "price": 500.0 },
+                    { "size": "$200,000", "price": 1080.0 }
+                ],
+                "challenge_rules": "Must hit 10% profit target in 30 days (Step 1), 5% in 60 days (Step 2), max 5% daily loss, 10% max drawdown."
+            },
+            "MyForexFunds": {
+                "accounts": [
+                    { "size": "$10,000", "price": 49.0 },
+                    { "size": "$50,000", "price": 299.0 },
+                    { "size": "$200,000", "price": 999.0 }
+                ],
+                "challenge_rules": "Must hit 8% profit target in 30 days (Step 1), 5% in 60 days (Step 2), max 5% daily drawdown, 12% max drawdown."
+            },
+            "E8 Funding": {
+                "accounts": [
+                    { "size": "$25,000", "price": 228.0 },
+                    { "size": "$100,000", "price": 398.0 },
+                    { "size": "$400,000", "price": 998.0 }
+                ],
+                "challenge_rules": "Must hit 8% profit target in 30 days (Step 1), 5% in 60 days (Step 2), max 5% daily drawdown, 8% max loss."
+            },
+            "The Funded Trader": {
+                "accounts": [
+                    { "size": "$50,000", "price": 299.0 },
+                    { "size": "$100,000", "price": 499.0 },
+                    { "size": "$200,000", "price": 899.0 }
+                ],
+                "challenge_rules": "Must hit 10% profit target in 35 days (Step 1), 5% in 60 days (Step 2), max 6% daily loss, 12% max drawdown."
+            },
+            "System/Partner Will Choose": {
+                "accounts": [{ "size": "N/A", "price": 0.0 }],
+                "challenge_rules": "No specific challenge rules; system or partner will select the Prop Firm and account size."
+            }
+        };
 
- # Shares Display
-tk.Label(root, text="Your Contribution (Requester's Share):").pack()
-        tk.Label(root, textvariable=self.requester_share).pack(pady=5)
-        tk.Label(root, text="Co-Funder's Contribution:").pack()
-        tk.Label(root, textvariable=self.co_funder_share).pack(pady=5)
-  # Trace variables to auto-calculate shares
-  self.selected_account.trace("w", self.calculate_shares)
-        self.profit_split.trace("w", self.calculate_shares)
+        // Elements
+        const firmSelect = document.getElementById('prop-firm');
+        const accountOptions = document.getElementById('account-options');
+        const challengeRules = document.getElementById('challenge-rules');
+        const profitSplitInput = document.getElementById('profit-split');
+        const requesterShare = document.getElementById('requester-share');
+        const coFunderShare = document.getElementById('co-funder-share');
+        const submitButton = document.getElementById('submit-request');
+        const viewPendingButton = document.getElementById('view-pending');
+        const pendingModal = document.getElementById('pending-modal');
+        const pendingList = document.getElementById('pending-list');
+        const closeModalButton = document.getElementById('close-modal');
 
- # Buttons
-   tk.Button(root, text="Submit Request", command=self.submit_request).pack(pady=10)
-        tk.Button(root, text="View Pending Requests", command=self.view_pending_requests).pack(pady=10)
+        let selectedAccount = 'N/A';
+        let accountPrice = 0.0;
 
-  # Recent Results Placeholder
-   tk.Label(root, text="Recent Results", font=("Arial", 12, "bold")).pack(pady=10)
-        tk.Label(root, text="Placeholder for recent results (e.g., success rates, payouts).", wraplength=500).pack(pady=5)
-  def update_account_sizes(self, firm):
-        # Clear previous radio buttons
-        for widget in self.account_frame.winfo_children():
-            widget.destroy()
-
-   # Populate new radio buttons for account sizes
-   for account in prop_firms[firm]["accounts"]:
-            tk.Radiobutton(
-                self.account_frame,
-                text=f"{account['size']} - ${account['price']:.2f}",
-                variable=self.selected_account,
-                value=account["size"],
-                anchor="w"
-            ).pack(fill="x", padx=10)
-
-   # Update challenge rules
-self.challenge_label.config(text=prop_firms[firm]["challenge_rules"])
-        self.calculate_shares()
-
-  def calculate_shares(self, *args):
-        firm = self.selected_firm.get()
-        account_size = self.selected_account.get()
-        profit_split = self.profit_split.get() or "50:50"
-
- if firm == "System/Partner Will Choose" or account_size == "N/A":
-            self.requester_share.set("N/A")
-            self.co_funder_share.set("N/A")
-            self.account_price = 0.0
-            return
-
-   # Find the price for the selected account
-   accounts = prop_firms[firm]["accounts"]
-        selected_acc = next((acc for acc in accounts if acc["size"] == account_size), None)
-        if not selected_acc:
-            return
-
-self.account_price = see ected_acc["price"]
-
-  # Parse profit split ratio
-  try:
-            req_part, co_part = map(float, profit_split.split(":"))
-            total_parts = req_part + co_part
-            if total_parts == 0:
-                raise ValueError
-            req_share = (req_part / total_parts) * self.account_price
-            co_share = (co_part / total_parts) * self.account_price
-            self.requester_share.set(f"${req_share:.2f} (Locked in Escrow)")
-            self.co_funder_share.set(f"${co_share:.2f} (Awaiting Co-Funder)")
-        except ValueError:
-            self.requester_share.set("Invalid Ratio")
-            self.co_funder_share.set("Invalid Ratio")
- def submit_request(self):
-        firm = self.selected_firm.get()
-        account_size = self.selected_account.get()
-        profit_split = self.profit_split.get() or "50:50"
-        req_share = self.requester_share.get()
-        co_share = self.co_funder_share.get()
-
-   if firm == "System/Partner Will Choose" or account_size == "N/A":
-            messagebox.showerror("Error", "Please select a valid Prop Firm and Account Size.")
-            return
-
-  if "Invalid" in req_share or not profit_split or ":" not in profit_split:
-            messagebox.showerror("Error", "Please enter a valid profit split ratio (e.g., 50:50).")
-            return
-
-   try:
-            req_share_val = float(req_share.replace("$", "").split(" ")[0])
-            co_share_val = float(co_share.replace("$", "").split(" ")[0])
-        except ValueError:
-            messagebox.showerror("Error", "Invalid share calculation.")
-            return
-
-  # Save request
-   request = {
-            "id": len(self.load_requests()) + 1,
-            "prop_firm": firm,
-            "account_size": account_size,
-            "account_price": self.account_price,
-            "profit_split": profit_split,
-            "requester_share": req_share_val,
-            "co_funder_share": co_share_val,
-            "status": "pending"
+        // Load requests from localStorage
+        function loadRequests() {
+            return JSON.parse(localStorage.getItem('requests')) || [];
         }
 
- requests = self.load_requests()
-        requests.append(request)
-        self.save_requests(requests)
+        // Save requests to localStorage
+        function saveRequests(requests) {
+            localStorage.setItem('requests', JSON.stringify(requests));
+        }
 
-  messagebox.showinfo("Success", f"Request submitted! Your contribution: ${req_share_val:.2f} (Locked in Escrow). Waiting for a co-funder...")
-        self.profit_split.set("50:50")
-        self.selected_firm.set("System/Partner Will Choose")
-        self.selected_account.set("N/A")
-        self.update_account_sizes("System/Partner Will Choose")
-        self.calculate_shares()
- def view_pending_requests(self):
-        requests = self.load_requests()
-        pending = [req for req in requests if req["status"] == "pending"]
+        // Update account sizes
+        function updateAccountSizes() {
+            const firm = firmSelect.value;
+            accountOptions.innerHTML = '';
+            selectedAccount = 'N/A';
+            accountPrice = 0.0;
 
-  if not pending:
-            messagebox.showinfo("No Requests", "No pending co-funding requests.")
-            return
+            propFirms[firm].accounts.forEach(acc => {
+                const label = document.createElement('label');
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'account-size';
+                radio.value = acc.size;
+                radio.addEventListener('change', () => {
+                    selectedAccount = acc.size;
+                    accountPrice = acc.price;
+                    calculateShares();
+                });
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(` ${acc.size} - $${acc.price.toFixed(2)}`));
+                accountOptions.appendChild(label);
+            });
 
-  pending_window = Toplevel(self.root)
-        pending_window.title("Pending Co-Funding Requests")
-        pending_window.geometry("600x400")
+            challengeRules.textContent = propFirms[firm].challenge_rules;
+            calculateShares();
+        }
 
-  tk.Label(pending_window, text="Pending Requests", font=("Arial", 12, "bold")).pack(pady=10)
+        // Calculate shares
+        function calculateShares() {
+            const profitSplit = profitSplitInput.value || '50:50';
+            if (selectedAccount === 'N/A') {
+                requesterShare.textContent = 'N/A';
+                coFunderShare.textContent = 'N/A';
+                return;
+            }
 
-  list_frame = tk.Frame(pending_window)
-        list_frame.pack(fill="both", expand=True, pady=5)
+            try {
+                const [reqPart, coPart] = profitSplit.split(':').map(Number);
+                const totalParts = reqPart + coPart;
+                if (totalParts === 0) throw new Error();
+                const reqShare = (reqPart / totalParts) * accountPrice;
+                const coShare = (coPart / totalParts) * accountPrice;
+                requesterShare.textContent = `$${reqShare.toFixed(2)} (Locked in Escrow)`;
+                coFunderShare.textContent = `$${coShare.toFixed(2)} (Awaiting Co-Funder)`;
+            } catch {
+                requesterShare.textContent = 'Invalid Ratio';
+                coFunderShare.textContent = 'Invalid Ratio';
+            }
+        }
 
-   scrollbar = Scrollbar(list_frame)
-        scrollbar.pack(side="right", fill="y")
+        // Submit request
+        function submitRequest() {
+            const firm = firmSelect.value;
+            if (firm === 'System/Partner Will Choose' || selectedAccount === 'N/A') {
+                alert('Please select a valid Prop Firm and Account Size.');
+                return;
+            }
 
-   listbox = Listbox(list_frame, yscrollcommand=scrollbar.set, font=("Arial", 10))
-        listbox.pack(side="left", fill="both", expand=True)
+            const profitSplit = profitSplitInput.value || '50:50';
+            if (!profitSplit.includes(':')) {
+                alert('Please enter a valid profit split ratio (e.g., 50:50).');
+                return;
+            }
 
-scrollbar.config(command=listbox.yview)
+            const reqShareText = requesterShare.textContent;
+            if (reqShareText.includes('Invalid')) {
+                alert('Invalid share calculation.');
+                return;
+            }
 
-  for req in pending:
-            display_text = (
-                f"ID: {req['id']} | Firm: {req['prop_firm']} | Size: {req['account_size']} | "
-                f"Price: ${req['account_price']:.2f} | Profit Split: {req['profit_split']} | "
-                f"Requester Share: ${req['requester_share']:.2f} (Escrow) | "
-                f"Co-Funder Share: ${req['co_funder_share']:.2f} | Status: {req['status']}"
-            )
-            listbox.insert("end", display_text)
+            const reqShareVal = parseFloat(reqShareText.replace('$', '').split(' ')[0]);
+            const coShareVal = parseFloat(coFunderShare.textContent.replace('$', '').split(' ')[0]);
 
-   def accept_selected():
-            selection = listbox.curselection()
-            if not selection:
-                messagebox.showerror("Error", "Please select a request to accept.")
-                return
-    index = selection[0]
-            req = pending[index]
-            req_id = req["id"]
+            const requests = loadRequests();
+            const newRequest = {
+                id: requests.length + 1,
+                prop_firm: firm,
+                account_size: selectedAccount,
+                account_price: accountPrice,
+                profit_split: profitSplit,
+                requester_share: reqShareVal,
+                co_funder_share: coShareVal,
+                status: 'pending'
+            };
+            requests.push(newRequest);
+            saveRequests(requests);
 
-   # Verify total matches account price    all_requests = self.load_requests()
- for r in all_requests:
-                if r["id"] == req_id:
-                    total = r["requester_share"] + r["co_funder_share"]
-                    if abs(total - r["account_price"]) > 0.01:  # Allow small float errors
-                        messagebox.showerror("Error", "Total shares do not match account price.")
-                        return
-                    r["status"] = "funded"
-                    break
+            alert(`Request submitted! Your contribution: $${reqShareVal.toFixed(2)} (Locked in Escrow). Waiting for a co-funder...`);
 
-self.save_requests(all_requests)
-            messagebox.showinfo("Success", f"Request ID {req_id} accepted! Total funded: ${req['account_price']:.2f}. Account ready for purchase.")
-            pending_window.destroy()
-            self.view_pending_requests()
+            // Reset form
+            profitSplitInput.value = '50:50';
+            firmSelect.value = 'System/Partner Will Choose';
+            updateAccountSizes();
+        }
 
-   tk.Button(pending_window, text="Accept as Co-Funder", command=accept_selected).pack(pady=10)
-  def load_requests(self):
-        if os.path.exists("requests.json"):
-            with open("requests.json", "r") as f:
-                return json.load(f)
-        return []
+        // View pending requests
+        function viewPending() {
+            const requests = loadRequests();
+            const pending = requests.filter(req => req.status === 'pending');
+            pendingList.innerHTML = '';
 
- def save_requests(self, requests):
-        with open("requests.json", "w") as f:
-            json.dump(requests, f, indent=4)
+            if (pending.length === 0) {
+                alert('No pending co-funding requests.');
+                return;
+            }
 
-def main():
-    root = tk.Tk()
-    app = PropFirmApp(root)
-    root.mainloop()
+            pending.forEach(req => {
+                const li = document.createElement('li');
+                li.textContent = `ID: ${req.id} | Firm: ${req.prop_firm} | Size: ${req.account_size} | Price: $${req.account_price.toFixed(2)} | Profit Split: ${req.profit_split} | Requester Share: $${req.requester_share.toFixed(2)} (Escrow) | Co-Funder Share: $${req.co_funder_share.toFixed(2)} | Status: ${req.status}`;
+                
+                const acceptButton = document.createElement('button');
+                acceptButton.textContent = 'Accept as Co-Funder';
+                acceptButton.onclick = () => acceptRequest(req.id);
+                li.appendChild(acceptButton);
+                
+                pendingList.appendChild(li);
+            });
 
-if __name__ == "__main__":
-    main()
+            pendingModal.style.display = 'flex';
+        }
+
+        // Accept request
+        function acceptRequest(id) {
+            const requests = loadRequests();
+            const req = requests.find(r => r.id === id && r.status === 'pending');
+            if (!req) return;
+
+            const total = req.requester_share + req.co_funder_share;
+            if (Math.abs(total - req.account_price) > 0.01) {
+                alert('Total shares do not match account price.');
+                return;
+            }
+
+            req.status = 'funded';
+            saveRequests(requests);
+            alert(`Request ID ${id} accepted! Total funded: $${req.account_price.toFixed(2)}. Account ready for purchase.`);
+            pendingModal.style.display = 'none';
+            viewPending();
+        }
+
+        // Event listeners
+        firmSelect.addEventListener('change', updateAccountSizes);
+        profitSplitInput.addEventListener('input', calculateShares);
+        submitButton.addEventListener('click', submitRequest);
+        viewPendingButton.addEventListener('click', viewPending);
+        closeModalButton.addEventListener('click', () => pendingModal.style.display = 'none');
+
+        // Initial load
+        updateAccountSizes();
+    </script>
+</body>
+</html>
