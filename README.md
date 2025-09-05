@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prop Firm Co-Funding Platform</title>
+    <title>Prop Firm Dashboard</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background: #333; color: white; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
+        #hamburger { cursor: pointer; font-size: 24px; }
+        #menu { display: none; position: absolute; top: 50px; left: 10px; background: white; border: 1px solid #ddd; padding: 10px; }
+        #menu ul { list-style: none; padding: 0; margin: 0; }
+        #menu li { margin-bottom: 10px; cursor: pointer; }
+        #main-content { max-width: 600px; margin: 20px auto; padding: 20px; }
+        #dashboard-section { display: block; }
+        #co-funding-section { display: none; }
+        #requests-section { display: none; }
         h2 { font-size: 18px; margin-top: 20px; }
         label { display: block; margin-bottom: 5px; }
         input, select { width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box; }
@@ -16,46 +25,79 @@
         #pending-content { background: white; padding: 20px; max-width: 500px; width: 90%; max-height: 80%; overflow-y: auto; }
         #pending-list { list-style: none; padding: 0; }
         #pending-list li { margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+        #all-requests-list { list-style: none; padding: 0; }
+        #all-requests-list li { margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
     </style>
 </head>
 <body>
-    <h1>Prop Firm Co-Funding Platform</h1>
- <!-- Step 1: Prop Firm Selection -->
-    <h2>Step 1: Select Prop Firm</h2>
-    <select id="prop-firm">
-        <option value="System/Partner Will Choose">System/Partner Will Choose</option>
-        <option value="FTMO">FTMO</option>
-        <option value="MyForexFunds">MyForexFunds</option>
-        <option value="E8 Funding">E8 Funding</option>
-        <option value="The Funded Trader">The Funded Trader</option>
-    </select>
- <!-- Step 2: Account Sizes -->
-    <h2>Step 2: Select Account Size</h2>
-    <div id="account-options" class="account-options"></div>
-  <!-- Step 3: Challenge Rules -->
-    <h2>Step 3: Challenge Rules</h2>
-    <p id="challenge-rules">No specific challenge rules; system or partner will select the Prop Firm and account size.</p>
- <!-- Step 4: Co-Funding Details -->
-    <h2>Step 4: Co-Funding Details</h2>
-    <label for="profit-split">Profit Split Ratio (e.g., 50:50 for requester:co-funder):</label>
-    <input type="text" id="profit-split" value="50:50">
+    <header>
+        <div id="hamburger">&#9776;</div>
+        <h1>Prop Firm Dashboard</h1>
+    </header>
 
- <label>Your Contribution (Requester's Share):</label>
-    <span id="requester-share" class="share-display">N/A</span>
+ <nav id="menu">
+        <ul>
+            <li data-section="dashboard-section">Dashboard</li>
+            <li data-section="co-funding-section">Co-Funding Request</li>
+            <li data-section="requests-section">View All Requests</li>
+        </ul>
+    </nav>
 
-  <label>Co-Funder's Contribution:</label>
-    <span id="co-funder-share" class="share-display">N/A</span>
+  <div id="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard-section">
+            <h2>Welcome to the Dashboard</h2>
+            <p>This is the main dashboard. Use the menu to navigate.</p>
+            <!-- Recent Results Placeholder -->
+            <h2>Recent Results</h2>
+            <p>Placeholder for recent results (e.g., success rates, payouts).</p>
+        </section>
 
-<!-- Buttons -->
+  <!-- Co-Funding Section -->
+ <section id="co-funding-section">
+            <h1>Co-Funding Request</h1>
+
+      <!-- Step 1: Prop Firm Selection -->
+   <h2>Step 1: Select Prop Firm</h2>
+            <select id="prop-firm">
+                <option value="System/Partner Will Choose">System/Partner Will Choose</option>
+                <option value="FTMO">FTMO</option>
+                <option value="MyForexFunds">MyForexFunds</option>
+                <option value="E8 Funding">E8 Funding</option>
+                <option value="The Funded Trader">The Funded Trader</option>
+            </select>
+
+    <!-- Step 2: Account Sizes -->
+   <h2>Step 2: Select Account Size</h2>
+            <div id="account-options" class="account-options"></div>
+   <!-- Step 3: Challenge Rules -->
+            <h2>Step 3: Challenge Rules</h2>
+            <p id="challenge-rules">No specific challenge rules; system or partner will select the Prop Firm and account size.</p>
+   <!-- Step 4: Co-Funding Details -->
+            <h2>Step 4: Co-Funding Details</h2>
+            <label for="profit-split">Profit Split Ratio (e.g., 50:50 for requester:co-funder):</label>
+            <input type="text" id="profit-split" value="50:50">
+
+  <label>Your Contribution (Requester's Share):</label>
+            <span id="requester-share" class="share-display">N/A</span>
+
+   <label>Co-Funder's Contribution:</label>
+            <span id="co-funder-share" class="share-display">N/A</span>
+
+ <!-- Submit Button -->
  <button id="submit-request">Submit Request</button>
-    <button id="view-pending">View Pending Requests</button>
+        </section>
 
-  <!-- Recent Results Placeholder -->
- <h2>Recent Results</h2>
-    <p>Placeholder for recent results (e.g., success rates, payouts).</p>
+  <!-- View All Requests Section -->
+ <section id="requests-section">
+            <h2>All Requests</h2>
+            <ul id="all-requests-list"></ul>
+            <button id="view-pending">View and Accept Pending Requests</button>
+        </section>
+    </div>
 
     <!-- Pending Requests Modal -->
- <div id="pending-modal">
+<div id="pending-modal">
         <div id="pending-content">
             <h2>Pending Requests</h2>
             <ul id="pending-list"></ul>
@@ -63,7 +105,7 @@
         </div>
     </div>
 
- <script>
+  <script>
         // Data for Prop Firms
         const propFirms = {
             "FTMO": {
@@ -107,7 +149,31 @@
             }
         };
 
-        // Elements
+        // Elements for Menu and Sections
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+        const menuItems = menu.querySelectorAll('li');
+        const sections = document.querySelectorAll('section');
+
+        // Toggle Menu
+        hamburger.addEventListener('click', () => {
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Switch Sections
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const sectionId = item.dataset.section;
+                sections.forEach(sec => sec.style.display = 'none');
+                document.getElementById(sectionId).style.display = 'block';
+                menu.style.display = 'none';
+                if (sectionId === 'requests-section') {
+                    loadAllRequests();
+                }
+            });
+        });
+
+        // Co-Funding Elements
         const firmSelect = document.getElementById('prop-firm');
         const accountOptions = document.getElementById('account-options');
         const challengeRules = document.getElementById('challenge-rules');
@@ -119,11 +185,12 @@
         const pendingModal = document.getElementById('pending-modal');
         const pendingList = document.getElementById('pending-list');
         const closeModalButton = document.getElementById('close-modal');
+        const allRequestsList = document.getElementById('all-requests-list');
 
         let selectedAccount = 'N/A';
         let accountPrice = 0.0;
 
-        // Load requests from localStorage
+        // Load requests from localStorage (simulating database)
         function loadRequests() {
             return JSON.parse(localStorage.getItem('requests')) || [];
         }
@@ -215,12 +282,12 @@
                 profit_split: profitSplit,
                 requester_share: reqShareVal,
                 co_funder_share: coShareVal,
-                status: 'pending'
+                status: 'Pending'
             };
             requests.push(newRequest);
             saveRequests(requests);
 
-            alert(`Request submitted! Your contribution: $${reqShareVal.toFixed(2)} (Locked in Escrow). Waiting for a co-funder...`);
+            alert(`Request submitted! Your contribution: $${reqShareVal.toFixed(2)} (Locked in Escrow). Waiting for a co-funder... Status: Pending`);
 
             // Reset form
             profitSplitInput.value = '50:50';
@@ -228,10 +295,10 @@
             updateAccountSizes();
         }
 
-        // View pending requests
+        // View pending requests in modal
         function viewPending() {
             const requests = loadRequests();
-            const pending = requests.filter(req => req.status === 'pending');
+            const pending = requests.filter(req => req.status === 'Pending');
             pendingList.innerHTML = '';
 
             if (pending.length === 0) {
@@ -254,10 +321,10 @@
             pendingModal.style.display = 'flex';
         }
 
-        // Accept request
+        // Accept request (set to Active)
         function acceptRequest(id) {
             const requests = loadRequests();
-            const req = requests.find(r => r.id === id && r.status === 'pending');
+            const req = requests.find(r => r.id === id && r.status === 'Pending');
             if (!req) return;
 
             const total = req.requester_share + req.co_funder_share;
@@ -266,14 +333,51 @@
                 return;
             }
 
-            req.status = 'funded';
+            req.status = 'Active';
             saveRequests(requests);
-            alert(`Request ID ${id} accepted! Total funded: $${req.account_price.toFixed(2)}. Account ready for purchase.`);
+            alert(`Request ID ${id} accepted! Total funded: $${req.account_price.toFixed(2)}. Status: Active. Account ready for purchase.`);
             pendingModal.style.display = 'none';
-            viewPending();
+            loadAllRequests(); // Refresh if in requests section
         }
 
-        // Event listeners
+        // Load all requests in the View All Requests section
+        function loadAllRequests() {
+            const requests = loadRequests();
+            allRequestsList.innerHTML = '';
+
+            if (requests.length === 0) {
+                allRequestsList.innerHTML = '<li>No requests available.</li>';
+                return;
+            }
+
+            requests.forEach(req => {
+                const li = document.createElement('li');
+                li.textContent = `ID: ${req.id} | Firm: ${req.prop_firm} | Size: ${req.account_size} | Price: $${req.account_price.toFixed(2)} | Profit Split: ${req.profit_split} | Requester Share: $${req.requester_share.toFixed(2)} | Co-Funder Share: $${req.co_funder_share.toFixed(2)} | Status: ${req.status}`;
+                
+                if (req.status === 'Active') {
+                    const completeButton = document.createElement('button');
+                    completeButton.textContent = 'Mark as Completed';
+                    completeButton.onclick = () => completeRequest(req.id);
+                    li.appendChild(completeButton);
+                }
+                
+                allRequestsList.appendChild(li);
+            });
+        }
+
+        // Mark request as Completed
+        function completeRequest(id) {
+            const requests = loadRequests();
+            const req = requests.find(r => r.id === id && r.status === 'Active');
+            if (!req) return;
+
+            req.status = 'Completed';
+            saveRequests(requests);
+            alert(`Request ID ${id} marked as Completed!`);
+            loadAllRequests();
+        }
+
+        // Event listeners for Co-Funding
         firmSelect.addEventListener('change', updateAccountSizes);
         profitSplitInput.addEventListener('input', calculateShares);
         submitButton.addEventListener('click', submitRequest);
@@ -282,6 +386,7 @@
 
         // Initial load
         updateAccountSizes();
+        loadAllRequests();
     </script>
 </body>
 </html>
